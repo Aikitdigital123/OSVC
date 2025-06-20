@@ -24,7 +24,7 @@ html, body {
 /* HLAVIČKA */
 header {
   background: linear-gradient(90deg, #1b2233 60%, #253b64 100%);
-  padding: 22px 16px 18px;
+  padding: 10px 16px 10px;
   text-align: center;
   box-shadow: var(--shadow);
   position: sticky;
