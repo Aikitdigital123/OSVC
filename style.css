@@ -9,10 +9,9 @@
   --font-mono: 'Roboto Mono', monospace;
   --shadow: 0 4px 32px 0 rgba(30,40,100,0.10);
   --transition: all 0.4s cubic-bezier(.6,.01,.05,1);
-  --header-height: 50px; /* přidej tuto proměnnou podle výšky headeru */
+  --header-height: 10px; 
 }
 
-/* OŠETŘENÍ PRO SKROLLOVÁNÍ NA SEKCE ZA FIXNÍ HLAVIČKOU */
 .section {
   scroll-margin-top: var(--header-height);
   max-width: 700px;
