@@ -3,68 +3,276 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Mykhailo Hyndriuk – IT podpora a systémy</title>
+  <title>Mykhailo Hyndriuk – IT & Digital Solutions</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f4f4f4;
-      margin: 0;
-      padding: 0;
-      color: #333;
+    :root {
+      --color-bg: #171d25;
+      --color-bg-section: #212836;
+      --color-accent: #2a8cff;
+      --color-text: #e6eaf3;
+      --color-secondary: #8db4e2;
+      --color-card: #222c3c;
+      --font-main: 'Inter', Arial, sans-serif;
+      --font-mono: 'Roboto Mono', monospace;
+      --shadow: 0 4px 32px 0 rgba(30,40,100,0.10);
+      --transition: all 0.4s cubic-bezier(.6,.01,.05,1);
+    }
+    html, body {
+      margin: 0; padding: 0;
+      background: var(--color-bg);
+      color: var(--color-text);
+      font-family: var(--font-main);
+      min-height: 100%;
+      scroll-behavior: smooth;
     }
     header {
-      background: #003366;
-      color: white;
-      padding: 20px;
+      background: linear-gradient(90deg, #1b2233 60%, #253b64 100%);
+      padding: 36px 16px 28px;
       text-align: center;
+      box-shadow: var(--shadow);
+      position: sticky;
+      top: 0; z-index: 100;
+      transition: background 0.3s;
+      letter-spacing: .03em;
     }
-    section {
-      padding: 20px;
-      max-width: 800px;
-      margin: auto;
-      background: white;
-      margin-top: 20px;
+    .logo {
+      font-family: var(--font-mono);
+      font-size: 2.5rem;
+      font-weight: 900;
+      letter-spacing: .09em;
+      color: var(--color-accent);
+      text-shadow: 0 3px 24px #222c4c70;
+      transition: color .3s;
+      user-select: none;
+      display: inline-block;
+      margin-bottom: 3px;
+    }
+    .subtitle {
+      font-size: 1.3rem;
+      color: var(--color-secondary);
+      margin-bottom: 10px;
+      font-family: var(--font-mono);
+      font-weight: 400;
+      letter-spacing: .02em;
+    }
+    nav {
+      margin: 0 auto 0;
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      font-family: var(--font-mono);
+      font-size: 1.08rem;
+    }
+    nav a {
+      text-decoration: none;
+      color: var(--color-secondary);
+      padding: 4px 0;
+      border-bottom: 2px solid transparent;
+      transition: color 0.2s, border 0.2s;
+    }
+    nav a:hover, nav a:focus {
+      color: var(--color-accent);
+      border-bottom: 2px solid var(--color-accent);
+    }
+    .section {
+      max-width: 700px;
+      margin: 56px auto 0;
+      padding: 36px 22px 30px;
+      background: var(--color-bg-section);
+      border-radius: 22px;
+      box-shadow: var(--shadow);
+      opacity: 0;
+      transform: translateY(60px);
+      animation: fadeInUp .9s cubic-bezier(.6,.01,.05,1) forwards;
+      animation-delay: .25s;
+    }
+    .section:not(:first-child) {
+      animation-delay: .4s;
+    }
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+    h2 {
+      font-family: var(--font-main);
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--color-accent);
+      margin: 0 0 6px 0;
+      letter-spacing: .01em;
+    }
+    h3 {
+      font-size: 1.12rem;
+      color: var(--color-secondary);
+      font-family: var(--font-mono);
+      margin: 0 0 28px 0;
+    }
+    ul {
+      padding-left: 1.2em;
+      margin: 20px 0 32px 0;
+      font-size: 1.05rem;
+      line-height: 1.7;
+    }
+    li {
+      margin-bottom: 7px;
+    }
+    p {
+      font-size: 1.09rem;
+      margin-bottom: 17px;
+      color: var(--color-text);
+      line-height: 1.7;
+    }
+    .contact-links {
+      margin-top: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+    .contact-links a {
+      color: var(--color-accent);
+      text-decoration: none;
+      font-family: var(--font-mono);
+      font-size: 1.03rem;
+      transition: color .2s;
+      word-break: break-all;
+    }
+    .contact-links a:hover {
+      color: #fff;
+      text-shadow: 0 2px 12px #2a8cff80;
+    }
+    .card {
+      background: var(--color-card);
+      border-radius: 12px;
+      padding: 20px 17px;
+      margin: 22px 0;
+      box-shadow: 0 2px 14px #0b132440;
+    }
+    .btn-main {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 1rem;
+      color: #fff;
+      background: var(--color-accent);
+      border: none;
       border-radius: 8px;
-      box-shadow: 0 0 8px rgba(0,0,0,0.1);
+      padding: 11px 32px;
+      margin-top: 16px;
+      cursor: pointer;
+      box-shadow: 0 2px 16px #2a8cff33;
+      transition: background .2s, transform .13s;
+      font-weight: 700;
+      letter-spacing: .04em;
+    }
+    .btn-main:hover, .btn-main:focus {
+      background: #0062e8;
+      transform: translateY(-2px) scale(1.025);
     }
     footer {
+      background: #1b2233;
+      color: #6d7fa3;
       text-align: center;
-      padding: 15px;
-      background: #003366;
-      color: white;
-      margin-top: 20px;
+      padding: 26px 10px 16px;
+      margin-top: 56px;
+      font-family: var(--font-mono);
+      font-size: 1rem;
+      letter-spacing: .01em;
+      border-top: 1px solid #26334c;
+    }
+    @media (max-width: 750px) {
+      .section { max-width: 98vw; padding: 24px 7vw 21px;}
+      header { padding: 28px 6vw 20px;}
+    }
+    @media (max-width: 500px) {
+      .logo { font-size: 1.5rem; }
+      h2 { font-size: 1.3rem; }
+      .section { padding: 17px 2vw 12px; }
+      nav { gap: 14px; }
     }
   </style>
 </head>
 <body>
+  <header>
+    <span class="logo">MH<span style="color:#fff;">|</span>IT</span>
+    <div class="subtitle">IT podpora & Digitalizace pro firmy</div>
+    <nav>
+      <a href="#about">O mně</a>
+      <a href="#services">Služby</a>
+      <a href="#contact">Kontakt</a>
+    </nav>
+  </header>
 
-<header>
-  <h1>Mykhailo Hyndriuk – IT podpora & systémy</h1>
-  <p>Podpora systémů, servery, automatizace a poradenství</p>
-</header>
+  <section id="about" class="section">
+    <h2>O mně</h2>
+    <h3>Stabilita, spolehlivost, inovace</h3>
+    <p>
+      Jsem <b>Mykhailo Hyndriuk</b> – specialista na IT podporu, správu systémů a digitální transformaci. Pomáhám firmám i jednotlivcům optimalizovat provoz, zvyšovat bezpečnost a automatizovat klíčové procesy. Mám zkušenosti s technologiemi SQL, WildFly, Java, Ident Server, OPC, HMI, Data Warehouse, Emos Web a dalšími.
+    </p>
+    <div class="card">
+      <b>S čím Vám mohu pomoci?</b><br>
+      • Zajištění stabilního a bezpečného provozu systémů<br>
+      • Efektivní monitoring a automatizace procesů<br>
+      • IT poradenství na míru
+    </div>
+  </section>
 
-<section>
-  <h2>O mně</h2>
-  <p>Jsem zkušený specialista v oblasti IT podpory a systémů s důrazem na stabilitu, spolehlivost a efektivitu provozu. Pracuji s technologiemi jako SQL, WildFly, Java, Ident Server, OPC, HMI, Data Warehouse, Emos Web, a dalšími.</p>
+  <section id="services" class="section">
+    <h2>Služby</h2>
+    <h3>Komplexní IT řešení</h3>
+    <ul>
+      <li>Správa serverů a databází (SQL, Windows/Linux)</li>
+      <li>Analýza logů, monitoring a proaktivní údržba</li>
+      <li>Podpora výrobních systémů (PLC, SCADA, HMI)</li>
+      <li>Digitalizace a automatizace procesů (Industry 4.0)</li>
+      <li>Tvorba interních aplikací (Python, webové nástroje)</li>
+      <li>IT bezpečnost a zálohování</li>
+      <li>Poradenství a školení v oblasti IT</li>
+    </ul>
+    <a href="mailto:mykhailo@hyndriuk.cz" class="btn-main">Nezávazná poptávka</a>
+  </section>
 
-  <h2>Služby</h2>
-  <ul>
-    <li>Správa serverů a databází</li>
-    <li>Analýza logů a monitoring systémů</li>
-    <li>Podpora výrobních systémů (PLC, SCADA)</li>
-    <li>Poradenství v oblasti digitalizace a automatizace (Industry 4.0)</li>
-    <li>Tvorba jednoduchých interních aplikací (Python, web)</li>
-  </ul>
+  <section id="contact" class="section">
+    <h2>Kontakt</h2>
+    <h3>Ozvěte se, rád pomohu</h3>
+    <div class="contact-links">
+      <span>📧 <a href="mailto:mykhailo@hyndriuk.cz">mykhailo@hyndriuk.cz</a></span>
+      <span>📞 <a href="tel:+420123456789">+420 777 781 600</a></span>
+      <span>🌍 Praha & Mladá Boleslav, ČR</span>
+      <span>🌐 <a href="https://www.hyndriuk.cz" target="_blank">www.hyndriuk.cz</a></span>
+    </div>
+    <div style="text-align:center; margin-top:30px;">
+      <p style="color:var(--color-secondary); font-family:var(--font-mono); margin-bottom:10px;">Rychlý kontakt přes QR kód:</p>
+      <img 
+        src="https://api.qrserver.com/v1/create-qr-code/?data=https%3A%2F%2Fwww.hyndriuk.cz%2F&amp;size=160x160&amp;margin=10"
+        alt="QR kód – www.hyndriuk.cz"
+        width="160" height="160"
+        style="border-radius:16px; box-shadow:0 2px 16px #2a8cff33;"
+        loading="lazy"
+      >
+    </div>
+  </section>
 
-  <h2>Kontakt</h2>
-<p>📧 mykhailo@hyndriuk.cz</p>
-<p>📍 Praha a Mladá Boleslav, Česká republika</p>
-<p>🌐 <a href="https://www.hyndriuk.cz" target="_blank">www.hyndriuk.cz</a></p>
-</section>
-
-<footer>
-  <p>&copy; 2025 Mykhailo Hyndriuk – IT podpora & systémy</p>
-</footer>
-
+  <footer>
+    &copy; 2025 Mykhailo Hyndriuk – IT podpora & digitalizace
+  </footer>
+  <script>
+    // Sekce efektní načítání sekcí při scrollu
+    document.querySelectorAll('.section').forEach(sec => {
+      sec.style.opacity = 0;
+      sec.style.transform = 'translateY(60px)';
+    });
+    function revealSections() {
+      document.querySelectorAll('.section').forEach(sec => {
+        const rect = sec.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 100) {
+          sec.style.animationPlayState = 'running';
+        }
+      });
+    }
+    window.addEventListener('scroll', revealSections);
+    window.addEventListener('DOMContentLoaded', revealSections);
+  </script>
 </body>
 </html>
