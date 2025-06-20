@@ -9,7 +9,7 @@
   --font-mono: 'Roboto Mono', monospace;
   --shadow: 0 4px 32px 0 rgba(30,40,100,0.10);
   --transition: all 0.4s cubic-bezier(.6,.01,.05,1);
-  --header-height: 150px; 
+  --header-height: 120px; 
 }
 
 .section {
