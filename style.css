@@ -9,24 +9,7 @@
   --font-mono: 'Roboto Mono', monospace;
   --shadow: 0 4px 32px 0 rgba(30,40,100,0.10);
   --transition: all 0.4s cubic-bezier(.6,.01,.05,1);
-  --header-height: 120px; 
-}
-
-.section {
-  scroll-margin-top: var(--header-height);
-  max-width: 700px;
-  margin: 56px auto 0;
-  padding: 36px 22px 30px;
-  background: var(--color-bg-section);
-  border-radius: 22px;
-  box-shadow: var(--shadow);
-  opacity: 0;
-  transform: translateY(60px);
-  animation: fadeInUp .9s cubic-bezier(.6,.01,.05,1) forwards;
-  animation-delay: .25s;
-}
-.section:not(:first-child) {
-  animation-delay: .4s;
+  --header-height: 90px; /* optimalni pro sticky header */
 }
 
 html, body {
@@ -37,21 +20,52 @@ html, body {
   min-height: 100%;
   scroll-behavior: smooth;
 }
+
+/* HLAVIČKA */
 header {
   background: linear-gradient(90deg, #1b2233 60%, #253b64 100%);
-  padding: 36px 16px 28px;
+  padding: 22px 16px 18px;
   text-align: center;
   box-shadow: var(--shadow);
   position: sticky;
   top: 0; z-index: 100;
   transition: background 0.3s;
   letter-spacing: .03em;
-  /* výška headeru by měla zhruba odpovídat --header-height */
   min-height: var(--header-height);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* SEKCE */
+.section {
+  scroll-margin-top: var(--header-height);
+  max-width: 700px;
+  margin: 28px auto 0;
+  padding: 32px 18px 26px;
+  background: var(--color-bg-section);
+  border-radius: 22px;
+  box-shadow: var(--shadow);
+  opacity: 0;
+  transform: translateY(60px);
+  animation: fadeInUp .9s cubic-bezier(.6,.01,.05,1) forwards;
+  animation-delay: .25s;
+  transition: margin .2s, padding .2s;
+}
+.section:not(:first-child) {
+  animation-delay: .4s;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
 .logo {
   font-family: var(--font-mono);
-  font-size: 2.5rem;
+  font-size: 2.2rem;
   font-weight: 900;
   letter-spacing: .09em;
   color: var(--color-accent);
@@ -59,12 +73,12 @@ header {
   transition: color .3s;
   user-select: none;
   display: inline-block;
-  margin-bottom: 3px;
+  margin-bottom: 2px;
 }
 .subtitle {
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   color: var(--color-secondary);
-  margin-bottom: 10px;
+  margin-bottom: 8px;
   font-family: var(--font-mono);
   font-weight: 400;
   letter-spacing: .02em;
@@ -73,7 +87,7 @@ nav {
   margin: 0 auto 0;
   display: flex;
   justify-content: center;
-  gap: 32px;
+  gap: 28px;
   font-family: var(--font-mono);
   font-size: 1.08rem;
 }
@@ -88,52 +102,48 @@ nav a:hover, nav a:focus {
   color: var(--color-accent);
   border-bottom: 2px solid var(--color-accent);
 }
-@keyframes fadeInUp {
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
 h2 {
   font-family: var(--font-main);
-  font-size: 2rem;
+  font-size: 1.6rem;
   font-weight: 700;
   color: var(--color-accent);
   margin: 0 0 6px 0;
   letter-spacing: .01em;
 }
 h3 {
-  font-size: 1.12rem;
+  font-size: 1.08rem;
   color: var(--color-secondary);
   font-family: var(--font-mono);
-  margin: 0 0 28px 0;
+  margin: 0 0 22px 0;
 }
 ul {
   padding-left: 1.2em;
-  margin: 20px 0 32px 0;
-  font-size: 1.05rem;
+  margin: 16px 0 28px 0;
+  font-size: 1.03rem;
   line-height: 1.7;
 }
 li {
-  margin-bottom: 7px;
+  margin-bottom: 6px;
 }
 p {
-  font-size: 1.09rem;
-  margin-bottom: 17px;
+  font-size: 1.05rem;
+  margin-bottom: 15px;
   color: var(--color-text);
   line-height: 1.7;
 }
+
+/* KONTAKT */
 .contact-links {
-  margin-top: 14px;
+  margin-top: 12px;
   display: flex;
   flex-direction: column;
-  gap: 7px;
+  gap: 5px;
 }
 .contact-links a {
   color: var(--color-accent);
   text-decoration: none;
   font-family: var(--font-mono);
-  font-size: 1.03rem;
+  font-size: 1rem;
   transition: color .2s;
   word-break: break-all;
 }
@@ -144,9 +154,10 @@ p {
 .card {
   background: var(--color-card);
   border-radius: 12px;
-  padding: 20px 17px;
-  margin: 22px 0;
+  padding: 16px 13px;
+  margin: 18px 0;
   box-shadow: 0 2px 14px #0b132440;
+  font-size: 0.98rem;
 }
 .btn-main {
   display: inline-block;
@@ -172,23 +183,36 @@ footer {
   background: #1b2233;
   color: #6d7fa3;
   text-align: center;
-  padding: 26px 10px 16px;
-  margin-top: 56px;
+  padding: 20px 10px 14px;
+  margin-top: 36px;
   font-family: var(--font-mono);
   font-size: 1rem;
   letter-spacing: .01em;
   border-top: 1px solid #26334c;
 }
+
+/* MEDIA QUERIES */
 @media (max-width: 750px) {
-  .section { max-width: 98vw; padding: 24px 7vw 21px;}
-  header { padding: 28px 6vw 20px;}
+  .section { 
+    max-width: 98vw; 
+    padding: 18px 4vw 15px;
+    margin: 18px auto 0;
+  }
+  header { 
+    padding: 14px 6vw 14px;
+    min-height: 68px;
+  }
 }
 @media (max-width: 500px) {
-  .logo { font-size: 1.5rem; }
-  h2 { font-size: 1.3rem; }
-  .section { padding: 17px 2vw 12px; }
-  nav { gap: 14px; }
+  :root {
+    --header-height: 62px;
+  }
+  .logo { font-size: 1.2rem; }
+  h2 { font-size: 1.1rem; }
+  .section { padding: 9px 1vw 8px; }
+  nav { gap: 10px; }
 }
+
 /* Kontaktni formular styl */
 .contact-form input, .contact-form textarea {
   background: #242c3e; color: #e6eaf3; border: 1px solid #2a8cff50;
