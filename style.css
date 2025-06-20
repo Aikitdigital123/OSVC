@@ -9,7 +9,27 @@
   --font-mono: 'Roboto Mono', monospace;
   --shadow: 0 4px 32px 0 rgba(30,40,100,0.10);
   --transition: all 0.4s cubic-bezier(.6,.01,.05,1);
+  --header-height: 100px; /* přidej tuto proměnnou podle výšky headeru */
 }
+
+/* OŠETŘENÍ PRO SKROLLOVÁNÍ NA SEKCE ZA FIXNÍ HLAVIČKOU */
+.section {
+  scroll-margin-top: var(--header-height);
+  max-width: 700px;
+  margin: 56px auto 0;
+  padding: 36px 22px 30px;
+  background: var(--color-bg-section);
+  border-radius: 22px;
+  box-shadow: var(--shadow);
+  opacity: 0;
+  transform: translateY(60px);
+  animation: fadeInUp .9s cubic-bezier(.6,.01,.05,1) forwards;
+  animation-delay: .25s;
+}
+.section:not(:first-child) {
+  animation-delay: .4s;
+}
+
 html, body {
   margin: 0; padding: 0;
   background: var(--color-bg);
@@ -27,6 +47,8 @@ header {
   top: 0; z-index: 100;
   transition: background 0.3s;
   letter-spacing: .03em;
+  /* výška headeru by měla zhruba odpovídat --header-height */
+  min-height: var(--header-height);
 }
 .logo {
   font-family: var(--font-mono);
@@ -66,21 +88,6 @@ nav a {
 nav a:hover, nav a:focus {
   color: var(--color-accent);
   border-bottom: 2px solid var(--color-accent);
-}
-.section {
-  max-width: 700px;
-  margin: 56px auto 0;
-  padding: 36px 22px 30px;
-  background: var(--color-bg-section);
-  border-radius: 22px;
-  box-shadow: var(--shadow);
-  opacity: 0;
-  transform: translateY(60px);
-  animation: fadeInUp .9s cubic-bezier(.6,.01,.05,1) forwards;
-  animation-delay: .25s;
-}
-.section:not(:first-child) {
-  animation-delay: .4s;
 }
 @keyframes fadeInUp {
   to {
