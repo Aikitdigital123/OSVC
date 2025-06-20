@@ -51,20 +51,21 @@
     <h2>Nezávazná poptávka</h2>
     <h3>Napište mi, ozvu se zpět</h3>
     <form action="https://api.web3forms.com/submit" method="POST" class="contact-form" style="max-width:410px;margin:auto;">
-      <input type="hidden" name="access_key" value="c3516176-7279-49b7-9479-b921580f83f2">
-      <label>Jméno<br>
-        <input type="text" name="name" required autocomplete="name" style="width:100%;padding:8px;margin-bottom:14px;">
-      </label>
-      <label>E-mail<br>
-        <input type="email" name="email" required autocomplete="email" style="width:100%;padding:8px;margin-bottom:14px;">
-      </label>
-      <label>Zpráva<br>
-        <textarea name="message" required rows="4" style="width:100%;padding:8px;margin-bottom:16px;"></textarea>
-      </label>
-      <button type="submit" class="btn-main" style="width:100%;">Odeslat poptávku</button>
-      <div id="form-status" style="margin-top:10px;font-size:.95rem;"></div>
-    </form>
-  </section>
+  <input type="hidden" name="access_key" value="c3516176-7279-49b7-9479-b921580f83f2">
+
+  <label for="name">Jméno</label>
+  <input type="text" id="name" name="name" required autocomplete="name" style="width:100%;padding:8px;margin-bottom:14px;">
+
+  <label for="email">E-mail</label>
+  <input type="email" id="email" name="email" required autocomplete="email" style="width:100%;padding:8px;margin-bottom:14px;">
+
+  <label for="message">Zpráva</label>
+  <textarea id="message" name="message" required rows="4" style="width:100%;padding:8px;margin-bottom:16px;"></textarea>
+
+  <button type="submit" class="btn-main" style="width:100%;">Odeslat poptávku</button>
+  <div id="form-status" style="margin-top:10px;font-size:.95rem;"></div>
+</form>
+
 
   <section id="contact" class="section">
     <h2>Kontakt</h2>
