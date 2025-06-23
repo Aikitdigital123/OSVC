@@ -1,11 +1,11 @@
 /* Definice CSS proměnných pro snadnou změnu barev a fontů */
 :root {
   --color-bg: #171d25; /* Hlavní barva pozadí */
-  --color-bg-section: #212836; /* Barva pozadí sekcí */
-  --color-accent: #2a8cff; /* Akcentní barva (modrá) */
+  --color-bg-section: #212836; /* Barva pozadí sekcí - jemně tmavší než hlavní pozadí */
+  --color-accent: #2a8cff; /* Akcentní barva (modrá) - použita pro hlavní zvýraznění */
   --color-text: #e6eaf3; /* Barva hlavního textu */
-  --color-secondary: #8db4e2; /* Sekundární barva textu/akcentu */
-  --color-card: #222c3c; /* Barva pozadí karty */
+  --color-secondary: #8db4e2; /* Sekundární barva textu/akcentu - pro jemnější texty a navigační prvky */
+  --color-card: #222c3c; /* Barva pozadí karty - mírně odlišná pro vizuální oddělení */
   --color-success: #4CAF50; /* Zelená pro zprávy o úspěchu */
   --color-error: #F44336; /* Červená pro chybové zprávy */
 
@@ -16,7 +16,7 @@
   --hover-shadow: 0 8px 48px 0 rgba(30,40,100,0.15); /* Stín při najetí myší */
   --transition-speed: 0.4s; /* Rychlost hlavních přechodů */
   --transition-cubic: cubic-bezier(.6,.01,.05,1); /* Kubická Bezierova funkce pro přechody */
-  
+
   --header-height-desktop: 220px; /* Výška hlavičky na desktopu */
   --header-height-mobile: 150px; /* Výška hlavičky na mobilu */
 }
@@ -40,7 +40,8 @@ body {
 
 /* Hlavička stránky */
 header {
-  background: linear-gradient(90deg, #1b2233 60%, #253b64 100%);
+  /* Změna: Odstranění gradientu, použití jedné barvy */
+  background: var(--color-bg-section); /* Používáme barvu sekcí pro konzistenci */
   padding: 10px 16px 10px;
   text-align: center;
   box-shadow: var(--shadow);
@@ -59,97 +60,96 @@ header {
 /* Styly pro logo v hlavičce */
 .logo {
   font-family: var(--font-mono);
-  font-size: 2.8rem; /* Zvětšeno pro větší dopad */
+  font-size: 2.8rem;
   font-weight: 900;
   letter-spacing: .09em;
   color: var(--color-accent);
-  /* Upravený text-shadow pro výraznější a stálou záři */
-  text-shadow: 0 0 15px rgba(42, 140, 255, 0.7), /* Vnitřní záře */
-               0 0 30px rgba(42, 140, 255, 0.5), /* Střední záře */
-               0 0 45px rgba(42, 140, 255, 0.3); /* Vnější záře */
+  /* Upravený text-shadow pro stálou záři, sjednoceno s akcentní barvou */
+  text-shadow: 0 0 15px rgba(42, 140, 255, 0.7),
+               0 0 30px rgba(42, 140, 255, 0.5),
+               0 0 45px rgba(42, 140, 255, 0.3);
   transition: color var(--transition-speed), text-shadow var(--transition-speed);
   user-select: none;
   display: inline-block;
   margin-bottom: 2px;
-  /* Změna animace pro jemné roztahování a pulzování záře */
-  animation: logoGlowAndScale 2.5s infinite ease-in-out; 
+  /* Animace ponechána, ale upraveny hodnoty stínu pro sjednocení */
+  animation: logoGlowAndScale 2.5s infinite ease-in-out;
 }
 
 .logo-accent { /* Speciální styl pro | v logu */
-  color: var(--color-text);
+  color: var(--color-text); /* Bude to primární textová barva */
 }
 
-/* Nová keyframes animace pro pulzující záři loga a jemné škálování */
+/* Keyframes animace pro pulzující záři loga a jemné škálování */
 @keyframes logoGlowAndScale {
-  0% { 
+  0% {
     text-shadow: 0 0 15px rgba(42, 140, 255, 0.7),
                  0 0 30px rgba(42, 140, 255, 0.5),
                  0 0 45px rgba(42, 140, 255, 0.3);
-    transform: scale(1); /* Počáteční velikost */
+    transform: scale(1);
   }
-  50% { 
-    text-shadow: 0 0 20px rgba(42, 140, 255, 0.9), /* Zesílení vnitřní záře */
-                 0 0 40px rgba(42, 140, 255, 0.7), /* Zesílení střední záře */
-                 0 0 60px rgba(42, 140, 255, 0.5); /* Zesílení vnější záře */
-    transform: scale(1.02); /* Jemné zvětšení */
+  50% {
+    text-shadow: 0 0 20px rgba(42, 140, 255, 0.9),
+                 0 0 40px rgba(42, 140, 255, 0.7),
+                 0 0 60px rgba(42, 140, 255, 0.5);
+    transform: scale(1.02);
   }
-  100% { 
+  100% {
     text-shadow: 0 0 15px rgba(42, 140, 255, 0.7),
                  0 0 30px rgba(42, 140, 255, 0.5),
                  0 0 45px rgba(42, 140, 255, 0.3);
-    transform: scale(1); /* Zpět na původní velikost */
+    transform: scale(1);
   }
 }
-
 
 /* Podtitulek pod logem */
 .subtitle {
-  font-size: 1.25rem; /* Mírně zvětšeno */
-  color: var(--color-secondary);
-  margin-bottom: 12px; /* Zvětšena mezera */
+  font-size: 1.25rem;
+  color: var(--color-secondary); /* Používáme sekundární barvu */
+  margin-bottom: 12px;
   font-family: var(--font-mono);
   font-weight: 400;
   letter-spacing: .03em;
   opacity: 0;
-  animation: fadeIn 1s forwards ease-out; /* Animace fade-in */
+  animation: fadeIn 1s forwards ease-out;
   animation-delay: 0.5s;
 }
 
 /* Navigační menu */
 nav {
-  margin: 10px auto 0; /* Zvětšena mezera shora */
+  margin: 10px auto 0;
   display: flex;
   justify-content: center;
-  gap: 32px; /* Zvětšena mezera mezi odkazy */
+  gap: 32px;
   font-family: var(--font-mono);
-  font-size: 1.15rem; /* Mírně zvětšeno */
+  font-size: 1.15rem;
 }
 
 nav a {
   text-decoration: none;
-  color: var(--color-secondary);
-  padding: 6px 0; /* Zvětšen padding pro lepší klikatelnost */
+  color: var(--color-secondary); /* Navigační odkazy sekundární barvou */
+  padding: 6px 0;
   border-bottom: 2px solid transparent;
   transition: color 0.3s ease-out, border 0.3s ease-out, transform 0.2s ease-out;
-  position: relative; /* Pro efekt podtržení */
+  position: relative;
   overflow: hidden;
 }
 
-nav a::after { /* Animovaný underline efekt */
+nav a::after {
   content: '';
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
   height: 2px;
-  background-color: var(--color-accent);
+  background-color: var(--color-accent); /* Podtržení akcentní barvou */
   transform: translateX(-100%);
   transition: transform 0.3s ease-out;
 }
 
 nav a:hover, nav a:focus {
-  color: var(--color-accent);
-  transform: translateY(-2px); /* Jemný posun nahoru */
+  color: var(--color-accent); /* Při najetí/focusu akcentní barva */
+  transform: translateY(-2px);
 }
 
 nav a:hover::after, nav a:focus::after {
@@ -158,15 +158,15 @@ nav a:hover::after, nav a:focus::after {
 
 /* Základní styly pro sekce */
 .section {
-  scroll-margin-top: var(--header-height-desktop); /* Mezera nad sekcí kvůli fixní hlavičce */
-  max-width: 800px; /* Zvětšena maximální šířka */
-  margin: 36px auto 0; /* Větší mezery mezi sekcemi */
-  padding: 40px 30px 35px; /* Větší paddingy */
+  scroll-margin-top: var(--header-height-desktop);
+  max-width: 800px;
+  margin: 36px auto 0;
+  padding: 40px 30px 35px;
   background: var(--color-bg-section);
   border-radius: 22px;
   box-shadow: var(--shadow);
-  opacity: 0; /* Počáteční stav pro animaci */
-  transform: translateY(40px); /* Počáteční stav pro animaci */
+  opacity: 0;
+  transform: translateY(40px);
   transition: opacity var(--transition-speed) var(--transition-cubic), transform var(--transition-speed) var(--transition-cubic);
 }
 
@@ -177,71 +177,55 @@ nav a:hover::after, nav a:focus::after {
 }
 
 /* Nadpisy sekcí */
-.section-title { /* Přidána třída pro specifičtější stylování */
+.section-title {
   font-family: var(--font-main);
-  font-size: 2.2rem; /* Zvětšeno */
+  font-size: 2.2rem;
   font-weight: 700;
-  /* Aplikace výrazného blue gradientu na text */
-  background: linear-gradient(90deg, #007bff, #00c7ff, #4dc0c9); /* Od tmavší po světlejší modrou */
-  -webkit-background-clip: text; /* Oříznutí pozadí na tvar textu */
-  -webkit-text-fill-color: transparent; /* Text bude průhledný, pozadí se ukáže */
-  color: transparent; /* Fallback barva */
-  margin: 0 0 10px 0; /* Zvětšena mezera */
+  /* Změna: Odstranění gradientu, použití akcentní barvy */
+  color: var(--color-accent);
+  margin: 0 0 10px 0;
   letter-spacing: .01em;
-  text-align: center; /* Vystředění nadpisů */
+  text-align: center;
   position: relative;
 }
 
-.section-title::after { /* Dekorativní podtržení nadpisů */
+.section-title::after {
   content: '';
   display: block;
   width: 60px;
   height: 4px;
-  background: var(--color-accent); /* Používá accent barvu */
+  background: var(--color-accent);
   margin: 8px auto 0;
   border-radius: 2px;
 }
 
-.section-subtitle { /* Přidána třída pro specifičtější stylování */
-  font-size: 1.15rem; /* Mírně zvětšeno */
-  /* Aplikace odlišného blue gradientu na text */
-  background: linear-gradient(90deg, #6a82fb, var(--color-secondary), #a8c0ff); /* Od indigo přes sekundární po světlejší modrou */
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: transparent; /* Fallback barva */
+.section-subtitle {
+  font-size: 1.15rem;
+  /* Změna: Odstranění gradientu, použití sekundární barvy */
+  color: var(--color-secondary);
   font-family: var(--font-mono);
-  margin: 0 0 30px 0; /* Větší mezera */
-  text-align: center; /* Vystředění podnadpisů */
+  margin: 0 0 30px 0;
+  text-align: center;
 }
 
 /* Styly pro nečíslované seznamy */
 ul {
-  padding-left: 1.5em; /* Větší odsazení */
-  margin: 18px 0 30px 0; /* Větší mezery */
+  padding-left: 1.5em;
+  margin: 18px 0 30px 0;
   font-size: 1.05rem;
-  line-height: 1.8; /* Větší řádkování */
-  list-style: disc; /* Nastavení standardních tečkových odrážek */
+  line-height: 1.8;
+  list-style: disc;
 }
 
 li {
-  margin-bottom: 8px; /* Větší mezera mezi položkami */
+  margin-bottom: 8px;
   position: relative;
 }
 
-/* Odstranění vlastních odrážek (blesků) */
-/* li::before {
-  content: '⚡';
-  color: var(--color-accent);
-  position: absolute;
-  left: -1.2em;
-  top: 0.1em;
-  font-size: 0.8em;
-} */
-
 /* Styly pro odstavce */
 p {
-  font-size: 1.08rem; /* Mírně zvětšeno */
-  margin-bottom: 18px; /* Větší mezera */
+  font-size: 1.08rem;
+  margin-bottom: 18px;
   color: var(--color-text);
   line-height: 1.7;
 }
@@ -249,107 +233,96 @@ p {
 /* Styly pro "kartu" v sekci O mně */
 .card {
   background: var(--color-card);
-  border-radius: 16px; /* Mírně větší zaoblení */
-  padding: 20px; /* Větší padding */
-  margin: 25px 0; /* Větší mezera */
-  box-shadow: 0 4px 20px rgba(11, 19, 36, 0.3); /* Jemnější stín */
+  border-radius: 16px;
+  padding: 20px;
+  margin: 25px 0;
+  box-shadow: 0 4px 20px rgba(11, 19, 36, 0.3);
   font-size: 1rem;
   line-height: 1.6;
-  border: 1px solid rgba(42, 140, 255, 0.1); /* Jemný rámeček */
+  border: 1px solid rgba(42, 140, 255, 0.1);
   transform: translateY(0);
   transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
 }
 
-.card:hover { /* Animace při najetí na kartu */
+.card:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 30px rgba(11, 19, 36, 0.4);
 }
 
 .card ul {
-    padding-left: 1.2em; /* Odsazení seznamu uvnitř karty */
+    padding-left: 1.2em;
     margin: 10px 0 0 0;
-    list-style: disc; /* Nastavení standardních tečkových odrážek */
+    list-style: disc;
 }
-
-.card li::before { /* Odstranění vlastních odrážek pro seznam v kartě */
-    /* content: '✅'; */
-    /* color: var(--color-accent); */
-    /* position: absolute; */
-    /* left: -1.2em; */
-    /* top: 0.1em; */
-    /* font-size: 0.8em; */
-    content: none; /* Zajistí, že se nic nevykreslí */
-}
-
 
 /* Styly pro hlavní tlačítko */
 .btn-main {
   display: inline-block;
   font-family: var(--font-mono);
-  font-size: 1.1rem; /* Mírně zvětšeno */
-  color: #fff;
-  background: var(--color-accent);
+  font-size: 1.1rem;
+  color: #fff; /* Text na tlačítku bude bílý */
+  background: var(--color-accent); /* Tlačítko akcentní barvou */
   border: none;
-  border-radius: 10px; /* Mírně větší zaoblení */
-  padding: 13px 36px; /* Větší padding */
+  border-radius: 10px;
+  padding: 13px 36px;
   margin-top: 20px;
   cursor: pointer;
-  box-shadow: 0 4px 20px rgba(42, 140, 255, 0.2); /* Jemnější stín */
+  box-shadow: 0 4px 20px rgba(42, 140, 255, 0.2);
   transition: background 0.3s ease-out, transform 0.2s ease-out, box-shadow 0.3s ease-out;
   font-weight: 700;
-  letter-spacing: .05em; /* Mírně zvětšeno */
-  text-decoration: none; /* Zajistí, že odkaz bude vypadat jako tlačítko */
+  letter-spacing: .05em;
+  text-decoration: none;
 }
 
 .btn-main:hover, .btn-main:focus {
-  background: #0062e8; /* Tmavší odstín modré */
-  transform: translateY(-3px) scale(1.03); /* Výraznější posun a zvětšení */
-  box-shadow: 0 8px 25px rgba(42, 140, 255, 0.4); /* Výraznější stín */
+  background: #0062e8; /* Mírně tmavší odstín modré při najetí */
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 8px 25px rgba(42, 140, 255, 0.4);
 }
 
 /* Styly pro kontaktní odkazy */
 .contact-links {
-  margin-top: 18px; /* Větší mezera */
+  margin-top: 18px;
   display: flex;
   flex-direction: column;
-  gap: 8px; /* Větší mezera mezi odkazy */
+  gap: 8px;
 }
 
 .contact-links span {
     display: flex;
     align-items: center;
-    gap: 10px; /* Mezera mezi ikonou a textem */
+    gap: 10px;
     font-size: 1.05rem;
 }
 
 .contact-links a {
-  color: var(--color-accent);
+  color: var(--color-accent); /* Kontaktní odkazy akcentní barvou */
   text-decoration: none;
   font-family: var(--font-mono);
-  font-size: 1.05rem; /* Mírně zvětšeno */
+  font-size: 1.05rem;
   transition: color 0.2s, text-shadow 0.2s;
-  word-break: break-word; /* Lepší zalomení pro dlouhé e-maily */
+  word-break: break-word;
 }
 
 .contact-links a:hover {
   color: var(--color-text); /* Změna na bílou při najetí */
-  text-shadow: 0 0 10px rgba(42, 140, 255, 0.7); /* Jemný glow efekt */
+  text-shadow: 0 0 10px rgba(42, 140, 255, 0.7);
 }
 
 /* Styly pro QR kód kontejner */
 .qr-code-container {
     text-align: center;
-    margin-top: 40px; /* Větší mezera */
+    margin-top: 40px;
     padding: 20px;
     background: var(--color-card);
     border-radius: 18px;
     box-shadow: var(--shadow);
-    display: inline-block; /* Aby se kontejner přizpůsobil obsahu */
+    display: inline-block;
     max-width: 200px;
 }
 
 .qr-code-text {
-    color: var(--color-secondary);
+    color: var(--color-secondary); /* Text QR kódu sekundární barvou */
     font-family: var(--font-mono);
     margin-bottom: 15px;
     font-size: 1rem;
@@ -357,57 +330,57 @@ p {
 
 .qr-code-img {
     border-radius: 16px;
-    box-shadow: 0 2px 16px rgba(42, 140, 255, 0.2); /* Přesunuto z inline stylu */
+    box-shadow: 0 2px 16px rgba(42, 140, 255, 0.2);
     transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
 }
 
-.qr-code-img:hover { /* Animace při najetí na QR kód */
+.qr-code-img:hover {
     transform: scale(1.05);
     box-shadow: 0 5px 25px rgba(42, 140, 255, 0.4);
 }
 
 /* Patička stránky */
 footer {
-  background: #1b2233;
-  color: #6d7fa3;
+  background: var(--color-bg-section); /* Používáme barvu sekcí pro patičku */
+  color: var(--color-secondary); /* Patička sekundární barvou */
   text-align: center;
-  padding: 25px 15px 18px; /* Větší padding */
-  margin-top: 50px; /* Větší mezera shora */
+  padding: 25px 15px 18px;
+  margin-top: 50px;
   font-family: var(--font-mono);
-  font-size: 0.95rem; /* Mírně zmenšeno */
+  font-size: 0.95rem;
   letter-spacing: .02em;
-  border-top: 1px solid #26334c;
+  border-top: 1px solid #26334c; /* Zachováno pro jemné oddělení */
 }
 
-/* Kontaktni formular styly (přesunuto z inline stylů v HTML) */
+/* Kontaktní formulář styly */
 .contact-form {
-    max-width: 450px; /* Mírně zvětšeno */
+    max-width: 450px;
     margin: auto;
-    padding: 25px; /* Přidán padding formuláři samotnému */
+    padding: 25px;
     background: var(--color-card);
     border-radius: 16px;
     box-shadow: var(--shadow);
     display: flex;
     flex-direction: column;
-    gap: 15px; /* Mezera mezi prvky formuláře */
+    gap: 15px;
 }
 
 .contact-form label {
     color: var(--color-secondary);
     font-size: 0.95rem;
     margin-bottom: 4px;
-    display: block; /* Zajistí, že label je na vlastním řádku */
+    display: block;
 }
 
 .form-input,
 .form-textarea {
   width: 100%;
-  padding: 12px; /* Zvětšen padding pro lepší vzhled */
-  background: #242c3e;
+  padding: 12px;
+  background: #242c3e; /* Tmavší odstín pro input pozadí */
   color: var(--color-text);
-  border: 1px solid rgba(42, 140, 255, 0.3); /* Mírně průhlednější okraj */
-  border-radius: 8px; /* Mírně větší zaoblení */
-  font-family: var(--font-main); /* Používá hlavní font */
+  border: 1px solid rgba(42, 140, 255, 0.3);
+  border-radius: 8px;
+  font-family: var(--font-main);
   font-size: 1rem;
   transition: border 0.2s ease-out, box-shadow 0.2s ease-out;
 }
@@ -416,24 +389,24 @@ footer {
 .form-textarea:focus {
   outline: none;
   border: 1.5px solid var(--color-accent);
-  box-shadow: 0 0 0 3px rgba(42, 140, 255, 0.2); /* Jemný glow efekt při focusu */
+  box-shadow: 0 0 0 3px rgba(42, 140, 255, 0.2);
 }
 
 .form-textarea {
-    resize: vertical; /* Povolí jen vertikální změnu velikosti */
-    min-height: 100px; /* Minimální výška pro textarea */
+    resize: vertical;
+    min-height: 100px;
 }
 
 .form-submit-btn {
-    width: 100%; /* Tlačítko na celou šířku */
-    margin-top: 20px; /* Větší mezera nad tlačítkem */
+    width: 100%;
+    margin-top: 20px;
 }
 
 .form-status {
-    margin-top: 15px; /* Mezera nad zprávou o stavu */
+    margin-top: 15px;
     font-size: 0.95rem;
     text-align: center;
-    min-height: 20px; /* Aby se layout nepohnul, když se zpráva objeví */
+    min-height: 20px;
     opacity: 0;
     transition: opacity 0.3s ease-out;
 }
@@ -460,15 +433,24 @@ footer {
   border: 0;
 }
 
+/* Globalní úpravy pro odrážky seznamů a card li */
+ul li::before {
+    content: none;
+}
+
 /* MEDIA QUERIES pro responsivní design */
-@media (max-width: 768px) { /* Tablet a menší */
+@media (max-width: 768px) {
   :root {
-    --header-height-desktop: 180px; /* Snížení výšky hlavičky */
+    --header-height-desktop: 180px; /* Používáme původní název, jen měníme hodnotu */
+  }
+  header {
+    min-height: var(--header-height-desktop);
   }
   .section {
     max-width: 95vw;
     padding: 30px 20px 25px;
     margin: 25px auto 0;
+    scroll-margin-top: var(--header-height-desktop);
   }
   .logo {
     font-size: 2.2rem;
@@ -505,25 +487,29 @@ footer {
   }
 }
 
-@media (max-width: 480px) { /* Mobilní telefony */
+@media (max-width: 480px) {
   :root {
-    --header-height-desktop: 130px; /* Další snížení výšky hlavičky */
+    --header-height-desktop: 130px; /* Používáme původní název, jen měníme hodnotu */
+  }
+  header {
+    min-height: var(--header-height-desktop);
   }
   .section {
     padding: 20px 15px 18px;
     margin: 20px auto 0;
+    scroll-margin-top: var(--header-height-desktop);
   }
   .logo {
     font-size: 1.8rem;
-    animation: none; /* Vypnutí pulzující animace loga na mobilu */
+    animation: none;
   }
   .subtitle {
     font-size: 0.95rem;
     margin-bottom: 8px;
   }
   nav {
-    flex-wrap: wrap; /* Zalomení navigace na více řádků */
-    gap: 15px 10px; /* Menší mezery */
+    flex-wrap: wrap;
+    gap: 15px 10px;
     font-size: 0.9rem;
     justify-content: center;
   }
@@ -543,12 +529,6 @@ footer {
   ul {
     font-size: 0.95rem;
     padding-left: 1.2em;
-  }
-  li::before {
-    left: -1em;
-  }
-  .contact-form {
-    padding: 15px;
   }
   footer {
     padding: 18px 10px 12px;
