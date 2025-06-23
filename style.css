@@ -277,7 +277,30 @@ p {
     list-style: disc;
 }
 
+/* Styly pro hlavní tlačítko */
+.btn-main {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 1.1rem;
+  color: #fff;
+  background: var(--color-accent);
+  border: none;
+  border-radius: 10px;
+  padding: 13px 36px;
+  margin-top: 20px;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(42, 140, 255, 0.2);
+  transition: background 0.3s ease-out, transform 0.2s ease-out, box-shadow 0.3s ease-out;
+  font-weight: 700;
+  letter-spacing: .05em;
+  text-decoration: none;
+}
 
+.btn-main:hover, .btn-main:focus {
+  background: #0062e8;
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 8px 25px rgba(42, 140, 255, 0.4);
+}
 
 /* Styly pro kontaktní odkazy */
 .contact-links {
@@ -476,7 +499,11 @@ ul li::before {
     padding: 18px;
     margin: 20px 0;
   }
- 
+  .btn-main {
+    font-size: 1rem;
+    padding: 12px 30px;
+    margin-top: 18px;
+  }
   .contact-form {
     padding: 20px;
   }
