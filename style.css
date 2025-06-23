@@ -18,7 +18,7 @@
   --transition-cubic: cubic-bezier(.6,.01,.05,1); /* Kubická Bezierova funkce pro přechody */
 
   --header-height-desktop: 220px; /* Výška hlavičky na desktopu */
-  --header-height-mobile: 180px; /* Výška hlavičky na mobilu - ZVÝŠENO */
+  --header-height-mobile: 200px; /* UPRAVENO: Nastaveno na 200px podle snímku obrazovky */
 }
 
 /* Základní styly pro celý dokument */
@@ -465,10 +465,8 @@ ul li::before {
     max-width: 95vw;
     padding: 30px 20px 25px;
     margin: 25px auto 0;
-    /* DŮLEŽITÉ: Přizpůsobit scroll-margin-top pro mobil.
-       Doporučuji přidat trochu rezervy, např. 10px navíc,
-       pokud 180px nestačí úplně. */
-    scroll-margin-top: calc(var(--header-height-mobile) + 10px);
+    /* DŮLEŽITÉ: Nyní nastavíme scroll-margin-top na základě skutečné výšky headeru + rezervy */
+    scroll-margin-top: calc(var(--header-height-mobile) + 15px); /* Použijeme 200px + 15px rezerva */
   }
   .logo {
     font-size: 2.2rem;
@@ -513,7 +511,7 @@ ul li::before {
     padding: 20px 15px 18px;
     margin: 20px auto 0;
     /* DŮLEŽITÉ: I zde přizpůsobit pro mobil a přidat rezervu. */
-    scroll-margin-top: calc(var(--header-height-mobile) + 10px);
+    scroll-margin-top: calc(var(--header-height-mobile) + 15px); /* Použijeme 200px + 15px rezerva */
   }
   .logo {
     font-size: 1.8rem;
