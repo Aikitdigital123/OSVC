@@ -4,93 +4,118 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Mykhailo Hyndriuk – IT & Digital Solutions</title>
+  <!-- Meta popis pro vyhledávače (SEO) -->
+  <meta name="description" content="Specialista na IT podporu, správu systémů a digitální transformaci pro firmy v Praze a Mladé Boleslavi. Spolehlivá IT řešení.">
+  
+  <!-- Odkazy na Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+  
+  <!-- Odkaz na externí CSS soubor -->
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <!-- Hlavička stránky -->
   <header>
-    <span class="logo">MH<span style="color:#fff;">|</span>IT</span>
+    <span class="logo">MH<span class="logo-accent">|</span>IT</span>
     <div class="subtitle">IT podpora & Digitalizace pro firmy</div>
+    <!-- Navigace stránky -->
     <nav>
       <a href="#about">O mně</a>
       <a href="#services">Služby</a>
+      <a href="#contact-form-section">Nezávazná poptávka</a> <!-- Změněn odkaz pro nav-->
       <a href="#contact">Kontakt</a>
     </nav>
   </header>
 
-  <section id="about" class="section">
-    <h2>O mně</h2>
-    <h3>Stabilita, spolehlivost, inovace</h3>
-    <p>
-      Jsem <b>Mykhailo Hyndriuk</b> – specialista na IT podporu, správu systémů a digitální transformaci. Pomáhám firmám i jednotlivcům optimalizovat provoz, zvyšovat bezpečnost a automatizovat klíčové procesy. Mám zkušenosti s technologiemi SQL, WildFly, Java, Ident Server, OPC, HMI, Data Warehouse, Emos Web a dalšími.
-    </p>
-    <div class="card">
-      <b>S čím Vám mohu pomoci?</b><br>
-      • Zajištění stabilního a bezpečného provozu systémů<br>
-      • Efektivní monitoring a automatizace procesů<br>
-      • IT poradenství na míru
-    </div>
-  </section>
+  <!-- Hlavní obsah stránky -->
+  <main>
+    <!-- Sekce "O mně" -->
+    <section id="about" class="section">
+      <h2 class="section-title">O mně</h2>
+      <h3 class="section-subtitle">Stabilita, spolehlivost, inovace</h3>
+      <p>
+        Jsem <b>Mykhailo Hyndriuk</b> – specialista na IT podporu, správu systémů a digitální transformaci. Pomáhám firmám i jednotlivcům optimalizovat provoz, zvyšovat bezpečnost a automatizovat klíčové procesy. Mám zkušenosti s technologiemi SQL, WildFly, Java, Ident Server, OPC, HMI, Data Warehouse, Emos Web a dalšími.
+      </p>
+      <div class="card">
+        <b>S čím Vám mohu pomoci?</b>
+        <ul> <!-- Použití UL/LI pro lepší sémantiku -->
+          <li>Zajištění stabilního a bezpečného provozu systémů</li>
+          <li>Efektivní monitoring a automatizace procesů</li>
+          <li>IT poradenství na míru</li>
+        </ul>
+      </div>
+    </section>
 
-  <section id="services" class="section">
-    <h2>Služby</h2>
-    <h3>Komplexní IT řešení</h3>
-    <ul>
-      <li>Správa serverů a databází (SQL, Windows)</li>
-      <li>Analýza logů, monitoring a proaktivní údržba</li>
-      <li>Podpora výrobních systémů (PLC, SCADA, HMI)</li>
-      <li>Digitalizace a automatizace procesů (Industry 4.0)</li>
-      <li>Tvorba interních aplikací (Python, webové nástroje)</li>
-      <li>IT bezpečnost a zálohování</li>
-      <li>Poradenství a školení v oblasti IT</li>
-    </ul>
-    <a href="mailto:mykhailo@hyndriuk.cz" class="btn-main">Nezávazná poptávka</a>
-  </section>
+    <!-- Sekce "Služby" -->
+    <section id="services" class="section">
+      <h2 class="section-title">Služby</h2>
+      <h3 class="section-subtitle">Komplexní IT řešení</h3>
+      <ul>
+        <li>Správa serverů a databází (SQL, Windows/Linux)</li>
+        <li>Analýza logů, monitoring a proaktivní údržba</li>
+        <li>Podpora výrobních systémů (PLC, SCADA, HMI)</li>
+        <li>Digitalizace a automatizace procesů (Industry 4.0)</li>
+        <li>Tvorba interních aplikací (Python, webové nástroje)</li>
+        <li>IT bezpečnost a zálohování</li>
+        <li>Poradenství a školení v oblasti IT</li>
+      </ul>
+      <!-- Odkaz směřuje na formulářovou sekci -->
+      <a href="#contact-form-section" class="btn-main">Nezávazná poptávka</a>
+    </section>
 
-  <section id="form" class="section">
-    <h2>Nezávazná poptávka</h2>
-    <h3>Napište mi, ozvu se zpět</h3>
-    <form action="https://api.web3forms.com/submit" method="POST" class="contact-form" style="max-width:410px;margin:auto;">
-  <input type="hidden" name="access_key" value="c3516176-7279-49b7-9479-b921580f83f2">
+    <!-- Sekce "Nezávazná poptávka" (formulář) -->
+    <section id="contact-form-section" class="section"> <!-- Změněno ID pro navigační kotvu -->
+      <h2 class="section-title">Nezávazná poptávka</h2>
+      <h3 class="section-subtitle">Napište mi, ozvu se zpět</h3>
+      <form action="https://api.web3forms.com/submit" method="POST" class="contact-form">
+        <!-- Váš unikátní access_key pro Web3Forms -->
+        <input type="hidden" name="access_key" value="c3516176-7279-49b7-9479-b921580f83f2">
+        <!-- Input pro název formuláře, pro lepší identifikaci v Web3Forms -->
+        <input type="hidden" name="subject" value="Nová poptávka z hyndriuk.cz">
 
-  <label for="name">Jméno</label>
-  <input type="text" id="name" name="name" required autocomplete="name" style="width:100%;padding:8px;margin-bottom:14px;">
+        <label for="name">Jméno:</label> <!-- Přidán for atribut -->
+        <input type="text" id="name" name="name" required autocomplete="name" class="form-input"> <!-- Přidán id a třída -->
+        
+        <label for="email">E-mail:</label> <!-- Přidán for atribut -->
+        <input type="email" id="email" name="email" required autocomplete="email" class="form-input"> <!-- Přidán id a třída -->
+        
+        <label for="message">Zpráva:</label> <!-- Přidán for atribut -->
+        <textarea id="message" name="message" required rows="4" class="form-textarea"></textarea> <!-- Přidán id a třída -->
+        
+        <button type="submit" class="btn-main form-submit-btn">Odeslat poptávku</button> <!-- Přidána třída -->
+        <div id="form-status" class="form-status"></div>
+      </form>
+    </section>
 
-  <label for="email">E-mail</label>
-  <input type="email" id="email" name="email" required autocomplete="email" style="width:100%;padding:8px;margin-bottom:14px;">
+    <!-- Sekce "Kontakt" -->
+    <section id="contact" class="section">
+      <h2 class="section-title">Kontakt</h2>
+      <h3 class="section-subtitle">Ozvěte se, rád pomohu</h3>
+      <div class="contact-links">
+        <span>📧 <a href="mailto:mykhailo@hyndriuk.cz">mykhailo@hyndriuk.cz</a></span>
+        <span>📞 <a href="tel:+420777781600">+420 777 781 600</a></span>
+        <span>🌍 Praha & Mladá Boleslav, ČR</span>
+        <span>🌐 <a href="https://www.hyndriuk.cz" target="_blank" rel="noopener noreferrer">www.hyndriuk.cz</a></span>
+      </div>
+      <div class="qr-code-container">
+        <p class="qr-code-text">Rychlý kontakt přes QR kód:</p>
+        <img 
+          src="https://api.qrserver.com/v1/create-qr-code/?data=https%3A%2F%2Fwww.hyndriuk.cz%2F&amp;size=160x160&amp;margin=10"
+          alt="QR kód – www.hyndriuk.cz"
+          width="160" height="160"
+          class="qr-code-img" <!-- Přidána třída pro stylování v CSS -->
+          loading="lazy"
+        >
+      </div>
+    </section>
+  </main>
 
-  <label for="message">Zpráva</label>
-  <textarea id="message" name="message" required rows="4" style="width:100%;padding:8px;margin-bottom:16px;"></textarea>
-
-  <button type="submit" class="btn-main" style="width:100%;">Odeslat poptávku</button>
-  <div id="form-status" style="margin-top:10px;font-size:.95rem;"></div>
-</form>
-
-
-  <section id="contact" class="section">
-    <h2>Kontakt</h2>
-    <h3>Ozvěte se, rád pomohu</h3>
-    <div class="contact-links">
-      <span>📧 <a href="mailto:mykhailo@hyndriuk.cz">mykhailo@hyndriuk.cz</a></span>
-      <span>📞 <a href="tel:+420123456789">+420 777 781 600</a></span>
-      <span>🌍 Praha & Mladá Boleslav, ČR</span>
-      <span>🌐 <a href="https://www.hyndriuk.cz" target="_blank">www.hyndriuk.cz</a></span>
-    </div>
-    <div style="text-align:center; margin-top:30px;">
-      <p style="color:var(--color-secondary); font-family:var(--font-mono); margin-bottom:10px;">Rychlý kontakt přes QR kód:</p>
-      <img 
-        src="https://api.qrserver.com/v1/create-qr-code/?data=https%3A%2F%2Fwww.hyndriuk.cz%2F&amp;size=160x160&amp;margin=10"
-        alt="QR kód – www.hyndriuk.cz"
-        width="160" height="160"
-        style="border-radius:16px; box-shadow:0 2px 16px #2a8cff33;"
-        loading="lazy"
-      >
-    </div>
-  </section>
-
+  <!-- Patička stránky -->
   <footer>
     &copy; 2025 Mykhailo Hyndriuk – IT podpora & digitalizace
   </footer>
+  
+  <!-- Odkaz na externí JavaScript soubor -->
   <script src="script.js"></script>
 </body>
 </html>
