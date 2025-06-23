@@ -1,133 +1,136 @@
 // Očekává, že se celý DOM načte, než začne manipulovat s elementy
 document.addEventListener('DOMContentLoaded', () => {
 
-    // --- Efektní načítání sekcí při scrollu pomocí Intersection Observer ---
-    // Intersection Observer je moderní API, které efektivně sleduje,
-    // zda se element stal viditelným (nebo se k tomu blíží) v zorném poli uživatele.
-    // Je mnohem výkonnější než poslouchání události 'scroll'.
+    // Získáme referenci na header element HNED NA ZAČÁTKU
+    // Je potřeba pro logiku plynulého skrolování
+    const header = document.querySelector('header');
 
+    // --- Plynulé skrolování k sekcím s ohledem na pevnou hlavičku ---
+    // Toto je nová část kódu pro řešení překrývání nadpisů.
+    const navLinks = document.querySelectorAll('nav a[href^="#"]'); // Vybere všechny navigační odkazy směřující na ID
+
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault(); // Zabrání výchozímu chování odkazu (okamžitému skoku)
+
+            const targetId = this.getAttribute('href'); // Získá ID cíle (např. "#kontakt")
+            const targetElement = document.querySelector(targetId); // Najde cílový element
+
+            if (targetElement) {
+                // Zjistí skutečnou výšku hlavičky za běhu, pro maximální přesnost
+                // .offsetHeight zahrnuje padding a border
+                const headerHeight = header ? header.offsetHeight : 0; // Zabezpečení pro případ, že header neexistuje
+
+                // Výpočet pozice: vzdálenost elementu od shora - výška hlavičky - nějaká rezerva
+                // Přidáváme 15px rezervu, aby nadpis nebyl schovaný
+                const scrollToPosition = targetElement.offsetTop - headerHeight - 15;
+
+                window.scrollTo({
+                    top: scrollToPosition,
+                    behavior: 'smooth' // Plynulé skrolování pomocí JavaScriptu
+                });
+            }
+        });
+    });
+
+    // --- Efektní načítání sekcí při scrollu pomocí Intersection Observer ---
     const sections = document.querySelectorAll('.section');
 
-    // Možnosti pro Intersection Observer
     const observerOptions = {
-        root: null, // Sleduje viditelnost vzhledem k viewportu
-        rootMargin: '0px', // Žádná extra mezera kolem viewportu
-        threshold: 0.1 // Spustí callback, jakmile je 10% elementu viditelných
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
     };
 
-    // Callback funkce, která se spustí, když se změní viditelnost elementu
     const sectionObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                // Pokud je sekce viditelná, přidáme třídu 'is-visible',
-                // která v CSS spustí animaci opacity a transform
                 entry.target.classList.add('is-visible');
-                // Jakmile je sekce animována, můžeme ji přestat sledovat
                 observer.unobserve(entry.target);
             }
         });
     }, observerOptions);
 
-    // Začneme sledovat všechny sekce
     sections.forEach(section => {
         sectionObserver.observe(section);
     });
 
     // --- Vylepšené odesílání formuláře (AJAX s fetch API) ---
-    // Tento skript zachytí odeslání formuláře, odešle data asynchronně
-    // a poskytne uživateli zpětnou vazbu bez přenačítání stránky.
-
     const contactForms = document.querySelectorAll('form.contact-form');
 
     contactForms.forEach(form => {
         form.addEventListener('submit', async function(event) {
-            // Zabráníme výchozímu chování odeslání formuláře (tj. přenačítání stránky)
             event.preventDefault();
 
             const statusDiv = form.querySelector("#form-status");
             const formData = new FormData(form);
 
-            // Zobrazíme zprávu "Odesílám..." a odstraníme předchozí stavy
             if (statusDiv) {
                 statusDiv.textContent = "Odesílám...";
-                statusDiv.classList.remove('success', 'error'); // Odstraní předchozí barvy
-                statusDiv.style.opacity = '1'; // Zajištění viditelnosti
+                statusDiv.classList.remove('success', 'error');
+                statusDiv.style.opacity = '1';
             }
 
             try {
-                // Odeslání dat formuláře pomocí fetch API
                 const response = await fetch(form.action, {
                     method: form.method,
                     body: formData,
                     headers: {
-                        'Accept': 'application/json' // Důležité pro příjem JSON odpovědi
+                        'Accept': 'application/json'
                     }
                 });
 
-                // Zpracování odpovědi z Web3Forms
                 const data = await response.json();
 
                 if (data.success) {
-                    // Úspěšné odeslání
                     if (statusDiv) {
                         statusDiv.textContent = "Zpráva byla úspěšně odeslána! Ozvu se vám co nejdříve.";
-                        statusDiv.classList.add('success'); // Přidá zelený styl
+                        statusDiv.classList.add('success');
                     }
-                    form.reset(); // Vyčistí všechna pole formuláře
+                    form.reset();
                 } else {
-                    // Chyba při odesílání (např. neplatný access key, spam)
                     if (statusDiv) {
                         statusDiv.textContent = data.message || "Chyba při odesílání. Prosím, zkuste to znovu.";
-                        statusDiv.classList.add('error'); // Přidá červený styl
+                        statusDiv.classList.add('error');
                     }
                     console.error('Web3Forms error:', data.message);
                 }
             } catch (error) {
-                // Chyba připojení k síti nebo jiná neočekávaná chyba
                 if (statusDiv) {
                     statusDiv.textContent = "Došlo k chybě připojení. Prosím, zkuste to znovu později.";
-                    statusDiv.classList.add('error'); // Přidá červený styl
+                    statusDiv.classList.add('error');
                 }
                 console.error('Form submission network error:', error);
             }
-            
-            // Zpráva se po 5 sekundách skryje
+
             setTimeout(() => {
                 if (statusDiv) {
                     statusDiv.style.opacity = '0';
                     setTimeout(() => {
                         statusDiv.textContent = "";
                         statusDiv.classList.remove('success', 'error');
-                    }, 300); // Počkejte na dokončení fade-out animace před vyčištěním textu
+                    }, 300);
                 }
-            }, 5000); // Zpráva zůstane viditelná 5 sekund
+            }, 5000);
         });
     });
 
     // --- Jemný efekt posunu pozadí hlavičky při scrollu (Parallax like) ---
-    // Tento efekt dodá hlavičce dynamický vizuální prvek.
-
-    const header = document.querySelector('header');
-
-    if (header) { // Zkontrolujte, zda element header existuje
+    if (header) {
         window.addEventListener('scroll', () => {
-            // Vypočítáme posun pozadí na základě pozice scrollu
-            // Čím rychleji se scrolluje, tím rychleji se pozadí posouvá
             const scrollPosition = window.pageYOffset;
-            header.style.backgroundPositionY = `${-scrollPosition * 0.1}px`; // Hodnota 0.1 určuje rychlost efektu
+            header.style.backgroundPositionY = `${-scrollPosition * 0.1}px`;
         });
     }
 
     // --- Aktivní stav v navigaci při scrollu ---
-    // Zvýrazní aktuální sekci v navigaci
-
-    const navLinks = document.querySelectorAll('nav a');
+    // (Používá navLinks, které jsou definovány i pro smooth scrolling)
 
     // Upravená Intersection Observer pro navigaci
     const navObserverOptions = {
         root: null,
         rootMargin: '-50% 0px -50% 0px', // Nastaví trigger uprostřed viewportu
-        threshold: 0 // Nemusí být viditelný, stačí procházet středem
+        threshold: 0
     };
 
     const navSectionObserver = new IntersectionObserver((entries) => {
@@ -135,10 +138,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const id = entry.target.getAttribute('id');
             const navLink = document.querySelector(`nav a[href="#${id}"]`);
 
-            if (navLink) { // Zkontrolujeme, zda navLink existuje
+            if (navLink) {
                 if (entry.isIntersecting) {
-                    navLinks.forEach(link => link.classList.remove('active')); // Odebere aktivní třídu ze všech
-                    navLink.classList.add('active'); // Přidá aktivní třídu aktuálnímu odkazu
+                    navLinks.forEach(link => link.classList.remove('active'));
+                    navLink.classList.add('active');
                 }
             }
         });
