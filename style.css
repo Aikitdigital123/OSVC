@@ -18,7 +18,7 @@
   --transition-cubic: cubic-bezier(.6,.01,.05,1); /* Kubická Bezierova funkce pro přechody */
 
   --header-height-desktop: 220px; /* Výška hlavičky na desktopu */
-  --header-height-mobile: 150px; /* Výška hlavičky na mobilu */
+  --header-height-mobile: 150px; /* Výška hlavičky na mobilu - toto je nová proměnná */
 }
 
 /* Základní styly pro celý dokument */
@@ -49,7 +49,7 @@ header {
   z-index: 100;
   transition: background 0.3s ease-out, box-shadow 0.3s ease-out;
   letter-spacing: .03em;
-  min-height: var(--header-height-desktop);
+  min-height: var(--header-height-desktop); /* Výška na desktopu */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -63,17 +63,14 @@ header {
   font-weight: 900;
   letter-spacing: .09em;
   color: var(--color-accent);
-  /* Text-shadow bude animován v @keyframes logoGlowAndScale */
-  transition: color var(--transition-speed); /* Odstraněn text-shadow z transition, protože je animován */
+  transition: color var(--transition-speed);
   user-select: none;
   display: inline-block;
   margin-bottom: 2px;
-  /* KOMBINOVANÁ ANIMACE - DŮLEŽITÉ ZMĚNY ZDE */
-  animation: logoGlowAndScale 2.5s infinite ease-in-out alternate, /* Sjednocena délka a časová funkce */
-             rotateLogo 2.5s infinite ease-in-out alternate;       /* Sjednocena délka a časová funkce */
-  transform-style: preserve-3d; /* Pro 3D rotaci */
-  perspective: 1000px; /* Pro 3D rotaci */
-  /* filter: drop-shadow bude animován v @keyframes logoGlowAndScale */
+  animation: logoGlowAndScale 2.5s infinite ease-in-out alternate,
+             rotateLogo 2.5s infinite ease-in-out alternate;
+  transform-style: preserve-3d;
+  perspective: 1000px;
 }
 
 .logo-accent { /* Speciální styl pro | v logu */
@@ -110,11 +107,11 @@ header {
   0% {
     transform: rotateY(0deg);
   }
-  50% { /* V polovině cyklu otočení o polovinu max. stupňů */
-    transform: rotateY(10deg); /* Menší otočení v jednom směru */
+  50% {
+    transform: rotateY(10deg);
   }
   100% {
-    transform: rotateY(0deg); /* Návrat do původní pozice */
+    transform: rotateY(0deg);
   }
 }
 
@@ -182,7 +179,8 @@ nav a:hover::after, nav a:focus::after {
 
 /* Základní styly pro sekce */
 .section {
-  scroll-margin-top: var(--header-height-desktop);
+  /* DŮLEŽITÉ ZMĚNY ZDE */
+  scroll-margin-top: var(--header-height-desktop); /* Výchozí pro desktop */
   max-width: 800px;
   margin: 36px auto 0;
   padding: 40px 30px 35px;
@@ -462,17 +460,15 @@ ul li::before {
 
 /* MEDIA QUERIES pro responsivní design */
 @media (max-width: 768px) {
-  :root {
-    --header-height-desktop: 180px;
-  }
+  /* DŮLEŽITÉ ZMĚNY ZDE */
   header {
-    min-height: var(--header-height-desktop);
+    min-height: var(--header-height-mobile); /* Používáme mobilní výšku */
   }
   .section {
     max-width: 95vw;
     padding: 30px 20px 25px;
     margin: 25px auto 0;
-    scroll-margin-top: var(--header-height-desktop);
+    scroll-margin-top: var(--header-height-mobile); /* DŮLEŽITÉ: Přizpůsobit scroll-margin-top pro mobil */
   }
   .logo {
     font-size: 2.2rem;
@@ -510,20 +506,22 @@ ul li::before {
 }
 
 @media (max-width: 480px) {
-  :root {
-    --header-height-desktop: 130px;
-  }
+  /* DŮLEŽITÉ ZMĚNY ZDE */
   header {
-    min-height: var(--header-height-desktop);
+    min-height: var(--header-height-mobile); /* I zde používáme mobilní výšku */
+  }
+  .section {
+    padding: 20px 15px 18px;
+    margin: 20px auto 0;
+    scroll-margin-top: var(--header-height-mobile); /* DŮLEŽITÉ: I zde přizpůsobit pro mobil */
   }
   .logo {
     font-size: 1.8rem;
-    /* Na mobilech vypínáme rotaci pro lepší výkon a čitelnost */
-    animation: logoGlowAndScale 2.5s infinite ease-in-out alternate; /* Pouze animace záře a škálování */
-    transform: none !important; /* Vynutíme žádnou rotaci/transformaci */
+    animation: logoGlowAndScale 2.5s infinite ease-in-out alternate;
+    transform: none !important;
     transform-style: none !important;
     perspective: none !important;
-    filter: none !important; /* Vypneme drop-shadow, protože se již nebude animovat v logoGlowAndScale */
+    filter: none !important;
   }
   .subtitle {
     font-size: 0.95rem;
