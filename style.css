@@ -21,10 +21,7 @@
   --header-height-mobile: 200px; /* UPRAVENO: Nastaveno na 200px podle snímku obrazovky */
 }
 
-/* Základní styly pro celý dokument */
-html {
-  scroll-behavior: smooth; /* Plynulé scrollování k odkazům */
-}
+
 
 body {
   margin: 0;
