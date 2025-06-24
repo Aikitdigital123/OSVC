@@ -409,7 +409,7 @@ p {
   text-shadow: 0 0 10px rgba(42, 140, 255, 0.7);
 }
 
-/* Styly pro QR kód kontejner */
+/* Styly QR kontejner */
 .qr-code-container {
     text-align: center;
     margin-top: 40px;
@@ -421,12 +421,17 @@ p {
     -webkit-backdrop-filter: blur(10px);
     border-radius: 18px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Upravený stín */
-    display: inline-block;
-    max-width: 200px;
-    /* NOVINKA: pro centrování QR kódu na menších obrazovkách */
-    margin-left: auto; 
+    display: inline-block; /* Toto je důležité pro "fit-content" chování */
+    
+    /* NOVINKA/ZMĚNA: Pro flexibilní šířku a centrování */
+    width: auto; /* Místo max-width omezíme jen na obsah + padding */
+    max-width: calc(100% - 40px); /* Ponecháme nějaké maximální omezení vzhledem k rodiči */
+    margin-left: auto;
     margin-right: auto;
-    width: fit-content; 
+    /* Důležité pro centrování inline-block prvku, pokud je rodič display: block */
+    display: block; /* Změna na block, aby margin auto fungoval */
+    width: fit-content; /* Omezí šířku na obsah, aby margin auto fungoval správně */
+    padding: 30px; /* Zvětšený padding pro více prostoru */
 }
 
 .qr-code-text {
@@ -440,13 +445,24 @@ p {
     border-radius: 16px;
     box-shadow: 0 2px 16px rgba(42, 140, 255, 0.2);
     transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
-    display: block; /* Zajišťuje, že margin auto funguje na obrázku */
+    display: block; /* Důležité pro responzivní obrázek */
+    max-width: 100%; /* Zajistí, že se obrázek zmenší, pokud je kontejner menší */
+    height: auto; /* Zachová poměr stran */
     margin: 0 auto; /* Centruje obrázek uvnitř kontejneru */
 }
 
-.qr-code-img:hover {
-    transform: scale(1.05);
-    box-shadow: 0 5px 25px rgba(42, 140, 255, 0.4);
+/* ... a v media queries upravit paddingy ... */
+
+@media (max-width: 480px) {
+  /* ... */
+  .qr-code-container {
+    padding: 25px; /* Zvětšený padding na mobilu pro více prostoru */
+    max-width: calc(100% - 40px); /* Zajistí, že nebude přesahovat okraje */
+  }
+  .qr-code-img {
+    max-width: 120px; /* Mírné omezení velikosti QR kódu na nejmenších obrazovkách, pokud je potřeba */
+  }
+  /* ... */
 }
 
 /* Patička stránky */
@@ -601,7 +617,6 @@ footer {
     max-width: 180px;
   }
 }
-
 @media (max-width: 480px) {
   header {
     min-height: var(--header-height-mobile); /* I zde používáme mobilní výšku */
@@ -676,10 +691,17 @@ footer {
     margin-right: auto;
     width: fit-content; /* Omezí šířku na obsah, aby margin auto fungoval */
   }
-  /* NOVÁ ZMĚNA: Chování pozadí na mobilu - Návrat k obrázku, ale s rolováním */
+
+  /* KOREKCE ZDE: Tato část byla vnořena, teď je správně součástí tohoto media query */
   body {
-    background: url('https://raw.githubusercontent.com/Aikitdigital123/OSVC/main/images/134.jpg') no-repeat center center scroll; /* Použijeme obrázek s rolováním */
+    /* Překryjeme obrázek pozadí jemnou průhlednou barvou */
+    background: linear-gradient(
+                  rgba(23, 29, 37, 0.5), /* Průhlednější vrstva, barva z --color-bg */
+                  rgba(23, 29, 37, 0.5)
+                ),
+                url('https://raw.githubusercontent.com/Aikitdigital123/OSVC/main/images/134.jpg') no-repeat center center scroll; /* Obrázek se roluje */
     background-size: cover;
-    background-attachment: scroll !important; /* Zajistí, že se pozadí na mobilu roluje */
+    background-attachment: scroll !important; /* Explicitně pro jistotu */
   }
+  /* Byla zde i sekce body::before a duplikovaný body, ty jsem odstranil */
 }
