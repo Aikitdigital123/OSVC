@@ -1,4 +1,9 @@
 /* Definice CSS proměnných pro snadnou změnu barev a fontů */
+/* DŮLEŽITÉ: Univerzální box-sizing pro konzistentní model boxu */
+* {
+  box-sizing: border-box;
+}
+
 :root {
   --color-bg: #171d25; /* Hlavní barva pozadí */
   --color-bg-section: #212836; /* Barva pozadí sekcí - jemně tmavší než hlavní pozadí */
@@ -597,7 +602,8 @@ ul {
     min-height: var(--header-height-mobile); /* I zde používáme mobilní výšku */
   }
   .section {
-    padding: 20px 15px 18px;
+    /* Upravujeme horizontální padding, aby se zajistilo odsazení od okrajů */
+    padding: 20px 15px 18px; /* Zajišťuje 15px odsazení zleva a zprava na mobilu */
     margin: 20px auto 0;
     /* DŮLEŽITÉ: I zde přizpůsobit pro mobil a přidat rezervu. */
     scroll-margin-top: calc(var(--header-height-mobile) + 15px); /* Použijeme 200px + 15px rezerva */
@@ -628,7 +634,7 @@ ul {
     font-size: 0.9rem;
     justify-content: center;
     /* NOVÁ ZMĚNA: Přidán horizontální padding pro malé obrazovky */
-    padding: 0 10px;
+    padding: 0 10px; /* Zajištění vnitřního odsazení navigace */
   }
   nav a {
     padding: 4px 0;
@@ -652,10 +658,15 @@ ul {
     margin-top: 30px;
     font-size: 0.85rem;
   }
+  .contact-form {
+    padding: 20px;
+    /* Zajistí, že se formulář roztáhne na plnou šířku sekce s odsazením */
+    width: 100%;
+    max-width: none; /* Odstraníme pevný max-width, necháme ho na sekci */
+  }
   .qr-code-container {
     padding: 10px;
-    max-width: 150px;
-    /* NOVÁ ZMĚNA: Zajištění horizontálního odsazení a centrování */
+    max-width: 150px; /* Ponecháváme, protože QR kód by neměl být příliš velký */
     margin-left: auto;
     margin-right: auto;
     width: fit-content; /* Omezí šířku na obsah, aby margin auto fungoval */
