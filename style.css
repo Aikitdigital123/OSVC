@@ -673,7 +673,7 @@ ul {
   }
   /* NOVÁ ZMĚNA: Chování pozadí na mobilu - Návrat k obrázku, ale s rolováním */
   body {
-    background: url('https://raw.githubusercontent.com/Aikitdigital123/OSVC/main/images/125.jpg') no-repeat center center scroll; /* Použijeme obrázek s rolováním */
+    background: url('https://raw.githubusercontent.com/Aikitdigital123/OSVC/main/images/134.jpg') no-repeat center center scroll; /* Použijeme obrázek s rolováním */
     background-size: cover;
     background-attachment: scroll !important; /* Zajistí, že se pozadí na mobilu roluje */
   }
