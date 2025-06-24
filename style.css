@@ -32,7 +32,7 @@ body {
   padding: 0;
   /* Nový obrázek na pozadí, který poskytne vizuální detaily pro backdrop-filter */
   /* OPRAVENÁ URL ADRESA PRO GITHUB PAGES */
-  background: url('https://raw.githubusercontent.com/Aikitdigital123/OSVC/main/images/125.jpg') no-repeat center center fixed;
+  background: url('https://raw.githubusercontent.com/Aikitdigital123/OSVC/main/images/134.jpg') no-repeat center center fixed;
   background-size: cover; /* Zajistí, že obrázek pokryje celou obrazovku */
   color: var(--color-text);
   font-family: var(--font-main);
@@ -192,7 +192,7 @@ nav a:hover::after, nav a:focus::after {
   margin: 36px auto 0;
   padding: 40px 30px 35px;
   /* Původní background: var(--color-bg-section); */
-  /* Ponecháno opacity a transform pro animaci při objevení */
+  /* Ponečáno opacity a transform pro animaci při objevení */
   opacity: 0;
   transform: translateY(40px);
   transition: opacity var(--transition-speed) var(--transition-cubic), transform var(--transition-speed) var(--transition-cubic);
@@ -293,7 +293,7 @@ ul {
   margin: 18px 0 30px 0;
   font-size: 1.05rem;
   line-height: 1.8;
-  list-style: disc;
+  list-style: none; /* ZMĚNA ZDE: Odstranění výchozích odrážek */
   color: var(--color-text); /* Zajištění barvy textu pro seznamy */
 }
 
@@ -337,7 +337,7 @@ p {
 .card ul {
     padding-left: 1.2em;
     margin: 10px 0 0 0;
-    list-style: disc;
+    list-style: none; /* ZMĚNA ZDE: Odstranění výchozích odrážek pro vnořené ul v kartě */
 }
 
 /* Styly pro hlavní tlačítko (beze změny) */
