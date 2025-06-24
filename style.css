@@ -207,8 +207,8 @@ nav a:hover::after, nav a:focus::after {
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3); /* Výraznější stín pro hloubku */
   
   /* Backdrop-filter pro rozmazání pozadí za prvkem */
-  backdrop-filter: blur(15px) saturate(150%); /* Zvýšené rozmazání a sytost */
-  -webkit-backdrop-filter: blur(15px) saturate(150%); /* Pro Safari */
+  backdrop-filter: blur(3px) saturate(150%); /* Zvýšené rozmazání a sytost */
+  -webkit-backdrop-filter: blur(3px) saturate(150%); /* Pro Safari */
 
   position: relative; /* Důležité pro pseudo-elementy */
   overflow: hidden; /* Zamezí přetečení obsahu nebo stínů */
@@ -299,11 +299,12 @@ ul {
 
 ul li::before {
     content: '•'; /* Vlastní odrážka */
-    color: var(--color-accent); /* ZMĚNA ZDE: Barva odrážky nastavena na --color-accent pro lepší vizuální odlišení */
+    color: var(--color-accent);
     font-size: 1.2em;
     position: absolute;
-    left: 0; /* Posuneme blíže k textu */
-    top: 0;
+    left: 0;
+    top: -0.25em; /* ZMĚNA: Mírné posunutí dolů pro lepší vertikální zarovnání */
+    /* Případně zkuste top: 0.2em; nebo top: 0.15em; pokud 0.1em nestačí */
 }
 
 li {
