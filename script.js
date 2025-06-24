@@ -143,9 +143,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     navLinks.forEach(link => link.classList.remove('active'));
                     navLink.classList.add('active');
                 }
-            }
-        });
-    }, navObserverOptions);
+            } 
+        }); 
+    }, navObserverOptions); 
+
 
     sections.forEach(section => {
         navSectionObserver.observe(section);
