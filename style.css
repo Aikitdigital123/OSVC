@@ -32,7 +32,7 @@ body {
   padding: 0;
   /* Nový obrázek na pozadí, který poskytne vizuální detaily pro backdrop-filter */
   /* OPRAVENÁ URL ADRESA PRO GITHUB PAGES */
-  background: url('https://raw.githubusercontent.com/Aikitdigital123/OSVC/main/images/125.jpg') no-repeat center center fixed;
+  background: url('https://raw.githubusercontent.com/Aikitdigital123/OSVC/main/images/124.jpg') no-repeat center center fixed;
   background-size: cover; /* Zajistí, že obrázek pokryje celou obrazovku */
   color: var(--color-text);
   font-family: var(--font-main);
@@ -603,7 +603,7 @@ ul {
   }
   .section {
     /* Upravujeme horizontální padding, aby se zajistilo odsazení od okrajů */
-    padding: 20px 15px 18px; /* Zajišťuje 15px odsazení zleva a zprava na mobilu */
+    padding: 20px 20px 18px; /* Zajišťuje 20px odsazení zleva a zprava na mobilu */
     margin: 20px auto 0;
     /* DŮLEŽITÉ: I zde přizpůsobit pro mobil a přidat rezervu. */
     scroll-margin-top: calc(var(--header-height-mobile) + 15px); /* Použijeme 200px + 15px rezerva */
@@ -658,11 +658,11 @@ ul {
     margin-top: 30px;
     font-size: 0.85rem;
   }
+  /* Optimalizace pro mobilní zobrazení */
   .contact-form {
     padding: 20px;
-    /* Zajistí, že se formulář roztáhne na plnou šířku sekce s odsazením */
-    width: 100%;
-    max-width: none; /* Odstraníme pevný max-width, necháme ho na sekci */
+    width: 100%; /* Zajistí, že se formulář roztáhne na celou dostupnou šířku uvnitř sekce */
+    max-width: none; /* Odstraníme pevný max-width, necháme ho na rodiči */
   }
   .qr-code-container {
     padding: 10px;
@@ -670,5 +670,10 @@ ul {
     margin-left: auto;
     margin-right: auto;
     width: fit-content; /* Omezí šířku na obsah, aby margin auto fungoval */
+  }
+  /* NOVÁ ZMĚNA: Chování pozadí na mobilu */
+  body {
+    background: linear-gradient(135deg, #171d25 0%, #1a2333 50%, #171d25 100%); /* Jednodušší gradient pro mobil */
+    background-attachment: scroll !important; /* Zajistí, že se pozadí na mobilu roluje */
   }
 }
