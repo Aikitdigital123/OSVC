@@ -23,7 +23,7 @@
   --transition-cubic: cubic-bezier(.6,.01,.05,1); /* Kubická Bezierova funkce pro přechody */
 
   --header-height-desktop: 220px; /* Výška hlavičky na desktopu */
-  --header-height-mobile: 200px; /* UPRAVENO: Nastaveno na 200px podle snímku obrazovky */
+  --header-height-mobile: 200px; /* Nastaveno na 200px podle snímku obrazovky */
 }
 
 /* ZMĚNY ZDE: Nové pozadí pro body s obrázkem pro lepší viditelnost glass efektu */
@@ -187,7 +187,7 @@ nav a:hover::after, nav a:focus::after {
 
 /* Základní styly pro sekce */
 .section {
-  scroll-margin-top: var(--header-height-desktop); /* Výchozí pro desktop */
+  scroll-margin-top: calc(var(--header-height-desktop) + 15px); /* Vylepšeno pro desktop */
   max-width: 800px;
   margin: 36px auto 0;
   padding: 40px 30px 35px;
@@ -289,18 +289,28 @@ nav a:hover::after, nav a:focus::after {
 
 /* Styly pro nečíslované seznamy */
 ul {
-  padding-left: 1.5em;
+  padding-left: 2em; /* Zvětšíme padding, aby bylo místo pro vlastní odrážky */
   margin: 18px 0 30px 0;
   font-size: 1.05rem;
   line-height: 1.8;
-  list-style: none; /* ZMĚNA ZDE: Odstranění výchozích odrážek */
+  list-style: none; /* Odstranění výchozích odrážek */
   color: var(--color-text); /* Zajištění barvy textu pro seznamy */
+}
+
+ul li::before {
+    content: '•'; /* Vlastní odrážka */
+    color: var(--color-accent); /* ZMĚNA ZDE: Barva odrážky nastavena na --color-accent pro lepší vizuální odlišení */
+    font-size: 1.2em;
+    position: absolute;
+    left: 0; /* Posuneme blíže k textu */
+    top: 0;
 }
 
 li {
   margin-bottom: 8px;
   position: relative;
   color: var(--color-text); /* Zajištění barvy textu pro položky seznamu */
+  padding-left: 1.2em; /* Přidáme padding pro text, aby se nepřekrýval s vlastní odrážkou */
 }
 
 /* Styly pro odstavce */
@@ -335,9 +345,13 @@ p {
 }
 
 .card ul {
-    padding-left: 1.2em;
+    padding-left: 1.2em; /* Mírně menší padding pro vnořené seznamy */
     margin: 10px 0 0 0;
-    list-style: none; /* ZMĚNA ZDE: Odstranění výchozích odrážek pro vnořené ul v kartě */
+    list-style: none; /* Odstranění výchozích odrážek pro vnořené ul v kartě */
+}
+
+.card ul li::before {
+  left: 0; /* Zarovnáme odrážky uvnitř karty */
 }
 
 /* Styly pro hlavní tlačítko (beze změny) */
@@ -409,6 +423,10 @@ p {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Upravený stín */
     display: inline-block;
     max-width: 200px;
+    /* NOVINKA: pro centrování QR kódu na menších obrazovkách */
+    margin-left: auto; 
+    margin-right: auto;
+    width: fit-content; 
 }
 
 .qr-code-text {
@@ -422,6 +440,8 @@ p {
     border-radius: 16px;
     box-shadow: 0 2px 16px rgba(42, 140, 255, 0.2);
     transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+    display: block; /* Zajišťuje, že margin auto funguje na obrázku */
+    margin: 0 auto; /* Centruje obrázek uvnitř kontejneru */
 }
 
 .qr-code-img:hover {
@@ -532,21 +552,6 @@ footer {
   overflow: hidden;
   clip: rect(0, 0, 0, 0);
   border: 0;
-}
-
-/* Globalní úpravy pro odrážky seznamů a card li (upraveno pro vizuální odrážky) */
-ul li::before {
-    /* content: none; - Původní: zrušilo odrážky, ale nyní potřebujeme vlastní */
-    content: '•'; /* Vlastní odrážka */
-    color: var(--color-text); /* ZMĚNA ZDE: Barva odrážky nastavena na --color-text (bílá) */
-    font-size: 1.2em;
-    position: absolute;
-    left: -1em; /* Posuneme nalevo od textu */
-    top: 0;
-}
-/* A musíme zajistit padding-left pro ul, aby se odrážky vešly */
-ul {
-    padding-left: 2em; /* Zvětšíme padding, aby bylo místo pro vlastní odrážky */
 }
 
 
