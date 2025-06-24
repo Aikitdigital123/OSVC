@@ -22,15 +22,15 @@
     <nav>
       <a href="#about">O mně</a>
       <a href="#services">Služby</a>
-      <a href="#contact-form-section">Nezávazná poptávka</a> <!-- Změněn odkaz pro nav-->
+      <a href="#contact-form-section">Nezávazná poptávka</a>
       <a href="#contact">Kontakt</a>
     </nav>
   </header>
 
   <!-- Hlavní obsah stránky -->
   <main>
-    <!-- Sekce "O mně" -->
-    <section id="about" class="section">
+    <!-- Sekce "O mně" s třídou glass-section -->
+    <section id="about" class="section glass-section">
       <h2 class="section-title">O mně</h2>
       <h3 class="section-subtitle">Stabilita, spolehlivost, inovace</h3>
       <p>
@@ -38,7 +38,7 @@
       </p>
       <div class="card">
         <b>S čím Vám mohu pomoci?</b>
-        <ul> <!-- Použití UL/LI pro lepší sémantiku -->
+        <ul>
           <li>Zajištění stabilního a bezpečného provozu systémů</li>
           <li>Efektivní monitoring a automatizace procesů</li>
           <li>IT poradenství na míru</li>
@@ -46,8 +46,8 @@
       </div>
     </section>
 
-    <!-- Sekce "Služby" -->
-    <section id="services" class="section">
+    <!-- Sekce "Služby" s třídou glass-section -->
+    <section id="services" class="section glass-section">
       <h2 class="section-title">Služby</h2>
       <h3 class="section-subtitle">Komplexní IT řešení</h3>
       <ul>
@@ -61,8 +61,8 @@
       </ul>
     </section>
 
-    <!-- Sekce "Nezávazná poptávka" (formulář) -->
-    <section id="contact-form-section" class="section"> <!-- Změněno ID pro navigační kotvu -->
+    <!-- Sekce "Nezávazná poptávka" (formulář) s třídou glass-section -->
+    <section id="contact-form-section" class="section glass-section">
       <h2 class="section-title">Nezávazná poptávka</h2>
       <h3 class="section-subtitle">Napište mi, ozvu se zpět</h3>
       <form action="https://api.web3forms.com/submit" method="POST" class="contact-form">
@@ -71,22 +71,22 @@
         <!-- Input pro název formuláře, pro lepší identifikaci v Web3Forms -->
         <input type="hidden" name="subject" value="Nová poptávka z hyndriuk.cz">
 
-        <label for="name">Jméno:</label> <!-- Přidán for atribut -->
-        <input type="text" id="name" name="name" required autocomplete="name" class="form-input"> <!-- Přidán id a třída -->
+        <label for="name">Jméno:</label>
+        <input type="text" id="name" name="name" required autocomplete="name" class="form-input">
         
-        <label for="email">E-mail:</label> <!-- Přidán for atribut -->
-        <input type="email" id="email" name="email" required autocomplete="email" class="form-input"> <!-- Přidán id a třída -->
+        <label for="email">E-mail:</label>
+        <input type="email" id="email" name="email" required autocomplete="email" class="form-input">
         
-        <label for="message">Zpráva:</label> <!-- Přidán for atribut -->
-        <textarea id="message" name="message" required rows="4" class="form-textarea"></textarea> <!-- Přidán id a třída -->
+        <label for="message">Zpráva:</label>
+        <textarea id="message" name="message" required rows="4" class="form-textarea"></textarea>
         
-        <button type="submit" class="btn-main form-submit-btn">Odeslat poptávku</button> <!-- Přidána třída -->
+        <button type="submit" class="btn-main form-submit-btn">Odeslat poptávku</button>
         <div id="form-status" class="form-status"></div>
       </form>
     </section>
 
-    <!-- Sekce "Kontakt" -->
-    <section id="contact" class="section">
+    <!-- Sekce "Kontakt" s třídou glass-section -->
+    <section id="contact" class="section glass-section">
       <h2 class="section-title">Kontakt</h2>
       <h3 class="section-subtitle">Ozvěte se, rád pomohu</h3>
       <div class="contact-links">
