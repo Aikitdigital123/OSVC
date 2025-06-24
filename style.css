@@ -25,9 +25,9 @@
 body {
   margin: 0;
   padding: 0;
-  /* Původní background: var(--color-bg); */
   /* Nový obrázek na pozadí, který poskytne vizuální detaily pro backdrop-filter */
-  background: url('https://github.com/Aikitdigital123/OSVC/blob/f48c9396cbc7a0344742643ce4dc6d6863a35e1a/images/125.jpg') no-repeat center center fixed;
+  /* OPRAVENÁ URL ADRESA PRO GITHUB PAGES */
+  background: url('https://raw.githubusercontent.com/Aikitdigital123/OSVC/main/images/125.jpg') no-repeat center center fixed;
   background-size: cover; /* Zajistí, že obrázek pokryje celou obrazovku */
   color: var(--color-text);
   font-family: var(--font-main);
