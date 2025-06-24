@@ -21,12 +21,14 @@
   --header-height-mobile: 200px; /* UPRAVENO: Nastaveno na 200px podle snímku obrazovky */
 }
 
-
-
+/* ZMĚNY ZDE: Nové pozadí pro body s obrázkem pro lepší viditelnost glass efektu */
 body {
   margin: 0;
   padding: 0;
-  background: var(--color-bg);
+  /* Původní background: var(--color-bg); */
+  /* Nový obrázek na pozadí, který poskytne vizuální detaily pro backdrop-filter */
+  background: url('https://placehold.co/1920x1080/1a2333/171d25?text=Abstract+Dark+Background') no-repeat center center fixed;
+  background-size: cover; /* Zajistí, že obrázek pokryje celou obrazovku */
   color: var(--color-text);
   font-family: var(--font-main);
   min-height: 100vh; /* Minimální výška pro celou stránku */
@@ -37,10 +39,14 @@ body {
 
 /* Hlavička stránky */
 header {
-  background: var(--color-bg-section);
+  /* Původní background: var(--color-bg-section); */
+  /* ZMĚNA: Průsvitné pozadí s backdrop-filter */
+  background: rgba(33, 40, 54, 0.4); /* Používá --color-bg-section s průhledností */
+  backdrop-filter: blur(8px) saturate(150%);
+  -webkit-backdrop-filter: blur(8px) saturate(150%);
   padding: 10px 16px 10px;
   text-align: center;
-  box-shadow: var(--shadow);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2); /* Jemnější stín */
   position: sticky;
   top: 0;
   z-index: 100;
@@ -51,6 +57,7 @@ header {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Jemná světlá linka */
 }
 
 /* Styly pro logo v hlavičce */
@@ -179,15 +186,66 @@ nav a:hover::after, nav a:focus::after {
   max-width: 800px;
   margin: 36px auto 0;
   padding: 40px 30px 35px;
-  background: var(--color-bg-section);
-  border-radius: 22px;
-  box-shadow: var(--shadow);
+  /* Původní background: var(--color-bg-section); */
+  /* Ponecháno opacity a transform pro animaci při objevení */
   opacity: 0;
   transform: translateY(40px);
   transition: opacity var(--transition-speed) var(--transition-cubic), transform var(--transition-speed) var(--transition-cubic);
 }
 
-/* Stav pro animaci při objevení sekce */
+/* ZMĚNY ZDE: Nová třída pro LIQUID GLASS EFEKT */
+.glass-section {
+  /* Klíčové pro LIQUID GLASS EFEKT */
+  background-color: rgba(33, 40, 54, 0.4); /* Průsvitné pozadí z --color-bg-section */
+  border: 1px solid rgba(255, 255, 255, 0.08); /* Jemný světlý okraj */
+  border-radius: 22px; /* Zdědí zaoblení z .section, ale můžeme ho přepsat */
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3); /* Výraznější stín pro hloubku */
+  
+  /* Backdrop-filter pro rozmazání pozadí za prvkem */
+  backdrop-filter: blur(15px) saturate(150%); /* Zvýšené rozmazání a sytost */
+  -webkit-backdrop-filter: blur(15px) saturate(150%); /* Pro Safari */
+
+  position: relative; /* Důležité pro pseudo-elementy */
+  overflow: hidden; /* Zamezí přetečení obsahu nebo stínů */
+  transition: all 0.3s ease-in-out; /* Plynulý přechod pro hover efekty */
+}
+
+/* Volitelné: Jemné odlesky nebo gradienty pro "tekutý" dojem na glass sekcích */
+.glass-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  /* Jemný gradient, který simuluje odlesk světla */
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.05) 0%, /* Velmi jemný odlesk */
+    rgba(255, 255, 255, 0) 50%,
+    rgba(255, 255, 255, 0.02) 100%
+  );
+  border-radius: inherit; /* Zdědí zaoblení z rodiče */
+  pointer-events: none; /* Umožní interakci s obsahem pod ním */
+  opacity: 0.8;
+}
+
+/* Volitelné: Vnitřní okraj pro hloubku, simuluje tloušťku skla */
+.glass-section::after {
+  content: '';
+  position: absolute;
+  top: 10px; /* Odsazení od okraje */
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.15); /* Vnitřní "odraz" */
+  border-radius: 20px; /* Mírně menší zaoblení než hlavní prvek */
+  pointer-events: none;
+  box-shadow: inset 0 0 8px rgba(255, 255, 255, 0.05); /* Jemný vnitřní stín */
+}
+
+
+/* Stav pro animaci při objevení sekce (ponecháno beze změny) */
 .section.is-visible {
   opacity: 1;
   transform: translateY(0);
@@ -198,11 +256,12 @@ nav a:hover::after, nav a:focus::after {
   font-family: var(--font-main);
   font-size: 2.2rem;
   font-weight: 700;
-  color: var(--color-accent);
+  color: var(--color-accent); /* Barva nadpisu zůstává akcentní */
   margin: 0 0 10px 0;
   letter-spacing: .01em;
   text-align: center;
   position: relative;
+  text-shadow: 0 2px 5px rgba(0,0,0,0.3); /* Jemný stín pro lepší čitelnost na skle */
 }
 
 .section-title::after {
@@ -230,11 +289,13 @@ ul {
   font-size: 1.05rem;
   line-height: 1.8;
   list-style: disc;
+  color: var(--color-text); /* Zajištění barvy textu pro seznamy */
 }
 
 li {
   margin-bottom: 8px;
   position: relative;
+  color: var(--color-text); /* Zajištění barvy textu pro položky seznamu */
 }
 
 /* Styly pro odstavce */
@@ -247,11 +308,15 @@ p {
 
 /* Styly pro "kartu" v sekci O mně */
 .card {
-  background: var(--color-card);
+  /* Původní background: var(--color-card); */
+  /* ZMĚNA: Průsvitné pozadí s backdrop-filter */
+  background: rgba(34, 44, 60, 0.4); /* Používá --color-card s průhledností */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border-radius: 16px;
   padding: 20px;
   margin: 25px 0;
-  box-shadow: 0 4px 20px rgba(11, 19, 36, 0.3);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Upravený stín */
   font-size: 1rem;
   line-height: 1.6;
   border: 1px solid rgba(42, 140, 255, 0.1);
@@ -261,7 +326,7 @@ p {
 
 .card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 30px rgba(11, 19, 36, 0.4);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3); /* Upravený stín při najetí */
 }
 
 .card ul {
@@ -270,7 +335,7 @@ p {
     list-style: disc;
 }
 
-/* Styly pro hlavní tlačítko */
+/* Styly pro hlavní tlačítko (beze změny) */
 .btn-main {
   display: inline-block;
   font-family: var(--font-mono);
@@ -308,6 +373,7 @@ p {
     align-items: center;
     gap: 10px;
     font-size: 1.05rem;
+    color: var(--color-text); /* Zajištění barvy textu */
 }
 
 .contact-links a {
@@ -329,9 +395,13 @@ p {
     text-align: center;
     margin-top: 40px;
     padding: 20px;
-    background: var(--color-card);
+    /* Původní background: var(--color-card); */
+    /* ZMĚNA: Průsvitné pozadí s backdrop-filter */
+    background: rgba(34, 44, 60, 0.4); /* Používá --color-card s průhledností */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     border-radius: 18px;
-    box-shadow: var(--shadow);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Upravený stín */
     display: inline-block;
     max-width: 200px;
 }
@@ -356,7 +426,11 @@ p {
 
 /* Patička stránky */
 footer {
-  background: var(--color-bg-section);
+  /* Původní background: var(--color-bg-section); */
+  /* ZMĚNA: Průsvitná patička s backdrop-filter */
+  background: rgba(33, 40, 54, 0.4); /* Používá --color-bg-section s průhledností */
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   color: var(--color-secondary);
   text-align: center;
   padding: 25px 15px 18px;
@@ -364,7 +438,8 @@ footer {
   font-family: var(--font-mono);
   font-size: 0.95rem;
   letter-spacing: .02em;
-  border-top: 1px solid #26334c;
+  border-top: 1px solid rgba(255, 255, 255, 0.1); /* Jemnější linka */
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1); /* Jemný stín nahoru */
 }
 
 /* Kontaktní formulář styly */
@@ -372,9 +447,13 @@ footer {
     max-width: 450px;
     margin: auto;
     padding: 25px;
-    background: var(--color-card);
+    /* Původní background: var(--color-card); */
+    /* ZMĚNA: Průsvitné pozadí s backdrop-filter */
+    background: rgba(34, 44, 60, 0.4); /* Používá --color-card s průhledností */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     border-radius: 16px;
-    box-shadow: var(--shadow);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Upravený stín */
     display: flex;
     flex-direction: column;
     gap: 15px;
@@ -391,9 +470,11 @@ footer {
 .form-textarea {
   width: 100%;
   padding: 12px;
-  background: #242c3e;
+  /* Původní background: #242c3e; */
+  /* ZMĚNA: Průsvitné pozadí pro inputy */
+  background: rgba(36, 44, 62, 0.6); /* Tmavší, průsvitnější pozadí pro inputy */
   color: var(--color-text);
-  border: 1px solid rgba(42, 140, 255, 0.3);
+  border: 1px solid rgba(42, 140, 255, 0.2); /* Jemnější okraj */
   border-radius: 8px;
   font-family: var(--font-main);
   font-size: 1rem;
@@ -404,7 +485,7 @@ footer {
 .form-textarea:focus {
   outline: none;
   border: 1.5px solid var(--color-accent);
-  box-shadow: 0 0 0 3px rgba(42, 140, 255, 0.2);
+  box-shadow: 0 0 0 3px rgba(42, 140, 255, 0.3); /* Jasnější focus stín */
 }
 
 .form-textarea {
@@ -436,7 +517,7 @@ footer {
     opacity: 1;
 }
 
-/* Styly pro vizuálně skrytý H1 */
+/* Styly pro vizuálně skrytý H1 (beze změny) */
 .visually-hidden {
   position: absolute;
   width: 1px;
@@ -448,10 +529,21 @@ footer {
   border: 0;
 }
 
-/* Globalní úpravy pro odrážky seznamů a card li */
+/* Globalní úpravy pro odrážky seznamů a card li (upraveno pro vizuální odrážky) */
 ul li::before {
-    content: none;
+    /* content: none; - Původní: zrušilo odrážky, ale nyní potřebujeme vlastní */
+    content: '•'; /* Vlastní odrážka */
+    color: var(--color-accent); /* Barva odrážky podle akcentní barvy */
+    font-size: 1.2em;
+    position: absolute;
+    left: -1em; /* Posuneme nalevo od textu */
+    top: 0;
 }
+/* A musíme zajistit padding-left pro ul, aby se odrážky vešly */
+ul {
+    padding-left: 2em; /* Zvětšíme padding, aby bylo místo pro vlastní odrážky */
+}
+
 
 /* MEDIA QUERIES pro responsivní design */
 @media (max-width: 768px) {
@@ -465,26 +557,22 @@ ul li::before {
     /* DŮLEŽITÉ: Nyní nastavíme scroll-margin-top na základě skutečné výšky headeru + rezervy */
     scroll-margin-top: calc(var(--header-height-mobile) + 15px); /* Použijeme 200px + 15px rezerva */
   }
-  .logo {
-    font-size: 2.2rem;
-  }
-  .subtitle {
-    font-size: 1.1rem;
-    margin-bottom: 10px;
-  }
-  nav {
-    gap: 20px;
-    font-size: 1rem;
+  /* ZMĚNA: Přidáno pro responzivitu glass-section */
+  .glass-section {
+    border-radius: 18px; /* Mírně menší zaoblení na tabletu */
+    box-shadow: 0 6px 28px 0 rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(12px) saturate(150%);
+    -webkit-backdrop-filter: blur(12px) saturate(150%);
   }
   .section-title {
-    font-size: 1.8rem;
+    font-size: 2em; /* Upraveno z 1.8rem na 2em pro větší kontrast */
   }
   .section-subtitle {
-    font-size: 1.1rem;
+    font-size: 1.1em;
     margin-bottom: 25px;
   }
   p {
-    font-size: 1rem;
+    font-size: 1em;
   }
   .card {
     padding: 18px;
@@ -498,6 +586,10 @@ ul li::before {
   .contact-form {
     padding: 20px;
   }
+  .qr-code-container {
+    padding: 15px;
+    max-width: 180px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -509,6 +601,13 @@ ul li::before {
     margin: 20px auto 0;
     /* DŮLEŽITÉ: I zde přizpůsobit pro mobil a přidat rezervu. */
     scroll-margin-top: calc(var(--header-height-mobile) + 15px); /* Použijeme 200px + 15px rezerva */
+  }
+  /* ZMĚNA: Přidáno pro responzivitu glass-section */
+  .glass-section {
+    border-radius: 12px; /* Ještě menší zaoblení na mobilu */
+    box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(8px) saturate(150%);
+    -webkit-backdrop-filter: blur(8px) saturate(150%);
   }
   .logo {
     font-size: 1.8rem;
@@ -544,11 +643,15 @@ ul li::before {
   }
   ul {
     font-size: 0.95rem;
-    padding-left: 1.2em;
+    padding-left: 1.8em; /* Upraveno pro menší padding na mobilu */
   }
   footer {
     padding: 18px 10px 12px;
     margin-top: 30px;
     font-size: 0.85rem;
+  }
+  .qr-code-container {
+    padding: 10px;
+    max-width: 150px;
   }
 }
