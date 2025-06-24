@@ -32,7 +32,7 @@ body {
   padding: 0;
   /* Nový obrázek na pozadí, který poskytne vizuální detaily pro backdrop-filter */
   /* OPRAVENÁ URL ADRESA PRO GITHUB PAGES */
-  background: url('https://raw.githubusercontent.com/Aikitdigital123/OSVC/main/images/134.jpg') no-repeat center center fixed;
+  background: url('https://raw.githubusercontent.com/Aikitdigital123/OSVC/main/images/125.jpg') no-repeat center center fixed;
   background-size: cover; /* Zajistí, že obrázek pokryje celou obrazovku */
   color: var(--color-text);
   font-family: var(--font-main);
@@ -250,7 +250,7 @@ nav a:hover::after, nav a:focus::after {
 }
 
 
-/* Stav pro animaci při objevení sekce (ponecháno beze změny) */
+/* Stav pro animaci při objevení sekce (ponečáno beze změny) */
 .section.is-visible {
   opacity: 1;
   transform: translateY(0);
@@ -538,7 +538,7 @@ footer {
 ul li::before {
     /* content: none; - Původní: zrušilo odrážky, ale nyní potřebujeme vlastní */
     content: '•'; /* Vlastní odrážka */
-    color: var(--color-accent); /* Barva odrážky podle akcentní barvy */
+    color: var(--color-text); /* ZMĚNA ZDE: Barva odrážky nastavena na --color-text (bílá) */
     font-size: 1.2em;
     position: absolute;
     left: -1em; /* Posuneme nalevo od textu */
