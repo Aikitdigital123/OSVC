@@ -32,7 +32,7 @@ body {
   padding: 0;
   /* Nový obrázek na pozadí, který poskytne vizuální detaily pro backdrop-filter */
   /* OPRAVENÁ URL ADRESA PRO GITHUB PAGES */
-  background: url('https://raw.githubusercontent.com/Aikitdigital123/OSVC/main/images/134.jpg') no-repeat center center fixed;
+  background: url('https://raw.githubusercontent.com/Aikitdigital123/OSVC/main/images/125.jpg') no-repeat center center fixed;
   background-size: cover; /* Zajistí, že obrázek pokryje celou obrazovku */
   color: var(--color-text);
   font-family: var(--font-main);
@@ -46,7 +46,7 @@ body {
 header {
   /* Původní background: var(--color-bg-section); */
   /* ZMĚNA: Průsvitné pozadí s backdrop-filter */
-  background: rgba(33, 40, 54, 0.4); /* Používá --color-bg-section s průhledností */
+  background: rgba(33, 40, 54, 0.25); /* ZVÝŠENÁ PRŮHLEDNOST */
   backdrop-filter: blur(8px) saturate(150%);
   -webkit-backdrop-filter: blur(8px) saturate(150%);
   padding: 10px 16px 10px;
@@ -201,7 +201,7 @@ nav a:hover::after, nav a:focus::after {
 /* ZMĚNY ZDE: Nová třída pro LIQUID GLASS EFEKT */
 .glass-section {
   /* Klíčové pro LIQUID GLASS EFEKT */
-  background-color: rgba(33, 40, 54, 0.4); /* Průsvitné pozadí z --color-bg-section */
+  background-color: rgba(33, 40, 54, 0.25); /* ZVÝŠENÁ PRŮHLEDNOST */
   border: 1px solid rgba(255, 255, 255, 0.08); /* Jemný světlý okraj */
   border-radius: 22px; /* Zdědí zaoblení z .section, ale můžeme ho přepsat */
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3); /* Výraznější stín pro hloubku */
@@ -315,7 +315,7 @@ p {
 .card {
   /* Původní background: var(--color-card); */
   /* ZMĚNA: Průsvitné pozadí s backdrop-filter */
-  background: rgba(34, 44, 60, 0.4); /* Používá --color-card s průhledností */
+  background: rgba(34, 44, 60, 0.25); /* ZVÝŠENÁ PRŮHLEDNOST */
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border-radius: 16px;
@@ -402,7 +402,7 @@ p {
     padding: 20px;
     /* Původní background: var(--color-card); */
     /* ZMĚNA: Průsvitné pozadí s backdrop-filter */
-    background: rgba(34, 44, 60, 0.4); /* Používá --color-card s průhledností */
+    background: rgba(34, 44, 60, 0.25); /* ZVÝŠENÁ PRŮHLEDNOST */
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border-radius: 18px;
@@ -433,7 +433,7 @@ p {
 footer {
   /* Původní background: var(--color-bg-section); */
   /* ZMĚNA: Průsvitná patička s backdrop-filter */
-  background: rgba(33, 40, 54, 0.4); /* Používá --color-bg-section s průhledností */
+  background: rgba(33, 40, 54, 0.25); /* ZVÝŠENÁ PRŮHLEDNOST */
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   color: var(--color-secondary);
@@ -454,7 +454,7 @@ footer {
     padding: 25px;
     /* Původní background: var(--color-card); */
     /* ZMĚNA: Průsvitné pozadí s backdrop-filter */
-    background: rgba(34, 44, 60, 0.4); /* Používá --color-card s průhledností */
+    background: rgba(34, 44, 60, 0.25); /* ZVÝŠENÁ PRŮHLEDNOST */
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border-radius: 16px;
@@ -477,7 +477,7 @@ footer {
   padding: 12px;
   /* Původní background: #242c3e; */
   /* ZMĚNA: Průsvitné pozadí pro inputy */
-  background: rgba(36, 44, 62, 0.6); /* Tmavší, průsvitnější pozadí pro inputy */
+  background: rgba(36, 44, 62, 0.4); /* ZVÝŠENÁ PRŮHLEDNOST */
   color: var(--color-text);
   border: 1px solid rgba(42, 140, 255, 0.2); /* Jemnější okraj */
   border-radius: 8px;
@@ -671,9 +671,10 @@ ul {
     margin-right: auto;
     width: fit-content; /* Omezí šířku na obsah, aby margin auto fungoval */
   }
-  /* NOVÁ ZMĚNA: Chování pozadí na mobilu */
+  /* NOVÁ ZMĚNA: Chování pozadí na mobilu - Návrat k obrázku, ale s rolováním */
   body {
-    background: linear-gradient(135deg, #171d25 0%, #1a2333 50%, #171d25 100%); /* Jednodušší gradient pro mobil */
+    background: url('https://raw.githubusercontent.com/Aikitdigital123/OSVC/main/images/125.jpg') no-repeat center center scroll; /* Použijeme obrázek s rolováním */
+    background-size: cover;
     background-attachment: scroll !important; /* Zajistí, že se pozadí na mobilu roluje */
   }
 }
