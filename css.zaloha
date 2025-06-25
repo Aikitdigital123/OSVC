@@ -26,12 +26,11 @@
   --header-height-mobile: 200px; /* Nastaveno na 200px podle snímku obrazovky */
 }
 
-/* ZMĚNY ZDE: Nové pozadí pro body s obrázkem pro lepší viditelnost glass efektu */
+/* Základní styly pro body (desktop a jako výchozí pro všechny) */
 body {
   margin: 0;
   padding: 0;
-  /* Nový obrázek na pozadí, který poskytne vizuální detaily pro backdrop-filter */
-  /* OPRAVENÁ URL ADRESA PRO GITHUB PAGES */
+  /* Pozadí pro desktop s fixním attachmentem */
   background: url('https://raw.githubusercontent.com/Aikitdigital123/OSVC/main/images/127.jpg') no-repeat center center fixed;
   background-size: cover; /* Zajistí, že obrázek pokryje celou obrazovku */
   color: var(--color-text);
@@ -44,8 +43,6 @@ body {
 
 /* Hlavička stránky */
 header {
-  /* Původní background: var(--color-bg-section); */
-  /* ZMĚNA: Průsvitné pozadí s backdrop-filter */
   background: rgba(33, 40, 54, 0.25); /* ZVÝŠENÁ PRŮHLEDNOST */
   backdrop-filter: blur(8px) saturate(150%);
   -webkit-backdrop-filter: blur(8px) saturate(150%);
@@ -191,14 +188,12 @@ nav a:hover::after, nav a:focus::after {
   max-width: 800px;
   margin: 36px auto 0;
   padding: 40px 30px 35px;
-  /* Původní background: var(--color-bg-section); */
-  /* Ponečáno opacity a transform pro animaci při objevení */
   opacity: 0;
   transform: translateY(40px);
   transition: opacity var(--transition-speed) var(--transition-cubic), transform var(--transition-speed) var(--transition-cubic);
 }
 
-/* ZMĚNY ZDE: Nová třída pro LIQUID GLASS EFEKT */
+/* Nová třída pro LIQUID GLASS EFEKT */
 .glass-section {
   /* Klíčové pro LIQUID GLASS EFEKT */
   background-color: rgba(33, 40, 54, 0.25); /* ZVÝŠENÁ PRŮHLEDNOST */
@@ -287,6 +282,22 @@ nav a:hover::after, nav a:focus::after {
   text-align: center;
 }
 
+/* Styly pro ověřovací odkazy certifikátů, aby vypadaly jako podtitulky */
+.certificate-verify-link {
+  color: var(--color-secondary); /* Používá stejnou barvu jako .section-subtitle */
+  font-weight: bold; /* Pro zvýraznění */
+  text-decoration: none; /* Odstranění podtržení */
+  transition: color 0.2s ease-out, text-shadow 0.2s ease-out; /* Plynulý přechod */
+}
+
+.certificate-verify-link:hover,
+.certificate-verify-link:focus {
+  color: var(--color-accent); /* Změna barvy na akcentní při najetí myší */
+  text-shadow: 0 0 10px rgba(42, 140, 255, 0.7); /* Jemný svit */
+  text-decoration: underline; /* Můžeš přidat podtržení při najetí myší */
+}
+
+
 /* Styly pro nečíslované seznamy */
 ul {
   padding-left: 2em; /* Zvětšíme padding, aby bylo místo pro vlastní odrážky */
@@ -303,8 +314,7 @@ ul li::before {
     font-size: 1.2em;
     position: absolute;
     left: 0;
-    top: -0.25em; /* ZMĚNA: Mírné posunutí dolů pro lepší vertikální zarovnání */
-    /* Případně zkuste top: 0.2em; nebo top: 0.15em; pokud 0.1em nestačí */
+    top: -0.25em; /* Mírné posunutí dolů pro lepší vertikální zarovnání */
 }
 
 li {
@@ -324,8 +334,6 @@ p {
 
 /* Styly pro "kartu" v sekci O mně */
 .card {
-  /* Původní background: var(--color-card); */
-  /* ZMĚNA: Průsvitné pozadí s backdrop-filter */
   background: rgba(34, 44, 60, 0.25); /* ZVÝŠENÁ PRŮHLEDNOST */
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
@@ -415,23 +423,16 @@ p {
     text-align: center;
     margin-top: 40px;
     padding: 20px;
-    /* Původní background: var(--color-card); */
-    /* ZMĚNA: Průsvitné pozadí s backdrop-filter */
     background: rgba(34, 44, 60, 0.25); /* ZVÝŠENÁ PRŮHLEDNOST */
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border-radius: 18px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Upravený stín */
-    display: inline-block; /* Toto je důležité pro "fit-content" chování */
-    
-    /* NOVINKA/ZMĚNA: Pro flexibilní šířku a centrování */
-    width: auto; /* Místo max-width omezíme jen na obsah + padding */
+    display: block; /* Změna na block, aby margin auto fungoval */
+    width: fit-content; /* Omezí šířku na obsah, aby margin auto fungoval správně */
     max-width: calc(100% - 40px); /* Ponecháme nějaké maximální omezení vzhledem k rodiči */
     margin-left: auto;
     margin-right: auto;
-    /* Důležité pro centrování inline-block prvku, pokud je rodič display: block */
-    display: block; /* Změna na block, aby margin auto fungoval */
-    width: fit-content; /* Omezí šířku na obsah, aby margin auto fungoval správně */
     padding: 30px; /* Zvětšený padding pro více prostoru */
 }
 
@@ -452,24 +453,8 @@ p {
     margin: 0 auto; /* Centruje obrázek uvnitř kontejneru */
 }
 
-/* ... a v media queries upravit paddingy ... */
-
-@media (max-width: 480px) {
-  /* ... */
-  .qr-code-container {
-    padding: 25px; /* Zvětšený padding na mobilu pro více prostoru */
-    max-width: calc(100% - 40px); /* Zajistí, že nebude přesahovat okraje */
-  }
-  .qr-code-img {
-    max-width: 120px; /* Mírné omezení velikosti QR kódu na nejmenších obrazovkách, pokud je potřeba */
-  }
-  /* ... */
-}
-
 /* Patička stránky */
 footer {
-  /* Původní background: var(--color-bg-section); */
-  /* ZMĚNA: Průsvitná patička s backdrop-filter */
   background: rgba(33, 40, 54, 0.25); /* ZVÝŠENÁ PRŮHLEDNOST */
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
@@ -489,8 +474,6 @@ footer {
     max-width: 450px;
     margin: auto;
     padding: 25px;
-    /* Původní background: var(--color-card); */
-    /* ZMĚNA: Průsvitné pozadí s backdrop-filter */
     background: rgba(34, 44, 60, 0.25); /* ZVÝŠENÁ PRŮHLEDNOST */
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
@@ -512,8 +495,6 @@ footer {
 .form-textarea {
   width: 100%;
   padding: 12px;
-  /* Původní background: #242c3e; */
-  /* ZMĚNA: Průsvitné pozadí pro inputy */
   background: rgba(36, 44, 62, 0.4); /* ZVÝŠENÁ PRŮHLEDNOST */
   color: var(--color-text);
   border: 1px solid rgba(42, 140, 255, 0.2); /* Jemnější okraj */
@@ -571,7 +552,6 @@ footer {
   border: 0;
 }
 
-
 /* MEDIA QUERIES pro responsivní design */
 @media (max-width: 768px) {
   header {
@@ -581,8 +561,7 @@ footer {
     max-width: 95vw;
     padding: 30px 20px 25px;
     margin: 25px auto 0;
-    /* DŮLEŽITÉ: Nyní nastavíme scroll-margin-top na základě skutečné výšky headeru + rezervy */
-    scroll-margin-top: calc(var(--header-height-mobile) + 15px); /* Použijeme 200px + 15px rezerva */
+    scroll-margin-top: calc(var(--header-height-mobile) + 15px);
   }
   /* ZMĚNA: Přidáno pro responzivitu glass-section */
   .glass-section {
@@ -615,23 +594,22 @@ footer {
   }
   .qr-code-container {
     padding: 15px;
-    max-width: 180px;
+    max-width: 180px; /* Ponecháváme, protože QR kód by neměl být příliš velký */
   }
-}
+} 
+
+/* --- MOBILNÍ STYLY (max-width: 480px) --- */
 @media (max-width: 480px) {
   header {
-    min-height: var(--header-height-mobile); /* I zde používáme mobilní výšku */
+    min-height: var(--header-height-mobile);
   }
   .section {
-    /* Upravujeme horizontální padding, aby se zajistilo odsazení od okrajů */
-    padding: 20px 20px 18px; /* Zajišťuje 20px odsazení zleva a zprava na mobilu */
+    padding: 20px 20px 18px;
     margin: 20px auto 0;
-    /* DŮLEŽITÉ: I zde přizpůsobit pro mobil a přidat rezervu. */
-    scroll-margin-top: calc(var(--header-height-mobile) + 15px); /* Použijeme 200px + 15px rezerva */
+    scroll-margin-top: calc(var(--header-height-mobile) + 15px);
   }
-  /* ZMĚNA: Přidáno pro responzivitu glass-section */
   .glass-section {
-    border-radius: 12px; /* Ještě menší zaoblení na mobilu */
+    border-radius: 12px;
     box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.2);
     backdrop-filter: blur(8px) saturate(150%);
     -webkit-backdrop-filter: blur(8px) saturate(150%);
@@ -654,8 +632,7 @@ footer {
     gap: 15px 10px;
     font-size: 0.9rem;
     justify-content: center;
-    /* NOVÁ ZMĚNA: Přidán horizontální padding pro malé obrazovky */
-    padding: 0 10px; /* Zajištění vnitřního odsazení navigace */
+    padding: 0 10px;
   }
   nav a {
     padding: 4px 0;
@@ -672,37 +649,51 @@ footer {
   }
   ul {
     font-size: 0.95rem;
-    padding-left: 1.8em; /* Upraveno pro menší padding na mobilu */
+    padding-left: 1.8em;
   }
   footer {
     padding: 18px 10px 12px;
     margin-top: 30px;
     font-size: 0.85rem;
   }
-  /* Optimalizace pro mobilní zobrazení */
   .contact-form {
     padding: 20px;
-    width: 100%; /* Zajistí, že se formulář roztáhne na celou dostupnou šířku uvnitř sekce */
-    max-width: none; /* Odstraníme pevný max-width, necháme ho na rodiči */
+    width: 100%;
+    max-width: none;
   }
   .qr-code-container {
     padding: 10px;
-    max-width: 150px; /* Ponecháváme, protože QR kód by neměl být příliš velký */
+    max-width: 150px;
     margin-left: auto;
     margin-right: auto;
-    width: fit-content; /* Omezí šířku na obsah, aby margin auto fungoval */
+    width: fit-content;
+  }
+  .qr-code-img {
+    max-width: 120px;
   }
 
-  /* KOREKCE ZDE: Tato část byla vnořena, teď je správně součástí tohoto media query */
+  /* --- Zde jsou ty nové styly pro body, které CHCEŠ na mobilu (fixní pozadí) --- */
   body {
-    /* Překryjeme obrázek pozadí jemnou průhlednou barvou */
-    background: linear-gradient(
-                  rgba(23, 29, 37, 0.5), /* Průhlednější vrstva, barva z --color-bg */
-                  rgba(23, 29, 37, 0.5)
-                ),
-                url('https://raw.githubusercontent.com/Aikitdigital123/OSVC/main/images/127.jpg') no-repeat center center scroll; /* Obrázek se roluje */
-    background-size: cover;
-    background-attachment: scroll !important; /* Explicitně pro jistotu */
+    background: none; /* Vypneme původní pozadí na body, aby ho simuloval pseudo-element */
+    position: relative; /* Důležité pro z-index obsahu */
+    z-index: 1; /* Zajistí, že obsah bude nad pozadím */
   }
-  /* Byla zde i sekce body::before a duplikovaný body, ty jsem odstranil */
+
+  body::before { /* Tento pseudo-element bude sloužit jako naše fixní pozadí */
+    content: ''; /* Povinná vlastnost pro pseudo-element */
+    position: fixed; /* KLÍČOVÉ: Udrží pozadí pevné vůči obrazovce */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Zde použijeme gradient a tvůj optimalizovaný mobilní obrázek */
+    background: linear-gradient(
+                      rgba(23, 29, 37, 0.5),
+                      rgba(23, 29, 37, 0.5)
+                    ),
+                    url('https://raw.githubusercontent.com/Aikitdigital123/OSVC/main/images/127mob.jpg') no-repeat center center;
+    background-size: cover;
+    z-index: -1; /* Umístí tento element pod veškerý obsah */
+  }
+  /* --- Konec nových stylů pro body na mobilu --- */
 }
