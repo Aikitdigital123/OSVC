@@ -1,63 +1,53 @@
 // Očekává, že se celý DOM načte, než začne manipulovat s elementy
 document.addEventListener('DOMContentLoaded', () => {
 
-    // Získáme referenci na header element HNED NA ZAČÁTKU
-    // Je potřeba pro logiku plynulého skrolování
     const header = document.querySelector('header');
+    const navLinks = document.querySelectorAll('nav a[href^="#"]');
+    const sections = document.querySelectorAll('.section');
+    const contactForms = document.querySelectorAll('form.contact-form');
 
     // --- Plynulé skrolování k sekcím s ohledem na pevnou hlavičku ---
-    // Toto je nová část kódu pro řešení překrývání nadpisů.
-    const navLinks = document.querySelectorAll('nav a[href^="#"]'); // Vybere všechny navigační odkazy směřující na ID
-
     navLinks.forEach(link => {
         link.addEventListener('click', function(e) {
-            e.preventDefault(); // Zabrání výchozímu chování odkazu (okamžitému skoku)
+            e.preventDefault();
 
-            const targetId = this.getAttribute('href'); // Získá ID cíle (např. "#kontakt")
-            const targetElement = document.querySelector(targetId); // Najde cílový element
+            const targetId = this.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
 
             if (targetElement) {
-                // Zjistí skutečnou výšku hlavičky za běhu, pro maximální přesnost
-                // .offsetHeight zahrnuje padding a border
-                const headerHeight = header ? header.offsetHeight : 0; // Zabezpečení pro případ, že header neexistuje
-
-                // Výpočet pozice: vzdálenost elementu od shora - výška hlavičky - nějaká rezerva
-                // Přidáváme 15px rezervu, aby nadpis nebyl schovaný
+                const headerHeight = header ? header.offsetHeight : 0;
                 const scrollToPosition = targetElement.offsetTop - headerHeight - 15;
 
                 window.scrollTo({
                     top: scrollToPosition,
-                    behavior: 'smooth' // Plynulé skrolování pomocí JavaScriptu
+                    behavior: 'smooth'
                 });
             }
         });
     });
 
     // --- Efektní načítání sekcí při scrollu pomocí Intersection Observer ---
-    const sections = document.querySelectorAll('.section');
-
-    const observerOptions = {
+    const sectionObserverOptions = {
         root: null,
         rootMargin: '0px',
         threshold: 0.1
     };
 
-    const sectionObserver = new IntersectionObserver((entries, observer) => {
+    const sectionVisibilityObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('is-visible');
+                // Pokud chceš, aby se animace spustila jen jednou, odkomentuj následující řádek:
                 observer.unobserve(entry.target);
             }
         });
-    }, observerOptions);
+    }, sectionObserverOptions);
 
     sections.forEach(section => {
-        sectionObserver.observe(section);
+        sectionVisibilityObserver.observe(section);
     });
 
     // --- Vylepšené odesílání formuláře (AJAX s fetch API) ---
-    const contactForms = document.querySelectorAll('form.contact-form');
-
     contactForms.forEach(form => {
         form.addEventListener('submit', async function(event) {
             event.preventDefault();
@@ -72,7 +62,10 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             try {
-                const response = await fetch(form.action, {
+                // Přidáno `form.action` pro jistotu, i když je v kódu už zahrnuto
+                const formAction = form.action || "https://api.web3forms.com/submit"; // Zajištění fallback URL
+                
+                const response = await fetch(formAction, {
                     method: form.method,
                     body: formData,
                     headers: {
@@ -90,14 +83,15 @@ document.addEventListener('DOMContentLoaded', () => {
                     form.reset();
                 } else {
                     if (statusDiv) {
-                        statusDiv.textContent = data.message || "Chyba při odesílání. Prosím, zkuste to znovu.";
+                        // Zlepšená zpráva pro uživatele
+                        statusDiv.textContent = data.message || "Chyba při odesílání formuláře. Zkuste to prosím později.";
                         statusDiv.classList.add('error');
                     }
                     console.error('Web3Forms error:', data.message);
                 }
             } catch (error) {
                 if (statusDiv) {
-                    statusDiv.textContent = "Došlo k chybě připojení. Prosím, zkuste to znovu později.";
+                    statusDiv.textContent = "Došlo k chybě připojení k serveru. Zkuste to prosím později.";
                     statusDiv.classList.add('error');
                 }
                 console.error('Form submission network error:', error);
@@ -109,7 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     setTimeout(() => {
                         statusDiv.textContent = "";
                         statusDiv.classList.remove('success', 'error');
-                    }, 300);
+                    }, 300); // Doba pro opacity transition
                 }
             }, 5000);
         });
@@ -118,43 +112,61 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Jemný efekt posunu pozadí hlavičky při scrollu (Parallax like) ---
     if (header) {
         window.addEventListener('scroll', () => {
-            const scrollPosition = window.pageYOffset;
+            const scrollPosition = window.pageYOffset || document.documentElement.scrollTop; // Kompatibilita
             header.style.backgroundPositionY = `${-scrollPosition * 0.1}px`;
         });
     }
 
     // --- Aktivní stav v navigaci při scrollu ---
-    // (Používá navLinks, které jsou definovány i pro smooth scrolling)
-
-    // Upravená Intersection Observer pro navigaci
-    const navObserverOptions = {
+    const navSectionObserverOptions = {
         root: null,
-        rootMargin: '-50% 0px -50% 0px', // Nastaví trigger uprostřed viewportu
-        threshold: 0
+        // Trigger zóna uprostřed viewportu, aby bylo jasné, která sekce je "aktivní"
+        // Změna threshold z 0 na 0.2 (20%) pro spolehlivější detekci
+        rootMargin: '-30% 0px -30% 0px', // Trigger zóna uprostřed 40% viewportu
+        threshold: 0.2 // Sekce musí být viditelná z 20%
     };
 
-    const navSectionObserver = new IntersectionObserver((entries) => {
+    const navSectionActiveObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             const id = entry.target.getAttribute('id');
             const navLink = document.querySelector(`nav a[href="#${id}"]`);
 
             if (navLink) {
                 if (entry.isIntersecting) {
+                    // Odebereme 'active' ze všech, pak přidáme na aktuální
                     navLinks.forEach(link => link.classList.remove('active'));
                     navLink.classList.add('active');
+                } else {
+                    // Volitelné: pokud se sekce odskroluje, odebrat 'active'
+                    // Lze vypnout, pokud preferuješ, aby active zůstalo, dokud není další sekce
+                    // navLink.classList.remove('active'); 
                 }
             } 
         }); 
-    }, navObserverOptions); 
-
+    }, navSectionObserverOptions); 
 
     sections.forEach(section => {
-        navSectionObserver.observe(section);
+        navSectionActiveObserver.observe(section);
     });
 
-    // Počáteční nastavení aktivního odkazu při načtení stránky
-    const firstSection = document.querySelector('.section');
-    if (firstSection && firstSection.getBoundingClientRect().top < window.innerHeight - 100) {
-        document.querySelector('nav a[href="#' + firstSection.id + '"]')?.classList.add('active');
-    }
+    
+    window.addEventListener('load', () => { // Čekáme na úplné načtení všech zdrojů (včetně obrázků)
+        let activeFound = false;
+        sections.forEach(section => {
+            const rect = section.getBoundingClientRect();
+            // Pokud je sekce nahoře a viditelná, nastav ji jako aktivní
+            if (rect.top <= header.offsetHeight + 15 && rect.bottom > header.offsetHeight + 15 && !activeFound) {
+                navLinks.forEach(link => link.classList.remove('active'));
+                document.querySelector(`nav a[href="#${section.id}"]`)?.classList.add('active');
+                activeFound = true;
+            }
+        });
+        // Pokud žádná sekce nebyla nalezena jako aktivní (např. stránka je příliš krátká), nastav první
+        if (!activeFound && sections.length > 0) {
+            document.querySelector(`nav a[href="#${sections[0].id}"]`)?.classList.add('active');
+        }
+    });
+
+    
+
 });
