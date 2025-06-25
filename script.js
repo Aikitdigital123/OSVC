@@ -149,11 +149,7 @@ document.addEventListener('DOMContentLoaded', () => {
         navSectionActiveObserver.observe(section);
     });
 
-    // Počáteční nastavení aktivního odkazu při načtení stránky
-    // Zde je potenciální problém: getBoundingClientRect().top nemusí být hned po načtení přesné.
-    // Můžeme to odložit nebo použít observer.
-    // Lepší je nechat observer, aby se postaral o počáteční stav.
-    // Alternativně:
+    
     window.addEventListener('load', () => { // Čekáme na úplné načtení všech zdrojů (včetně obrázků)
         let activeFound = false;
         sections.forEach(section => {
@@ -171,18 +167,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Alternativní (a možná spolehlivější) způsob pro počáteční aktivní stav:
-    // Zvolíme sekci, která je nejblíže vrcholu viewportu po plném načtení.
-    // Tohle by mělo být obslouženo Intersection Observerem s rootMargin: '-30% 0px -30% 0px'
-    // Nicméně, pokud se ti to nezdá spolehlivé, můžeš zkusit následující po DOMContentLoaded:
-    // const currentHash = window.location.hash;
-    // if (currentHash) {
-    //     document.querySelector(`nav a[href="${currentHash}"]`)?.classList.add('active');
-    // } else {
-    //     // Defaultně aktivuj první odkaz, pokud není hash
-    //     if (navLinks.length > 0) {
-    //         navLinks[0].classList.add('active');
-    //     }
-    // }
+    
 
 });
