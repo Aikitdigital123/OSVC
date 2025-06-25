@@ -69,7 +69,7 @@
 
     <!-- Sekce "Vzdělání a certifikáty" s třídou glass-section -->
     <section id="certificates" class="section glass-section">
-      <h2 class="section-title">Vzdělání a certifikáty</h2>
+      <h2 class="section-title">Certifikáty</h2>
       <h3 class="section-subtitle">Neustálý rozvoj dovedností</h3>
       <div class="card">
         <h4>Průmyslová automatizace a robotika</h4>
