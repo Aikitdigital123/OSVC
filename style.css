@@ -620,30 +620,26 @@ footer {
 }
 @media (max-width: 480px) {
   header {
-    min-height: var(--header-height-mobile); /* I zde používáme mobilní výšku */
+    min-height: var(--header-height-mobile);
   }
   .section {
-    /* Upravujeme horizontální padding, aby se zajistilo odsazení od okrajů */
-    padding: 20px 20px 18px; /* Zajišťuje 20px odsazení zleva a zprava na mobilu */
+    padding: 20px 20px 18px;
     margin: 20px auto 0;
-    /* DŮLEŽITÉ: I zde přizpůsobit pro mobil a přidat rezervu. */
-    scroll-margin-top: calc(var(--header-height-mobile) + 15px); /* Použijeme 200px + 15px rezerva */
+    scroll-margin-top: calc(var(--header-height-mobile) + 15px);
   }
-  /* ZMĚNA: Přidáno pro responzivitu glass-section */
   .glass-section {
-    border-radius: 12px; /* Ještě menší zaoblení na mobilu */
+    border-radius: 12px;
     box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.2);
     backdrop-filter: blur(8px) saturate(150%);
     -webkit-backdrop-filter: blur(8px) saturate(150%);
   }
   .logo {
     font-size: 1.8rem;
-    /* Na mobilech vypínáme rotaci pro lepší výkon a čitelnost */
-    animation: logoGlowAndScale 2.5s infinite ease-in-out alternate; /* Pouze animace záře a škálování */
-    transform: none !important; /* Vynutíme žádnou rotaci/transformaci */
+    animation: logoGlowAndScale 2.5s infinite ease-in-out alternate;
+    transform: none !important;
     transform-style: none !important;
     perspective: none !important;
-    filter: none !important; /* Vypneme drop-shadow, protože se již nebude animovat v logoGlowAndScale */
+    filter: none !important;
   }
   .subtitle {
     font-size: 0.95rem;
@@ -654,8 +650,7 @@ footer {
     gap: 15px 10px;
     font-size: 0.9rem;
     justify-content: center;
-    /* NOVÁ ZMĚNA: Přidán horizontální padding pro malé obrazovky */
-    padding: 0 10px; /* Zajištění vnitřního odsazení navigace */
+    padding: 0 10px;
   }
   nav a {
     padding: 4px 0;
@@ -672,39 +667,37 @@ footer {
   }
   ul {
     font-size: 0.95rem;
-    padding-left: 1.8em; /* Upraveno pro menší padding na mobilu */
+    padding-left: 1.8em;
   }
   footer {
     padding: 18px 10px 12px;
     margin-top: 30px;
     font-size: 0.85rem;
   }
-  /* Optimalizace pro mobilní zobrazení */
   .contact-form {
     padding: 20px;
-    width: 100%; /* Zajistí, že se formulář roztáhne na celou dostupnou šířku uvnitř sekce */
-    max-width: none; /* Odstraníme pevný max-width, necháme ho na rodiči */
+    width: 100%;
+    max-width: none;
   }
   .qr-code-container {
     padding: 10px;
-    max-width: 150px; /* Ponecháváme, protože QR kód by neměl být příliš velký */
+    max-width: 150px;
     margin-left: auto;
     margin-right: auto;
-    width: fit-content; /* Omezí šířku na obsah, aby margin auto fungoval */
+    width: fit-content;
   }
 
-  @media (max-width: 480px) {
-  /* ... (tvůj stávající kód pro mobil) ... */
-
+  /* ZDE JE OPRAVENÁ SEKCE PRO BODY - JE PŘÍMO V HLAVNÍ MEDIA QUERY */
   body {
     background: linear-gradient(
                   rgba(23, 29, 37, 0.5), /* Průhlednější vrstva, barva z --color-bg */
                   rgba(23, 29, 37, 0.5)
                 ),
-                /* NOVINKA: Zde použijeme cestu k super-optimalizovanému obrázku */
-                url('https://raw.githubusercontent.com/Aikitdigital123/OSVC/main/images/127mob.jpg') no-repeat center center fixed; /* Zpět na fixed! */
+                url('https://raw.githubusercontent.com/Aikitdigital123/OSVC/main/images/127mob.jpg') no-repeat center center fixed; /* Používáme fixní pozadí a menší obrázek */
     background-size: cover; /* Zajistí, že obrázek pokryje celou obrazovku */
-    /* background-attachment: fixed !important; */ /* Můžeš zkusit s !important, ale většinou stačí jen 'fixed' */
+    /* Zde již není potřeba !important, pokud není nějaký jiný styl s vyšší specificitou,
+       který by to přepisoval mimo tuto media query. */
   }
+}
 
   
