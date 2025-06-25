@@ -697,15 +697,14 @@ footer {
   /* ... (tvůj stávající kód pro mobil) ... */
 
   body {
-    /* Změníme obrázek pozadí na menší verzi pro mobil */
     background: linear-gradient(
                   rgba(23, 29, 37, 0.5), /* Průhlednější vrstva, barva z --color-bg */
                   rgba(23, 29, 37, 0.5)
                 ),
-                /* NOVINKA: Zde použijeme cestu k menšímu obrázku */
-                url('https://raw.githubusercontent.com/Aikitdigital123/OSVC/main/images/127mob.jpg') no-repeat center center scroll;
+                /* NOVINKA: Zde použijeme cestu k super-optimalizovanému obrázku */
+                url('https://raw.githubusercontent.com/Aikitdigital123/OSVC/main/images/127mob.jpg') no-repeat center center fixed; /* Zpět na fixed! */
     background-size: cover; /* Zajistí, že obrázek pokryje celou obrazovku */
-    background-attachment: scroll !important; /* Pozadí se bude rolovat, což je na mobilu efektivnější */
+    /* background-attachment: fixed !important; */ /* Můžeš zkusit s !important, ale většinou stačí jen 'fixed' */
   }
 
- 
+  
