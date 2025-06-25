@@ -282,6 +282,22 @@ nav a:hover::after, nav a:focus::after {
   text-align: center;
 }
 
+/* Styly pro ověřovací odkazy certifikátů, aby vypadaly jako podtitulky */
+.certificate-verify-link {
+  color: var(--color-secondary); /* Používá stejnou barvu jako .section-subtitle */
+  font-weight: bold; /* Pro zvýraznění */
+  text-decoration: none; /* Odstranění podtržení */
+  transition: color 0.2s ease-out, text-shadow 0.2s ease-out; /* Plynulý přechod */
+}
+
+.certificate-verify-link:hover,
+.certificate-verify-link:focus {
+  color: var(--color-accent); /* Změna barvy na akcentní při najetí myší */
+  text-shadow: 0 0 10px rgba(42, 140, 255, 0.7); /* Jemný svit */
+  text-decoration: underline; /* Můžeš přidat podtržení při najetí myší */
+}
+
+
 /* Styly pro nečíslované seznamy */
 ul {
   padding-left: 2em; /* Zvětšíme padding, aby bylo místo pro vlastní odrážky */
@@ -582,20 +598,6 @@ footer {
   }
 } 
 
-
-/* --- MOBILNÍ STYLY (max-width: 480px) --- */
-@media (max-width: 480px) {
-  header {
-    min-height: var(--header-height-mobile);
-  }
-  .section {
-    padding: 20px 20px 18px;
-    margin: 20px auto 0;
-    scroll-margin-top: calc(var(--header-height-mobile) + 15px);
-  }
-  /* ... zbytek stylů pro 480px ... */
-}
-
 /* --- MOBILNÍ STYLY (max-width: 480px) --- */
 @media (max-width: 480px) {
   header {
@@ -686,10 +688,10 @@ footer {
     height: 100%;
     /* Zde použijeme gradient a tvůj optimalizovaný mobilní obrázek */
     background: linear-gradient(
-                    rgba(23, 29, 37, 0.5),
-                    rgba(23, 29, 37, 0.5)
-                  ),
-                  url('https://raw.githubusercontent.com/Aikitdigital123/OSVC/main/images/127mob.jpg') no-repeat center center;
+                      rgba(23, 29, 37, 0.5),
+                      rgba(23, 29, 37, 0.5)
+                    ),
+                    url('https://raw.githubusercontent.com/Aikitdigital123/OSVC/main/images/127mob.jpg') no-repeat center center;
     background-size: cover;
     z-index: -1; /* Umístí tento element pod veškerý obsah */
   }
