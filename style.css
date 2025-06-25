@@ -618,86 +618,27 @@ footer {
     max-width: 180px;
   }
 }
-@media (max-width: 480px) {
-  header {
-    min-height: var(--header-height-mobile);
-  }
-  .section {
-    padding: 20px 20px 18px;
-    margin: 20px auto 0;
-    scroll-margin-top: calc(var(--header-height-mobile) + 15px);
-  }
-  .glass-section {
-    border-radius: 12px;
-    box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.2);
-    backdrop-filter: blur(8px) saturate(150%);
-    -webkit-backdrop-filter: blur(8px) saturate(150%);
-  }
-  .logo {
-    font-size: 1.8rem;
-    animation: logoGlowAndScale 2.5s infinite ease-in-out alternate;
-    transform: none !important;
-    transform-style: none !important;
-    perspective: none !important;
-    filter: none !important;
-  }
-  .subtitle {
-    font-size: 0.95rem;
-    margin-bottom: 8px;
-  }
-  nav {
-    flex-wrap: wrap;
-    gap: 15px 10px;
-    font-size: 0.9rem;
-    justify-content: center;
-    padding: 0 10px;
-  }
-  nav a {
-    padding: 4px 0;
-  }
-  .section-title {
-    font-size: 1.5rem;
-  }
-  .section-subtitle {
-    font-size: 0.9rem;
-    margin-bottom: 20px;
-  }
-  p {
-    font-size: 0.95rem;
-  }
-  ul {
-    font-size: 0.95rem;
-    padding-left: 1.8em;
-  }
-  footer {
-    padding: 18px 10px 12px;
-    margin-top: 30px;
-    font-size: 0.85rem;
-  }
-  .contact-form {
-    padding: 20px;
-    width: 100%;
-    max-width: none;
-  }
-  .qr-code-container {
-    padding: 10px;
-    max-width: 150px;
-    margin-left: auto;
-    margin-right: auto;
-    width: fit-content;
+/* NOVÉ STYLY PRO BODY A JEHO FIXNÍ POZADÍ NA MOBILU */
+  body {
+    background: none; /* Vypneme původní pozadí na body, aby ho simuloval pseudo-element */
+    position: relative; /* Důležité pro z-index obsahu */
+    z-index: 1; /* Zajistí, že obsah bude nad pozadím */
   }
 
-  /* ZDE JE OPRAVENÁ SEKCE PRO BODY - JE PŘÍMO V HLAVNÍ MEDIA QUERY */
-  body {
+  body::before { /* Tento pseudo-element bude sloužit jako naše fixní pozadí */
+    content: ''; /* Povinná vlastnost pro pseudo-element */
+    position: fixed; /* Klíčové: Udrží pozadí pevné vůči obrazovce */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Zde použijeme gradient a tvůj optimalizovaný mobilní obrázek */
     background: linear-gradient(
-                  rgba(23, 29, 37, 0.5), /* Průhlednější vrstva, barva z --color-bg */
+                  rgba(23, 29, 37, 0.5), /* Průhledná vrstva, aby byl glass efekt viditelný */
                   rgba(23, 29, 37, 0.5)
                 ),
-                url('https://raw.githubusercontent.com/Aikitdigital123/OSVC/main/images/127mob.jpg') no-repeat center center fixed; /* Používáme fixní pozadí a menší obrázek */
+                url('https://raw.githubusercontent.com/Aikitdigital123/OSVC/main/images/127mob.jpg') no-repeat center center;
     background-size: cover; /* Zajistí, že obrázek pokryje celou obrazovku */
-    /* Zde již není potřeba !important, pokud není nějaký jiný styl s vyšší specificitou,
-       který by to přepisoval mimo tuto media query. */
+    z-index: -1; /* Umístí tento element pod veškerý obsah */
   }
-}
-
-  
+  /* Konec nových stylů pro body a jeho fixní pozadí na mobilu */
