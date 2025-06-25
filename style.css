@@ -536,11 +536,7 @@ footer {
   border: 0;
 }
 
----
-
-/* --- MEDIA QUERIES pro responsivní design --- */
-
-/* Pro tablety a menší desktopy (max-width: 768px) */
+/* MEDIA QUERIES pro responsivní design */
 @media (max-width: 768px) {
   header {
     min-height: var(--header-height-mobile); /* Používáme mobilní výšku */
@@ -549,8 +545,7 @@ footer {
     max-width: 95vw;
     padding: 30px 20px 25px;
     margin: 25px auto 0;
-    /* DŮLEŽITÉ: Nyní nastavíme scroll-margin-top na základě skutečné výšky headeru + rezervy */
-    scroll-margin-top: calc(var(--header-height-mobile) + 15px); /* Použijeme 200px + 15px rezerva */
+    scroll-margin-top: calc(var(--header-height-mobile) + 15px);
   }
   /* ZMĚNA: Přidáno pro responzivitu glass-section */
   .glass-section {
@@ -585,6 +580,20 @@ footer {
     padding: 15px;
     max-width: 180px; /* Ponecháváme, protože QR kód by neměl být příliš velký */
   }
+} 
+
+
+/* --- MOBILNÍ STYLY (max-width: 480px) --- */
+@media (max-width: 480px) {
+  header {
+    min-height: var(--header-height-mobile);
+  }
+  .section {
+    padding: 20px 20px 18px;
+    margin: 20px auto 0;
+    scroll-margin-top: calc(var(--header-height-mobile) + 15px);
+  }
+  /* ... zbytek stylů pro 480px ... */
 }
 
 /* --- MOBILNÍ STYLY (max-width: 480px) --- */
