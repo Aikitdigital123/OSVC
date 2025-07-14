@@ -1,45 +1,19 @@
+// Očekává, že se celý DOM načte, než začne manipulovat s elementy
 document.addEventListener('DOMContentLoaded', () => {
 
     const header = document.querySelector('header');
     const navLinks = document.querySelectorAll('nav a[href^="#"]');
     const sections = document.querySelectorAll('.section');
     const contactForms = document.querySelectorAll('form.contact-form');
-    const body = document.body; // Pro přístup k body elementu
 
-    // --- Nový wrapper pro fixní pozadí a řešení mobilního pozadí ---
-    // Vytvoříme div, který bude držet pozadí, abychom mohli lépe kontrolovat fixed chování
-    // a zároveň se vyhnout problémům s body background-attachment na mobilu.
-    const fixedBackgroundDiv = document.createElement('div');
-    fixedBackgroundDiv.id = 'fixed-background';
-    document.body.prepend(fixedBackgroundDiv); // Přidáme ho na začátek body
+    let headerHeight = 0; // Proměnná pro dynamickou výšku hlavičky
 
-    // Funkce pro nastavení pozadí pro mobilní zařízení
-    function setMobileBackground() {
-        const imageUrl = 'https://raw.githubusercontent.com/Aikitdigital123/OSVC/main/images/127.jpg';
-        if (window.innerWidth <= 767) { // Používáme stejný breakpoint jako v CSS
-            // Na mobilu nastavíme pozadí přímo na body s attachment: fixed
-            // a schováme náš #fixed-background div pro desktop.
-            body.style.backgroundImage = `url('${imageUrl}')`;
-            body.style.backgroundAttachment = 'fixed';
-            body.style.backgroundSize = 'cover';
-            body.style.backgroundPosition = 'center center';
-            if (fixedBackgroundDiv) {
-                fixedBackgroundDiv.style.display = 'none';
-            }
-        } else {
-            // Na desktopu a tabletech použijeme #fixed-background div pro paralax
-            body.style.backgroundImage = 'none'; // Odstraníme pozadí z body
-            body.style.backgroundAttachment = '';
-            if (fixedBackgroundDiv) {
-                fixedBackgroundDiv.style.display = 'block'; // Zobrazíme div s pozadím
-            }
+    // Funkce pro aktualizaci výšky hlavičky
+    const updateHeaderHeight = () => {
+        if (header) {
+            headerHeight = header.offsetHeight;
         }
-    }
-
-    // Voláme funkci při načtení stránky a při změně velikosti okna
-    setMobileBackground();
-    window.addEventListener('resize', setMobileBackground);
-
+    };
 
     // --- Plynulé skrolování k sekcím s ohledem na pevnou hlavičku ---
     navLinks.forEach(link => {
@@ -49,37 +23,46 @@ document.addEventListener('DOMContentLoaded', () => {
             const targetId = this.getAttribute('href');
             const targetElement = document.querySelector(targetId);
 
+            // Okamžité nastavení aktivní třídy při KLIKNUTÍ pro vizuální zpětnou vazbu
+            navLinks.forEach(nav => nav.classList.remove('active')); // Nejdřív odeber ze všech
+            this.classList.add('active'); // Pak přidej k právě kliknutému
+
             if (targetElement) {
-                const headerHeight = header ? header.offsetHeight : 0;
-                const scrollToPosition = targetElement.offsetTop - headerHeight - 15;
+                // Vypočítáme cílovou pozici s ohledem na aktuální výšku hlavičky
+                const scrollToPosition = targetElement.offsetTop - headerHeight - 15; // + 15px odsazení
 
                 window.scrollTo({
                     top: scrollToPosition,
                     behavior: 'smooth'
                 });
+
+                // Důležité: Po dokončení plynulého skrolování, vynutíme re-evaluaci active stavu
+                // To je pojistka, pokud by IntersectionObserver nedetekoval změnu okamžitě
+                setTimeout(() => {
+                    // Vynucení aktualizace IntersectionObserveru
+                    // Nejjednodušší způsob je dočasně odpojit a znovu připojit observer
+                    sections.forEach(section => {
+                        navSectionActiveObserver.unobserve(section);
+                        navSectionActiveObserver.observe(section);
+                    });
+                }, 400); // Malé zpoždění, aby se skrolování dokončilo
             }
         });
     });
 
-    // --- Efektní načítání sekcí a jejich obsahu při scrollu pomocí Intersection Observer ---
+    // --- Efektní načítání sekcí při scrollu pomocí Intersection Observer ---
     const sectionObserverOptions = {
         root: null,
         rootMargin: '0px',
-        threshold: 0.1 // Sekce se aktivuje, jakmile je 10% její výšky viditelné
+        threshold: 0.1
     };
 
     const sectionVisibilityObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('is-visible');
-                // Pro animaci vnořených prvků s kaskádovým zpožděním
-                animateSectionContent(entry.target);
-                // Můžeme odpojit observer, pokud se animace má spustit jen jednou
+                // Pokud chceš, aby se animace spustila jen jednou, odkomentuj následující řádek:
                 // observer.unobserve(entry.target); 
-            } else {
-                // Volitelné: Pro reset animace při odskrollování pryč (pokud chcete animaci vždy znovu při vstupu)
-                // entry.target.classList.remove('is-visible');
-                // resetSectionContent(entry.target); // Resetuje vnořené animace
             }
         });
     }, sectionObserverOptions);
@@ -87,60 +70,6 @@ document.addEventListener('DOMContentLoaded', () => {
     sections.forEach(section => {
         sectionVisibilityObserver.observe(section);
     });
-
-    // Funkce pro animaci obsahu uvnitř sekce
-    function animateSectionContent(sectionElement) {
-        const animatedElements = sectionElement.querySelectorAll('.animated-element');
-        const animatedTexts = sectionElement.querySelectorAll('.animated-text');
-        const animatedLists = sectionElement.querySelectorAll('.animated-list');
-
-        animatedTexts.forEach((el, index) => {
-            el.style.transitionDelay = `${0.2 + index * 0.1}s`; // Postupné zpoždění pro odstavce
-            el.style.opacity = '1';
-            el.style.transform = 'translateY(0)';
-        });
-
-        animatedElements.forEach((el, index) => {
-            el.style.transitionDelay = `${0.4 + index * 0.15}s`; // Postupné zpoždění pro karty/formulář
-            el.style.opacity = '1';
-            el.style.transform = 'translateY(0)';
-        });
-
-        animatedLists.forEach(ul => {
-            const listItems = ul.querySelectorAll('li');
-            listItems.forEach((li, index) => {
-                li.style.transitionDelay = `${0.5 + index * 0.1}s`; // Kaskádové zpoždění pro li
-                li.style.opacity = '1';
-                li.style.transform = 'translateY(0)';
-            });
-        });
-    }
-
-    // Volitelné: Funkce pro reset animace obsahu
-    // function resetSectionContent(sectionElement) {
-    //     const animatedElements = sectionElement.querySelectorAll('.animated-element');
-    //     const animatedTexts = sectionElement.querySelectorAll('.animated-text');
-    //     const animatedLists = sectionElement.querySelectorAll('.animated-list');
-
-    //     animatedTexts.forEach(el => {
-    //         el.style.opacity = '0';
-    //         el.style.transform = 'translateY(20px)';
-    //         el.style.transitionDelay = '0s';
-    //     });
-    //     animatedElements.forEach(el => {
-    //         el.style.opacity = '0';
-    //         el.style.transform = 'translateY(20px)';
-    //         el.style.transitionDelay = '0s';
-    //     });
-    //     animatedLists.forEach(ul => {
-    //         const listItems = ul.querySelectorAll('li');
-    //         listItems.forEach(li => {
-    //             li.style.opacity = '0';
-    //             li.style.transform = 'translateY(20px)';
-    //             li.style.transitionDelay = '0s';
-    //         });
-    //     });
-    // }
 
     // --- Vylepšené odesílání formuláře (AJAX s fetch API) ---
     contactForms.forEach(form => {
@@ -202,73 +131,117 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // --- Aktivní stav v navigaci při scrollu ---
-    const navSectionObserverOptions = {
-        root: null,
-        rootMargin: '-30% 0px -30% 0px', 
-        threshold: 0.2 
+    // --- Jemný efekt posunu pozadí hlavičky při scrollu (Parallax like) ---
+    if (header) {
+        window.addEventListener('scroll', () => {
+            const scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+            header.style.backgroundPositionY = `${-scrollPosition * 0.1}px`;
+        });
+    }
+
+    // --- Aktivní stav v navigaci při scrollu (VYLEPŠENO) ---
+    // Funkce, která se spustí při každé změně protnutí sekce
+    const handleNavIntersection = (entries) => {
+        let currentActiveId = null;
+
+        // Najdeme sekci, která je aktuálně nejvíce "viditelná" v aktivní zóně
+        // a která by měla být prioritní.
+        // Projdeme sekce od konce (odspoda nahoru), protože ta nejvyšší viditelná
+        // je obvykle ta, kterou uživatel právě čte.
+        for (let i = sections.length - 1; i >= 0; i--) {
+            const section = sections[i];
+            const rect = section.getBoundingClientRect();
+
+            // Pokud je sekce alespoň částečně viditelná v rámci "aktivního okna"
+            // (pod hlavičkou a ne příliš dole)
+            // A její horní okraj je nad (nebo na) horní hranici aktivní zóny
+            // A její spodní okraj je pod (nebo na) spodní hranici aktivní zóny
+            const headerOffset = headerHeight + 10; // Malé odsazení od hlavičky
+            const viewportHeight = window.innerHeight;
+            const activationPoint = viewportHeight * 0.3; // např. aktivovat, když je 30% viewportu od shora
+
+            if (rect.top <= headerOffset && rect.bottom > activationPoint) {
+                currentActiveId = section.id;
+                break; // Našli jsme nejlepší shodu, ukončíme hledání
+            }
+        }
+        
+        // Pokud žádná sekce neodpovídá kritériím, ale jsme nahoře na stránce, aktivuj první odkaz
+        if (!currentActiveId && window.scrollY === 0 && sections.length > 0) {
+            currentActiveId = sections[0].id;
+        }
+
+        // Nastavíme aktivní třídu pouze na ten správný odkaz
+        navLinks.forEach(link => {
+            if (link.getAttribute('href') === `#${currentActiveId}`) {
+                link.classList.add('active');
+            } else {
+                link.classList.remove('active');
+            }
+        });
     };
 
-    const navSectionActiveObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            const id = entry.target.getAttribute('id');
-            const navLink = document.querySelector(`nav a[href="#${id}"]`);
+    // Vytvoření Intersection Observeru s dynamickým rootMargin
+    // rootMargin bude nastaven při startu a při resize, aby zohledňoval výšku hlavičky
+    const navSectionActiveObserver = new IntersectionObserver(handleNavIntersection, {
+        root: null, // Pozorování relativně k viewportu
+        // rootMargin bude aktualizován dynamicky
+        // Nastavíme zde výchozí hodnoty, které se přepíší
+        rootMargin: `${-headerHeight}px 0px -${window.innerHeight * 0.3}px 0px`, // Dynamický margin
+        threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0] // Sledujeme více prahových hodnot pro plynulejší detekci
+    }); 
 
-            if (navLink) {
-                if (entry.isIntersecting) {
-                    navLinks.forEach(link => link.classList.remove('active'));
-                    navLink.classList.add('active');
-                } else {
-                    // Volitelné: navLink.classList.remove('active'); 
-                }
-            } 
-        }); 
-    }, navSectionObserverOptions); 
-
+    // Přiřazení observeru ke všem sekcím
     sections.forEach(section => {
         navSectionActiveObserver.observe(section);
     });
 
-    // Inicializace aktivní sekce po načtení stránky
-    window.addEventListener('load', () => { 
-        let activeFound = false;
-        const currentHeaderHeight = header ? header.offsetHeight : 0;
-
-        sections.forEach(section => {
-            const rect = section.getBoundingClientRect();
-            if (rect.top <= currentHeaderHeight + 15 && rect.bottom > currentHeaderHeight + 15 && !activeFound) {
-                navLinks.forEach(link => link.classList.remove('active'));
-                document.querySelector(`nav a[href="#${section.id}"]`)?.classList.add('active');
-                activeFound = true;
-            }
-        });
-        if (!activeFound && sections.length > 0) {
-            document.querySelector(`nav a[href="#${sections[0].id}"]`)?.classList.add('active');
-        }
+    // --- Inicializace a naslouchání událostem ---
+    // Aktualizuj výšku hlavičky a aktivní odkaz při načtení stránky
+    window.addEventListener('load', () => { //
+        updateHeaderHeight(); // Získání aktuální výšky hlavičky
+        // Počkej chvíli, aby se hlavička vykreslila a Intersection Observer se správně inicializoval
+        setTimeout(() => { //
+            // Po načtení a malé prodlevě znovu spustíme logiku pro navigaci
+            // aby se zohlednila aktuální pozice
+            handleNavIntersection(navSectionActiveObserver.takeRecords()); // Zpracuj aktuální záznamy observeru
+        }, 100); 
     });
 
-    // --- Mikrointerakce: Jemné zmenšení/zvětšení při kliknutí na navigační odkazy a tlačítka ---
-    const clickableElements = document.querySelectorAll('nav a, .btn-main');
-
-    clickableElements.forEach(element => {
+    // Aktualizuj výšku hlavičky a resetuj observer při změně velikosti okna
+    let resizeTimeout;
+    window.addEventListener('resize', () => { //
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+            updateHeaderHeight(); // Aktualizuj výšku hlavičky
+            // Znovu vytvoř observer s novým rootMargin
+            navSectionActiveObserver.disconnect(); // Odpoj starý observer
+            navSectionActiveObserver.takeRecords(); // Vyčisti čekající záznamy
+            navSectionActiveObserver.rootMargin = `${-headerHeight}px 0px -${window.innerHeight * 0.3}px 0px`;
+            sections.forEach(section => {
+                navSectionActiveObserver.observe(section); // Znovu připoj observer k sekcím
+            });
+            // Ihned aktualizuj aktivní odkaz po resize
+            handleNavIntersection(navSectionActiveObserver.takeRecords());
+        }, 200); // Debounce pro resize
+    });
+    
+    // --- Mikrointerakce: Jemné zmenšení/zvětšení při kliknutí na tlačítka ---
+    const clickableElementsForButtonsOnly = document.querySelectorAll('.btn-main'); 
+    clickableElementsForButtonsOnly.forEach(element => {
         element.addEventListener('mousedown', () => {
-            element.style.transform += ' scale(0.98)'; // Jemné zmenšení
+            element.style.transform += ' scale(0.98)';
             element.style.transition = 'transform 0.1s ease-out';
         });
-
         element.addEventListener('mouseup', () => {
-            // Vrátit původní transform po krátké době
             setTimeout(() => {
-                // Odstranit scale, ale ponechat translateY z hover efektu, pokud je
                 const currentTransform = element.style.transform;
                 const newTransform = currentTransform.replace(/scale\([^)]*\)/, '').trim();
                 element.style.transform = newTransform || 'none'; 
             }, 100);
-            element.style.transition = ''; // Reset pro navazující animace
+            element.style.transition = '';
         });
-
         element.addEventListener('mouseleave', () => {
-            // Resetovat, pokud myš opustí prvek před mouseup
             const currentTransform = element.style.transform;
             const newTransform = currentTransform.replace(/scale\([^)]*\)/, '').trim();
             element.style.transform = newTransform || 'none';
