@@ -1,1 +1,790 @@
-header,nav{display:flex}.glass-section::after,.glass-section::before{position:absolute;pointer-events:none;content:''}.glass-section,.section-title,li,nav a{position:relative}.card ul,ul{list-style:none}.btn-main,.logo{display:inline-block}.btn-main,.contact-links a,nav a{text-decoration:none}footer,header{background:rgba(33,40,54,.25);text-align:center}.form-status,.section-subtitle,.section-title,footer,header{text-align:center}*{box-sizing:border-box}:root{--color-bg:#171d25;--color-bg-section:#212836;--color-accent:#2a8cff;--color-text:#e6eaf3;--color-secondary:#8db4e2;--color-card:#222c3c;--color-success:#4CAF50;--color-error:#F44336;--font-main:'Inter',Arial,sans-serif;--font-mono:'Roboto Mono',monospace;--shadow:0 4px 32px 0 rgba(30,40,100,0.10);--hover-shadow:0 8px 48px 0 rgba(30,40,100,0.15);--transition-speed:0.4s;--transition-cubic:cubic-bezier(.6,.01,.05,1);--header-height-desktop:220px;--header-height-mobile:200px}body{margin:0;padding:0;background:url('https://raw.githubusercontent.com/Aikitdigital123/OSVC/main/images/127.jpg') center center/cover no-repeat fixed;color:var(--color-text);font-family:var(--font-main);min-height:100vh;overflow-x:hidden;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.logo,.subtitle,nav{font-family:var(--font-mono)}header{backdrop-filter:blur(8px) saturate(150%);-webkit-backdrop-filter:blur(8px) saturate(150%);padding:10px 16px;box-shadow:0 4px 30px rgba(0,0,0,.2);position:sticky;top:0;z-index:100;transition:background .3s ease-out,box-shadow .3s ease-out;letter-spacing:.03em;min-height:var(--header-height-desktop);flex-direction:column;align-items:center;justify-content:center;border-bottom:1px solid rgba(255,255,255,.1)}.logo{font-size:2.8rem;font-weight:900;letter-spacing:.09em;color:var(--color-accent);transition:color var(--transition-speed);user-select:none;margin-bottom:2px;animation:2.5s ease-in-out infinite alternate logoGlowAndScale,2.5s ease-in-out infinite alternate rotateLogo;transform-style:preserve-3d;perspective:1000px}.contact-links a:hover,.contact-links span,.logo-accent,li,p,ul{color:var(--color-text)}.subtitle,nav a{color:var(--color-secondary)}@keyframes logoGlowAndScale{0%,100%{text-shadow:0 0 15px rgba(42,140,255,.7),0 0 30px rgba(42,140,255,.5),0 0 45px rgba(42,140,255,.3);transform:scale(1);filter:drop-shadow(4px 4px 10px rgba(42, 140, 255, .6))}50%{text-shadow:0 0 20px rgba(42,140,255,.9),0 0 40px rgba(42,140,255,.7),0 0 60px rgba(42,140,255,.5);transform:scale(1.02);filter:drop-shadow(8px 8px 20px rgba(42, 140, 255, .9))}}@keyframes rotateLogo{0%,100%{transform:rotateY(0)}50%{transform:rotateY(10deg)}}.subtitle{font-size:1.25rem;margin-bottom:12px;font-weight:400;letter-spacing:.03em;opacity:0;animation:1s ease-out .5s forwards fadeIn}@keyframes fadeIn{from{opacity:0}to{opacity:1}}nav{margin:10px auto 0;justify-content:center;gap:32px;font-size:1.15rem}nav a{padding:6px 0;border-bottom:2px solid transparent;transition:color .3s ease-out,border .3s ease-out,transform .2s ease-out;overflow:hidden}nav a::after{content:'';position:absolute;bottom:0;left:0;width:100%;height:2px;background-color:var(--color-accent);transform:translateX(-100%);transition:transform .3s ease-out}nav a:focus,nav a:hover{color:var(--color-accent);transform:translateY(-2px)}nav a:focus::after,nav a:hover::after{transform:translateX(0)}.section{scroll-margin-top:calc(var(--header-height-desktop) + 15px);max-width:800px;margin:36px auto 0;padding:40px 30px 35px;opacity:0;transform:translateY(40px);transition:opacity var(--transition-speed) var(--transition-cubic),transform var(--transition-speed) var(--transition-cubic)}.glass-section{background-color:rgba(33,40,54,.25);border:1px solid rgba(255,255,255,.08);border-radius:22px;box-shadow:0 8px 32px 0 rgba(0,0,0,.3);backdrop-filter:blur(3px) saturate(150%);-webkit-backdrop-filter:blur(3px) saturate(150%);overflow:hidden;transition:.3s ease-in-out}.glass-section::before{top:0;left:0;right:0;bottom:0;background:linear-gradient(135deg,rgba(255,255,255,.05) 0,rgba(255,255,255,0) 50%,rgba(255,255,255,.02) 100%);border-radius:inherit;opacity:.8}.glass-section::after{top:10px;left:10px;right:10px;bottom:10px;border:1px solid rgba(255,255,255,.15);border-radius:20px;box-shadow:inset 0 0 8px rgba(255,255,255,.05)}.section.is-visible{opacity:1;transform:translateY(0)}.section-title{font-family:var(--font-main);font-size:2.2rem;font-weight:700;color:var(--color-accent);margin:0 0 10px;letter-spacing:.01em;text-shadow:0 2px 5px rgba(0,0,0,.3)}.btn-main,.contact-links a,.qr-code-text,.section-subtitle,footer{font-family:var(--font-mono)}.section-title::after{content:'';display:block;width:60px;height:4px;background:var(--color-accent);margin:8px auto 0;border-radius:2px}.section-subtitle{font-size:1.15rem;color:var(--color-secondary);margin:0 0 30px}.certificate-verify-link{color:var(--color-secondary);font-weight:700;text-decoration:none;transition:color .2s ease-out,text-shadow .2s ease-out}.certificate-verify-link:focus,.certificate-verify-link:hover{color:var(--color-accent);text-shadow:0 0 10px rgba(42,140,255,.7);text-decoration:underline}ul{padding-left:2em;margin:18px 0 30px;font-size:1.05rem;line-height:1.8}.card ul,li{padding-left:1.2em}ul li::before{content:'•';color:var(--color-accent);font-size:1.2em;position:absolute;left:0;top:-.25em}li{margin-bottom:8px}p{font-size:1.08rem;margin-bottom:18px;line-height:1.7}.card{background:rgba(34,44,60,.25);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-radius:16px;padding:20px;margin:25px 0;box-shadow:0 4px 20px rgba(0,0,0,.2);font-size:1rem;line-height:1.6;border:1px solid rgba(42,140,255,.1);transform:translateY(0);transition:transform .3s ease-out,box-shadow .3s ease-out}.card:hover{transform:translateY(-5px);box-shadow:0 8px 30px rgba(0,0,0,.3)}.card ul{margin:10px 0 0}.card ul li::before{left:0}.btn-main{font-size:1.1rem;color:#fff;background:var(--color-accent);border:none;border-radius:10px;padding:13px 36px;margin-top:20px;cursor:pointer;box-shadow:0 4px 20px rgba(42,140,255,.2);transition:background .3s ease-out,transform .2s ease-out,box-shadow .3s ease-out;font-weight:700;letter-spacing:.05em}.btn-main:focus,.btn-main:hover{background:#0062e8;transform:translateY(-3px) scale(1.03);box-shadow:0 8px 25px rgba(42,140,255,.4)}.contact-links{margin-top:18px;display:flex;flex-direction:column;gap:8px}.contact-links span{display:flex;align-items:center;gap:10px;font-size:1.05rem}.contact-links a{color:var(--color-accent);font-size:1.05rem;transition:color .2s,text-shadow .2s;word-break:break-word}.contact-form label,footer{color:var(--color-secondary);font-size:.95rem}.contact-links a:hover{text-shadow:0 0 10px rgba(42,140,255,.7)}.qr-code-container{text-align:center;margin-top:40px;padding:30px;background:rgba(34,44,60,.25);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-radius:18px;box-shadow:0 4px 20px rgba(0,0,0,.2);display:block;width:fit-content;max-width:calc(100% - 40px);margin-left:auto;margin-right:auto}.qr-code-text{color:var(--color-secondary);margin-bottom:15px;font-size:1rem}.qr-code-img{border-radius:16px;box-shadow:0 2px 16px rgba(42,140,255,.2);transition:transform .3s ease-out,box-shadow .3s ease-out;display:block;max-width:100%;height:auto;margin:0 auto}footer{backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);padding:25px 15px 18px;margin-top:50px;letter-spacing:.02em;border-top:1px solid rgba(255,255,255,.1);box-shadow:0 -2px 10px rgba(0,0,0,.1)}.contact-form{max-width:450px;margin:auto;padding:25px;background:rgba(34,44,60,.25);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-radius:16px;box-shadow:0 4px 20px rgba(0,0,0,.2);display:flex;flex-direction:column;gap:15px}.contact-form label{margin-bottom:4px;display:block}.form-input,.form-textarea{width:100%;padding:12px;background:rgba(36,44,62,.4);color:var(--color-text);border:1px solid rgba(42,140,255,.2);border-radius:8px;font-family:var(--font-main);font-size:1rem;transition:border .2s ease-out,box-shadow .2s ease-out}.form-input:focus,.form-textarea:focus{outline:0;border:1.5px solid var(--color-accent);box-shadow:0 0 0 3px rgba(42,140,255,.3)}.form-textarea{resize:vertical;min-height:100px}.form-submit-btn{width:100%;margin-top:20px}.form-status{margin-top:15px;font-size:.95rem;min-height:20px;opacity:0;transition:opacity .3s ease-out}.form-status.success{color:var(--color-success);opacity:1}.form-status.error{color:var(--color-error);opacity:1}.visually-hidden{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);border:0}@media (max-width:768px){header{min-height:var(--header-height-mobile)}.section{max-width:95vw;padding:30px 20px 25px;margin:25px auto 0;scroll-margin-top:calc(var(--header-height-mobile) + 15px)}.glass-section{border-radius:18px;box-shadow:0 6px 28px 0 rgba(0,0,0,.2);backdrop-filter:blur(12px) saturate(150%);-webkit-backdrop-filter:blur(12px) saturate(150%)}.section-title{font-size:2em}.section-subtitle{font-size:1.1em;margin-bottom:25px}p{font-size:1em}.card{padding:18px;margin:20px 0}.btn-main{font-size:1rem;padding:12px 30px;margin-top:18px}.contact-form{padding:20px}.qr-code-container{padding:15px;max-width:180px}}@media (max-width:480px){header{min-height:var(--header-height-mobile)}.section{padding:20px 20px 18px;margin:20px auto 0;scroll-margin-top:calc(var(--header-height-mobile) + 15px)}.glass-section{border-radius:12px;box-shadow:0 4px 20px 0 rgba(0,0,0,.2);backdrop-filter:blur(8px) saturate(150%);-webkit-backdrop-filter:blur(8px) saturate(150%)}.logo{font-size:1.8rem;animation:2.5s ease-in-out infinite alternate logoGlowAndScale;transform:none!important;transform-style:none!important;perspective:none!important;filter:none!important}.subtitle{font-size:.95rem;margin-bottom:8px}nav{flex-wrap:wrap;gap:15px 10px;font-size:.9rem;justify-content:center;padding:0 10px}p,ul{font-size:.95rem}nav a{padding:4px 0}.section-title{font-size:1.5rem}.section-subtitle{font-size:.9rem;margin-bottom:20px}ul{padding-left:1.8em}footer{padding:18px 10px 12px;margin-top:30px;font-size:.85rem}.contact-form{padding:20px;width:100%;max-width:none}.qr-code-container{padding:10px;max-width:150px;margin-left:auto;margin-right:auto;width:fit-content}.qr-code-img{max-width:120px}body{background:0 0;position:relative;z-index:1}body::before{content:'';position:fixed;top:0;left:0;width:100%;height:100%;background:linear-gradient(rgba(23,29,37,.5),rgba(23,29,37,.5)) 0 0/cover,url('https://raw.githubusercontent.com/Aikitdigital123/OSVC/main/images/127mob.jpg') center center/cover no-repeat;z-index:-1}}
+/* Definice CSS proměnných pro snadnou změnu barev a fontů */
+/* DŮLEŽITÉ: Univerzální box-sizing pro konzistentní model boxu */
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --color-bg: #171d25; /* Hlavní barva pozadí */
+  --color-bg-section: #212836; /* Barva pozadí sekcí - jemně tmavší než hlavní pozadí */
+  --color-accent: #2a8cff; /* Akcentní barva (modrá) - použita pro hlavní zvýraznění */
+  --color-text: #e6eaf3; /* Barva hlavního textu */
+  --color-secondary: #8db4e2; /* Sekundární barva textu/akcentu - pro jemnější texty a navigační prvky */
+  --color-card: #222c3c; /* Barva pozadí karty - mírně odlišná pro vizuální oddělení */
+  --color-success: #4CAF50; /* Zelená pro zprávy o úspěchu */
+  --color-error: #F44336; /* Červená pro chybové zprávy */
+
+  --font-main: 'Inter', Arial, sans-serif; /* Hlavní font */
+  --font-mono: 'Roboto Mono', monospace; /* Monospace font */
+
+  --shadow: 0 4px 32px 0 rgba(30,40,100,0.10); /* Stín pro sekce/karty */
+  --hover-shadow: 0 8px 48px 0 rgba(30,40,100,0.15); /* Stín při najetí myší */
+  --transition-speed: 0.4s; /* Rychlost hlavních přechodů */
+  --transition-cubic: cubic-bezier(.6,.01,.05,1); /* Kubická Bezierova funkce pro přechody */
+
+  --header-height-desktop: 220px; /* Původní výška hlavičky na desktopu */
+  --header-height-tablet: 180px; /* Nová výška hlavičky na tabletech */
+  --header-height-mobile: 150px; /* Zmenšená výška hlavičky na mobilech */
+}
+
+/* Základní styly pro body (desktop a jako výchozí pro všechny) */
+body {
+  margin: 0;
+  padding: 0;
+  /* Pozadí pro desktop s fixním attachmentem */
+  background: url('https://raw.githubusercontent.com/Aikitdigital123/OSVC/main/images/127.jpg') no-repeat center center fixed;
+  background-size: cover; /* Zajistí, že obrázek pokryje celou obrazovku */
+  color: var(--color-text);
+  font-family: var(--font-main);
+  min-height: 100vh; /* Minimální výška pro celou stránku */
+  overflow-x: hidden; /* Zabrání horizontálnímu scrollu */
+  -webkit-font-smoothing: antialiased; /* Vyhlazení fontů pro Webkit prohlížeče */
+  -moz-osx-font-smoothing: grayscale; /* Vyhlazení fontů pro Firefox */
+}
+
+/* Hlavička stránky */
+header {
+  background: rgba(33, 40, 54, 0.25); /* ZVÝŠENÁ PRŮHLEDNOST */
+  backdrop-filter: blur(8px) saturate(150%);
+  -webkit-backdrop-filter: blur(8px) saturate(150%);
+  padding: 10px 16px 10px;
+  text-align: center;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2); /* Jemnější stín */
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  transition: background 0.3s ease-out, box-shadow 0.3s ease-out, min-height 0.3s ease-out; /* Přidán transition pro min-height */
+  letter-spacing: .03em;
+  min-height: var(--header-height-desktop); /* Výška na desktopu */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Jemná světlá linka */
+}
+
+/* Styly pro logo v hlavičce */
+.logo {
+  font-family: var(--font-mono);
+  font-size: 2.8rem;
+  font-weight: 900;
+  letter-spacing: .09em;
+  color: var(--color-accent);
+  transition: color var(--transition-speed), font-size 0.3s ease-out; /* Přidán transition pro font-size */
+  user-select: none;
+  display: inline-block;
+  margin-bottom: 2px;
+  /* KOMBINOVANÁ ANIMACE - SYNCHRONIZOVANÉ */
+  animation: logoGlowAndScale 2.5s infinite ease-in-out alternate,
+             rotateLogo 2.5s infinite ease-in-out alternate;
+  transform-style: preserve-3d; /* Pro 3D rotaci */
+  perspective: 1000px; /* Pro 3D rotaci */
+}
+
+.logo-accent { /* Speciální styl pro | v logu */
+  color: var(--color-text);
+}
+
+/* Keyframes animace pro pulzující záři loga, jemné škálování A TEĎ I DROP-SHADOW */
+@keyframes logoGlowAndScale {
+  0% {
+    text-shadow: 0 0 15px rgba(42, 140, 255, 0.7),
+                 0 0 30px rgba(42, 140, 255, 0.5),
+                 0 0 45px rgba(42, 140, 255, 0.3);
+    transform: scale(1);
+    filter: drop-shadow(4px 4px 10px rgba(42, 140, 255, 0.6)); /* Startovní záře */
+  }
+  50% {
+    text-shadow: 0 0 20px rgba(42, 140, 255, 0.9),
+                 0 0 40px rgba(42, 140, 255, 0.7),
+                 0 0 60px rgba(42, 140, 255, 0.5);
+    transform: scale(1.02);
+    filter: drop-shadow(8px 8px 20px rgba(42, 140, 255, 0.9)); /* Vrchol záře */
+  }
+  100% {
+    text-shadow: 0 0 15px rgba(42, 140, 255, 0.7),
+                 0 0 30px rgba(42, 140, 255, 0.5),
+                 0 0 45px rgba(42, 140, 255, 0.3);
+    transform: scale(1);
+    filter: drop-shadow(4px 4px 10px rgba(42, 140, 255, 0.6)); /* Návrat na startovní záři */
+  }
+}
+
+/* KEYFRAMES PRO ROTACI LOGA (synchronizované) */
+@keyframes rotateLogo {
+  0% {
+    transform: rotateY(0deg);
+  }
+  50% {
+    transform: rotateY(10deg);
+  }
+  100% {
+    transform: rotateY(0deg);
+  }
+}
+
+/* Podtitulek pod logem */
+.subtitle {
+  font-size: 1.25rem;
+  color: var(--color-secondary);
+  margin-bottom: 12px;
+  font-family: var(--font-mono);
+  font-weight: 400;
+  letter-spacing: .03em;
+  opacity: 0;
+  animation: fadeIn 1s forwards ease-out;
+  animation-delay: 0.5s;
+  transition: font-size 0.3s ease-out; /* Přidán transition pro font-size */
+}
+
+/* Keyframes pro fadeIn (použito pro subtitle) */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Navigační menu */
+nav {
+  margin: 10px auto 0;
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  font-family: var(--font-mono);
+  font-size: 1.15rem;
+  flex-wrap: wrap; /* Umožní zalomení odkazů na menších obrazovkách */
+}
+
+nav a {
+  text-decoration: none;
+  color: var(--color-secondary);
+  padding: 6px 0;
+  border-bottom: 2px solid transparent;
+  transition: color 0.3s ease-out, border 0.3s ease-out, transform 0.2s ease-out, font-size 0.3s ease-out; /* Přidán transition pro font-size */
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap; /* Zabrání zalomení textu v odkazu */
+}
+
+nav a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--color-accent);
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-out;
+}
+
+nav a:hover, nav a:focus, nav a.active { /* Přidán .active stav */
+  color: var(--color-accent);
+  transform: translateY(-2px);
+}
+
+nav a:hover::after, nav a:focus::after, nav a.active::after { /* Přidán .active stav */
+  transform: translateX(0%);
+}
+
+/* Základní styly pro sekce */
+.section {
+  scroll-margin-top: calc(var(--header-height-desktop) + 15px); /* Vylepšeno pro desktop */
+  max-width: 800px; /* Původní max-width */
+  margin: 36px auto 0;
+  padding: 40px 30px 35px;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity var(--transition-speed) var(--transition-cubic), transform var(--transition-speed) var(--transition-cubic);
+}
+
+/* Nová třída pro LIQUID GLASS EFEKT */
+.glass-section {
+  /* Klíčové pro LIQUID GLASS EFEKT */
+  background-color: rgba(33, 40, 54, 0.25); /* ZVÝŠENÁ PRŮHLEDNOST */
+  border: 1px solid rgba(255, 255, 255, 0.08); /* Jemný světlý okraj */
+  border-radius: 22px; /* Zdědí zaoblení z .section, ale můžeme ho přepsat */
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3); /* Výraznější stín pro hloubku */
+  
+  /* Backdrop-filter pro rozmazání pozadí za prvkem */
+  backdrop-filter: blur(3px) saturate(150%); /* Zvýšené rozmazání a sytost */
+  -webkit-backdrop-filter: blur(3px) saturate(150%); /* Pro Safari */
+
+  position: relative; /* Důležité pro pseudo-elementy */
+  overflow: hidden; /* Zamezí přetečení obsahu nebo stínů */
+  transition: all 0.3s ease-in-out; /* Plynulý přechod pro hover efekty */
+  /* Pro zmenšení "kousků skla" - omezení šířky */
+  max-width: 760px; /* Mírně menší než section max-width */
+  margin: 36px auto 0 auto; /* Centrování */
+}
+
+/* Volitelné: Jemné odlesky nebo gradienty pro "tekutý" dojem na glass sekcích */
+.glass-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  /* Jemný gradient, který simuluje odlesk světla */
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.05) 0%, /* Velmi jemný odlesk */
+    rgba(255, 255, 255, 0) 50%,
+    rgba(255, 255, 255, 0.02) 100%
+  );
+  border-radius: inherit; /* Zdědí zaoblení z rodiče */
+  pointer-events: none; /* Umožní interakci s obsahem pod ním */
+  opacity: 0.8;
+}
+
+/* Volitelné: Vnitřní okraj pro hloubku, simuluje tloušťku skla */
+.glass-section::after {
+  content: '';
+  position: absolute;
+  top: 10px; /* Odsazení od okraje */
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.15); /* Vnitřní "odraz" */
+  border-radius: 20px; /* Mírně menší zaoblení než hlavní prvek */
+  pointer-events: none;
+  box-shadow: inset 0 0 8px rgba(255, 255, 255, 0.05); /* Jemný vnitřní stín */
+}
+
+
+/* Stav pro animaci při objevení sekce (ponečáno beze změny) */
+.section.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Nadpisy sekcí */
+.section-title {
+  font-family: var(--font-main);
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--color-accent); /* Barva nadpisu zůstává akcentní */
+  margin: 0 0 10px 0;
+  letter-spacing: .01em;
+  text-align: center;
+  position: relative;
+  text-shadow: 0 2px 5px rgba(0,0,0,0.3); /* Jemný stín pro lepší čitelnost na skle */
+}
+
+.section-title::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 4px;
+  background: var(--color-accent);
+  margin: 8px auto 0;
+  border-radius: 2px;
+}
+
+.section-subtitle {
+  font-size: 1.15rem;
+  color: var(--color-secondary);
+  font-family: var(--font-mono);
+  margin: 0 0 30px 0;
+  text-align: center;
+}
+
+/* Styly pro ověřovací odkazy certifikátů, aby vypadaly jako podtitulky */
+.certificate-verify-link {
+  color: var(--color-secondary); /* Používá stejnou barvu jako .section-subtitle */
+  font-weight: bold; /* Pro zvýraznění */
+  text-decoration: none; /* Odstranění podtržení */
+  transition: color 0.2s ease-out, text-shadow 0.2s ease-out; /* Plynulý přechod */
+}
+
+.certificate-verify-link:hover,
+.certificate-verify-link:focus {
+  color: var(--color-accent); /* Změna barvy na akcentní při najetí myší */
+  text-shadow: 0 0 10px rgba(42, 140, 255, 0.7); /* Jemný svit */
+  text-decoration: underline; /* Můžeš přidat podtržení při najetí myší */
+}
+
+
+/* Styly pro nečíslované seznamy */
+ul {
+  padding-left: 2em; /* Zvětšíme padding, aby bylo místo pro vlastní odrážky */
+  margin: 18px 0 30px 0;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  list-style: none; /* Odstranění výchozích odrážek */
+  color: var(--color-text); /* Zajištění barvy textu pro seznamy */
+}
+
+ul li::before {
+    content: '•'; /* Vlastní odrážka */
+    color: var(--color-accent);
+    font-size: 1.2em;
+    position: absolute;
+    left: 0;
+    top: -0.25em; /* Mírné posunutí dolů pro lepší vertikální zarovnání */
+}
+
+li {
+  margin-bottom: 8px;
+  position: relative;
+  color: var(--color-text); /* Zajištění barvy textu pro položky seznamu */
+  padding-left: 1.2em; /* Přidáme padding pro text, aby se nepřekrýval s vlastní odrážkou */
+}
+
+/* Styly pro "kartu" v sekci O mně */
+.card {
+  background: rgba(34, 44, 60, 0.25); /* ZVÝŠENÁ PRŮHLEDNOST */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 20px;
+  margin: 25px 0;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Upravený stín */
+  font-size: 1rem;
+  line-height: 1.6;
+  border: 1px solid rgba(42, 140, 255, 0.1);
+  transform: translateY(0);
+  transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3); /* Upravený stín při najetí */
+}
+
+.card ul {
+    padding-left: 1.2em; /* Mírně menší padding pro vnořené seznamy */
+    margin: 10px 0 0 0;
+    list-style: none; /* Odstranění výchozích odrážek pro vnořené ul v kartě */
+}
+
+.card ul li::before {
+  left: 0; /* Zarovnáme odrážky uvnitř karty */
+}
+
+/* Styly pro hlavní tlačítko (beze změny) */
+.btn-main {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 1.1rem;
+  color: #fff;
+  background: var(--color-accent);
+  border: none;
+  border-radius: 10px;
+  padding: 13px 36px;
+  margin-top: 20px;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(42, 140, 255, 0.2);
+  transition: background 0.3s ease-out, transform 0.2s ease-out, box-shadow 0.3s ease-out;
+  font-weight: 700;
+  letter-spacing: .05em;
+  text-decoration: none;
+}
+
+.btn-main:hover, .btn-main:focus {
+  background: #0062e8;
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 8px 25px rgba(42, 140, 255, 0.4);
+}
+
+/* Styly pro kontaktní odkazy */
+.contact-links {
+  margin-top: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.contact-links span {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.05rem;
+    color: var(--color-text); /* Zajištění barvy textu */
+}
+
+.contact-links a {
+  color: var(--color-accent);
+  text-decoration: none;
+  font-family: var(--font-mono);
+  font-size: 1.05rem;
+  transition: color 0.2s, text-shadow 0.2s;
+  word-break: break-word;
+}
+
+.contact-links a:hover {
+  color: var(--color-text);
+  text-shadow: 0 0 10px rgba(42, 140, 255, 0.7);
+}
+
+/* Styly QR kontejner */
+.qr-code-container {
+    text-align: center;
+    margin-top: 40px;
+    padding: 20px;
+    background: rgba(34, 44, 60, 0.25); /* ZVÝŠENÁ PRŮHLEDNOST */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 18px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Upravený stín */
+    display: block; /* Změna na block, aby margin auto fungoval */
+    width: fit-content; /* Omezí šířku na obsah, aby margin auto fungoval správně */
+    max-width: calc(100% - 40px); /* Ponecháme nějaké maximální omezení vzhledem k rodiči */
+    margin-left: auto;
+    margin-right: auto;
+    padding: 30px; /* Zvětšený padding pro více prostoru */
+}
+
+.qr-code-text {
+    color: var(--color-secondary);
+    font-family: var(--font-mono);
+    margin-bottom: 15px;
+    font-size: 1rem;
+}
+
+.qr-code-img {
+    border-radius: 16px;
+    box-shadow: 0 2px 16px rgba(42, 140, 255, 0.2);
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+    display: block; /* Důležité pro responzivní obrázek */
+    max-width: 100%; /* Zajistí, že se obrázek zmenší, pokud je kontejner menší */
+    height: auto; /* Zachová poměr stran */
+    margin: 0 auto; /* Centruje obrázek uvnitř kontejneru */
+}
+
+/* Patička stránky */
+footer {
+  background: rgba(33, 40, 54, 0.25); /* ZVÝŠENÁ PRŮHLEDNOST */
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: var(--color-secondary);
+  text-align: center;
+  padding: 25px 15px 18px;
+  margin-top: 50px;
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  letter-spacing: .02em;
+  border-top: 1px solid rgba(255, 255, 255, 0.1); /* Jemnější linka */
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1); /* Jemný stín nahoru */
+}
+
+/* Kontaktní formulář styly */
+.contact-form {
+    max-width: 450px;
+    margin: auto;
+    padding: 25px;
+    background: rgba(34, 44, 60, 0.25); /* ZVÝŠENÁ PRŮHLEDNOST */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Upravený stín */
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.contact-form label {
+    color: var(--color-secondary);
+    font-size: 0.95rem;
+    margin-bottom: 4px;
+    display: block;
+}
+
+.form-input,
+.form-textarea {
+  width: 100%;
+  padding: 12px;
+  background: rgba(36, 44, 62, 0.4); /* ZVÝŠENÁ PRŮHLEDNOST */
+  color: var(--color-text);
+  border: 1px solid rgba(42, 140, 255, 0.2); /* Jemnější okraj */
+  border-radius: 8px;
+  font-family: var(--font-main);
+  font-size: 1rem;
+  transition: border 0.2s ease-out, box-shadow 0.2s ease-out;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+  outline: none;
+  border: 1.5px solid var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(42, 140, 255, 0.3); /* Jasnější focus stín */
+}
+
+.form-textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.form-submit-btn {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.form-status {
+    margin-top: 15px;
+    font-size: 0.95rem;
+    text-align: center;
+    min-height: 20px;
+    opacity: 0;
+    transition: opacity 0.3s ease-out;
+}
+
+.form-status.success {
+    color: var(--color-success);
+    opacity: 1;
+}
+
+.form-status.error {
+    color: var(--color-error);
+    opacity: 1;
+}
+
+/* Styly pro vizuálně skrytý H1 (beze změny) */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+/* MEDIA QUERIES pro responsivní design */
+
+/* Pro tablety (např. 768px až 1024px) */
+@media (max-width: 1024px) {
+  header {
+    min-height: var(--header-height-tablet); /* Výška hlavičky na tabletech */
+  }
+
+  .logo {
+    font-size: 2.5rem; /* Mírně zmenšené logo */
+  }
+
+  .subtitle {
+    font-size: 1.1rem; /* Mírně zmenšený podtitulek */
+    margin-bottom: 8px;
+  }
+
+  nav {
+    gap: 24px; /* Menší mezery mezi navigačními odkazy */
+    font-size: 1.05rem;
+  }
+
+  .section {
+    max-width: 720px; /* Zmenšení maximální šířky sekcí */
+    padding: 35px 25px 30px;
+    margin: 30px auto 0;
+    scroll-margin-top: calc(var(--header-height-tablet) + 15px);
+  }
+
+  .glass-section {
+    max-width: 680px; /* Zmenšení maximální šířky "skleněných" sekcí */
+    border-radius: 20px;
+    box-shadow: 0 7px 30px 0 rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(4px) saturate(150%);
+    -webkit-backdrop-filter: blur(4px) saturate(150%);
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .section-subtitle {
+    font-size: 1.05rem;
+  }
+}
+
+/* Pro mobilní telefony (max-width 767px) */
+@media (max-width: 767px) {
+  body {
+    /* Na mobilech často fixed pozadí nefunguje dobře nebo je neefektivní */
+    background-attachment: scroll; 
+    background-position: top center; /* Upravení pozice pro mobil */
+  }
+
+  header {
+    min-height: var(--header-height-mobile); /* Výrazně zmenšená výška hlavičky */
+    padding: 8px 10px; /* Menší padding */
+    justify-content: space-around; /* Lepší rozložení prvků */
+  }
+
+  .logo {
+    font-size: 2.2rem; /* Další zmenšení loga */
+    /* Změna animace pro mobily - zjemnění */
+    animation: logoGlowAndScaleMobile 2s infinite ease-in-out alternate; /* Nová, zjemněná animace */
+  }
+
+  /* Nová zjemněná animace loga pro mobily */
+  @keyframes logoGlowAndScaleMobile {
+    0% {
+      text-shadow: 0 0 8px rgba(42, 140, 255, 0.5);
+      transform: scale(1);
+      filter: drop-shadow(2px 2px 5px rgba(42, 140, 255, 0.3));
+    }
+    50% {
+      text-shadow: 0 0 12px rgba(42, 140, 255, 0.7);
+      transform: scale(1.01);
+      filter: drop-shadow(4px 4px 8px rgba(42, 140, 255, 0.5));
+    }
+    100% {
+      text-shadow: 0 0 8px rgba(42, 140, 255, 0.5);
+      transform: scale(1);
+      filter: drop-shadow(2px 2px 5px rgba(42, 140, 255, 0.3));
+    }
+  }
+
+  .subtitle {
+    font-size: 0.95rem; /* Zmenšení podtitulku */
+    margin-bottom: 8px;
+  }
+
+  nav {
+    flex-direction: row; /* Ponechat v řádku, ale s menším gapem */
+    gap: 15px; /* Ještě menší mezery */
+    font-size: 0.9rem; /* Zmenšení písma navigace */
+    justify-content: center;
+    padding: 0 5px; /* Mírný padding, aby se odkazy nedotýkaly okrajů */
+    flex-wrap: wrap; /* Umožnit zalomení do více řádků, pokud je potřeba */
+  }
+
+  nav a {
+    padding: 4px 0;
+  }
+
+  .section {
+    max-width: 95vw; /* Sekce se roztáhnou téměř na celou šířku */
+    padding: 25px 15px 20px; /* Menší padding */
+    margin: 20px auto 0; /* Menší margin */
+    scroll-margin-top: calc(var(--header-height-mobile) + 10px); /* Upraveno pro mobilní výšku hlavičky */
+  }
+  
+  .glass-section {
+    max-width: calc(100% - 30px); /* Na mobilech zabírají skoro celou šířku, ale s paddingem */
+    border-radius: 16px; /* Ještě menší zaoblení na mobilech */
+    box-shadow: 0 6px 25px 0 rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(5px) saturate(150%);
+    -webkit-backdrop-filter: blur(5px) saturate(150%);
+  }
+
+  .glass-section::after { /* Vnitřní okraj */
+    top: 5px;
+    left: 5px;
+    right: 5px;
+    bottom: 5px;
+    border-radius: 14px;
+  }
+
+  .section-title {
+    font-size: 1.8rem; /* Další zmenšení nadpisů */
+    margin-bottom: 8px;
+  }
+
+  .section-title::after {
+    width: 40px; /* Zmenšení podtržení */
+    height: 3px;
+  }
+
+  .section-subtitle {
+    font-size: 0.9rem; /* Zmenšení podnadpisů */
+    margin-bottom: 20px;
+  }
+
+  p {
+    font-size: 0.95rem; /* Zmenšení textu odstavců */
+    margin-bottom: 15px;
+  }
+
+  ul {
+    padding-left: 1.8em; /* Mírně menší padding pro seznamy */
+    font-size: 0.95rem;
+  }
+
+  li {
+    margin-bottom: 6px;
+  }
+
+  .card {
+    padding: 15px; /* Menší padding pro karty */
+    margin: 20px 0;
+    border-radius: 12px;
+  }
+
+  .btn-main {
+    font-size: 1rem; /* Mírné zmenšení tlačítka */
+    padding: 10px 25px;
+    margin-top: 15px;
+  }
+
+  .contact-links span, .contact-links a {
+    font-size: 0.95rem; /* Zmenšení kontaktních odkazů */
+  }
+
+  .qr-code-container {
+    padding: 20px; /* Menší padding */
+    border-radius: 14px;
+    margin-top: 30px;
+  }
+
+  .qr-code-text {
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+  }
+
+  .qr-code-img {
+    width: 120px; /* Zmenšení QR kódu */
+    height: 120px;
+  }
+
+  .contact-form {
+    padding: 20px; /* Menší padding pro formulář */
+    border-radius: 12px;
+    gap: 10px; /* Menší mezery ve formuláři */
+  }
+
+  .form-input, .form-textarea {
+    padding: 10px; /* Menší padding pro inputy */
+    font-size: 0.95rem;
+    border-radius: 6px;
+  }
+
+  .form-submit-btn {
+    margin-top: 15px;
+  }
+
+  footer {
+    padding: 20px 10px 15px; /* Menší padding patičky */
+    font-size: 0.85rem;
+    margin-top: 40px;
+  }
+}
+
+/* Velmi malé telefony (např. do 360px) */
+@media (max-width: 360px) {
+  nav {
+    gap: 10px;
+    font-size: 0.85rem;
+  }
+
+  .logo {
+    font-size: 2rem;
+  }
+
+  .subtitle {
+    font-size: 0.85rem;
+  }
+
+  .section-title {
+    font-size: 1.6rem;
+  }
+
+  .section-subtitle {
+    font-size: 0.8rem;
+  }
+
+  p, ul, li, .card {
+    font-size: 0.9rem;
+  }
+}
