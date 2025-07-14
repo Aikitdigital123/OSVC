@@ -1,4 +1,3 @@
-// Očekává, že se celý DOM načte, než začne manipulovat s elementy
 document.addEventListener('DOMContentLoaded', () => {
 
     const header = document.querySelector('header');
@@ -15,7 +14,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const targetElement = document.querySelector(targetId);
 
             if (targetElement) {
+                // Dynamicky získáme výšku hlavičky, aby se přizpůsobila responzivitě
                 const headerHeight = header ? header.offsetHeight : 0;
+                // Odečteme výšku hlavičky a malý offset pro vizuální odsazení
                 const scrollToPosition = targetElement.offsetTop - headerHeight - 15;
 
                 window.scrollTo({
@@ -97,6 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.error('Form submission network error:', error);
             }
 
+            // Zmizení zprávy po 5 sekundách
             setTimeout(() => {
                 if (statusDiv) {
                     statusDiv.style.opacity = '0';
@@ -110,10 +112,17 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // --- Jemný efekt posunu pozadí hlavičky při scrollu (Parallax like) ---
+    // Ponecháno pro desktop, na mobilu je background-attachment nastaven na scroll
     if (header) {
         window.addEventListener('scroll', () => {
             const scrollPosition = window.pageYOffset || document.documentElement.scrollTop; // Kompatibilita
-            header.style.backgroundPositionY = `${-scrollPosition * 0.1}px`;
+            // Aplikovat paralax pouze pokud je background-attachment fixed (tedy na desktopu)
+            if (window.getComputedStyle(document.body).backgroundAttachment === 'fixed') {
+                header.style.backgroundPositionY = `${-scrollPosition * 0.1}px`;
+            } else {
+                // Resetovat, pokud se attachment změní (např. na mobilu)
+                header.style.backgroundPositionY = '0px';
+            }
         });
     }
 
@@ -149,24 +158,28 @@ document.addEventListener('DOMContentLoaded', () => {
         navSectionActiveObserver.observe(section);
     });
 
-    
+    // Inicializace aktivní sekce po načtení stránky
     window.addEventListener('load', () => { // Čekáme na úplné načtení všech zdrojů (včetně obrázků)
         let activeFound = false;
+        // Získání aktuální výšky hlavičky
+        const currentHeaderHeight = header ? header.offsetHeight : 0;
+
         sections.forEach(section => {
             const rect = section.getBoundingClientRect();
-            // Pokud je sekce nahoře a viditelná, nastav ji jako aktivní
-            if (rect.top <= header.offsetHeight + 15 && rect.bottom > header.offsetHeight + 15 && !activeFound) {
+            // Upravená podmínka pro detekci aktivní sekce
+            // Zkontrolujeme, zda je sekce viditelná v horní části viewportu a zároveň přesahuje pod hlavičku
+            if (rect.top <= currentHeaderHeight + 15 && rect.bottom > currentHeaderHeight + 15 && !activeFound) {
                 navLinks.forEach(link => link.classList.remove('active'));
                 document.querySelector(`nav a[href="#${section.id}"]`)?.classList.add('active');
                 activeFound = true;
             }
         });
-        // Pokud žádná sekce nebyla nalezena jako aktivní (např. stránka je příliš krátká), nastav první
+        // Pokud žádná sekce nebyla nalezena jako aktivní (např. stránka je příliš krátká nebo je na samém začátku), nastav první
         if (!activeFound && sections.length > 0) {
             document.querySelector(`nav a[href="#${sections[0].id}"]`)?.classList.add('active');
         }
     });
 
-    
+   
 
 });
