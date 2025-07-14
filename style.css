@@ -1,9 +1,22 @@
-/* Definice CSS proměnných pro snadnou změnu barev a fontů */
+/*
+ * style.css
+ * Verze: 2025-07-14 (Finalní úpravy)
+ * Popis: Kompletní a optimalizovaný CSS pro portfolio web s efekty tekutého skla,
+ * statickým pozadím a vylepšenou, elegantní navigací.
+ */
+
 /* DŮLEŽITÉ: Univerzální box-sizing pro konzistentní model boxu */
 * {
   box-sizing: border-box;
 }
 
+/* Zabraňuje bílé ploše při přetažení obsahu na mobilních zařízeních a definuje základní barvu HTML */
+html {
+  background-color: var(--color-bg); /* Nastavíme barvu pozadí HTML elementu pro zabránění probliknutí */
+  scroll-behavior: smooth; /* Plynulé skrolování pro celou stránku */
+}
+
+/* Definice CSS proměnných pro snadnou změnu barev a fontů */
 :root {
   --color-bg: #171d25; /* Hlavní barva pozadí */
   --color-bg-section: #212836; /* Barva pozadí sekcí - jemně tmavší než hlavní pozadí */
@@ -27,63 +40,42 @@
   --header-height-mobile: 150px; /* Zmenšená výška hlavičky na mobilech */
 }
 
-/* Základní styly pro body (desktop a jako výchozí pro všechny) */
+/* Základní styly pro body */
 body {
   margin: 0;
   padding: 0;
-  /* DŮLEŽITÉ: Okamžitě nastavit barvu pozadí, aby se zabránilo bílému probliknutí */
-  background-color: var(--color-bg); 
   
-  /* Pozadí obrázku - bude aplikováno pomocí JavaScriptu na div#fixed-background */
-  /* nebo zde, pokud není potřeba JS pro mobilní workaround */
-  background-size: cover; 
+  /* Kombinované nastavení pozadí: obrázek s fixed attachment a fallback barva */
+  background: var(--color-bg) url('https://raw.githubusercontent.com/Aikitdigital123/OSVC/main/images/127.jpg') no-repeat center center fixed;
+  background-size: cover; /* Zajistí, že obrázek pokryje celou obrazovku */
+  
   color: var(--color-text);
   font-family: var(--font-main);
   min-height: 100vh; /* Minimální výška pro celou stránku */
   overflow-x: hidden; /* Zabrání horizontálnímu scrollu */
   -webkit-font-smoothing: antialiased; /* Vyhlazení fontů pro Webkit prohlížeče */
   -moz-osx-font-smoothing: grayscale; /* Vyhlazení fontů pro Firefox */
-  
-  /* Ponecháme perspective a transform-style pro paralax efekt na desktopu */
-  /* i když se aplikuje na wrapper, aby byl body v 3D kontextu */
-  perspective: 1px; 
-  transform-style: preserve-3d; 
-}
-
-/* NOVÝ WRAPPER PRO FIXNÍ POZADÍ */
-#fixed-background {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: url('https://raw.githubusercontent.com/Aikitdigital123/OSVC/main/images/127.jpg') no-repeat center center;
-  background-size: cover;
-  z-index: -1; /* Posune pozadí za obsah */
-  /* Pro paralax na desktopu: posuneme pozadí dále a zvětšíme ho */
-  transform: translateZ(-1px) scale(2); /* Posune pozadí dále a zvětší ho pro paralax */
 }
 
 /* Hlavička stránky */
 header {
-  background: rgba(33, 40, 54, 0.25); /* ZVÝŠENÁ PRŮHLEDNOST */
-  backdrop-filter: blur(8px) saturate(150%);
-  -webkit-backdrop-filter: blur(8px) saturate(150%);
+  background: rgba(33, 40, 54, 0.25); /* Průhledné pozadí */
+  backdrop-filter: blur(8px) saturate(150%); /* Efekt rozmazaného skla */
+  -webkit-backdrop-filter: blur(8px) saturate(150%); /* Pro Safari a Chrome */
   padding: 10px 16px 10px;
   text-align: center;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2); /* Jemnější stín */
-  position: sticky;
+  position: sticky; /* Pevné umístění při skrolování */
   top: 0;
-  z-index: 100;
-  transition: background 0.3s ease-out, box-shadow 0.3s ease-out, min-height 0.3s ease-out; /* Přidán transition pro min-height */
+  z-index: 100; /* Zajišťuje, že je nad ostatním obsahem */
+  transition: background 0.3s ease-out, box-shadow 0.3s ease-out, min-height 0.3s ease-out;
   letter-spacing: .03em;
-  min-height: var(--header-height-desktop); /* Výška na desktopu */
+  min-height: var(--header-height-desktop); /* Výchozí výška */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Jemná světlá linka */
-  transform: translateZ(0); /* Aby se hlavička posouvala normálně */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Jemná spodní linka */
 }
 
 /* Styly pro logo v hlavičce */
@@ -93,7 +85,7 @@ header {
   font-weight: 900;
   letter-spacing: .09em;
   color: var(--color-accent);
-  transition: color var(--transition-speed), font-size 0.3s ease-out; /* Přidán transition pro font-size */
+  transition: color var(--transition-speed), font-size 0.3s ease-out;
   user-select: none;
   display: inline-block;
   margin-bottom: 2px;
@@ -108,42 +100,30 @@ header {
   color: var(--color-text);
 }
 
-/* Keyframes animace pro pulzující záři loga, jemné škálování A TEĎ I DROP-SHADOW */
+/* Keyframes animace pro pulzující záři loga a jemné škálování */
 @keyframes logoGlowAndScale {
   0% {
-    text-shadow: 0 0 15px rgba(42, 140, 255, 0.7),
-                 0 0 30px rgba(42, 140, 255, 0.5),
-                 0 0 45px rgba(42, 140, 255, 0.3);
+    text-shadow: 0 0 15px rgba(42, 140, 255, 0.7), 0 0 30px rgba(42, 140, 255, 0.5), 0 0 45px rgba(42, 140, 255, 0.3);
     transform: scale(1);
-    filter: drop-shadow(4px 4px 10px rgba(42, 140, 255, 0.6)); /* Startovní záře */
+    filter: drop-shadow(4px 4px 10px rgba(42, 140, 255, 0.6));
   }
   50% {
-    text-shadow: 0 0 20px rgba(42, 140, 255, 0.9),
-                 0 0 40px rgba(42, 140, 255, 0.7),
-                 0 0 60px rgba(42, 140, 255, 0.5);
+    text-shadow: 0 0 20px rgba(42, 140, 255, 0.9), 0 0 40px rgba(42, 140, 255, 0.7), 0 0 60px rgba(42, 140, 255, 0.5);
     transform: scale(1.02);
-    filter: drop-shadow(8px 8px 20px rgba(42, 140, 255, 0.9)); /* Vrchol záře */
+    filter: drop-shadow(8px 8px 20px rgba(42, 140, 255, 0.9));
   }
   100% {
-    text-shadow: 0 0 15px rgba(42, 140, 255, 0.7),
-                 0 0 30px rgba(42, 140, 255, 0.5),
-                 0 0 45px rgba(42, 140, 255, 0.3);
+    text-shadow: 0 0 15px rgba(42, 140, 255, 0.7), 0 0 30px rgba(42, 140, 255, 0.5), 0 0 45px rgba(42, 140, 255, 0.3);
     transform: scale(1);
-    filter: drop-shadow(4px 4px 10px rgba(42, 140, 255, 0.6)); /* Návrat na startovní záři */
+    filter: drop-shadow(4px 4px 10px rgba(42, 140, 255, 0.6));
   }
 }
 
-/* KEYFRAMES PRO ROTACI LOGA (synchronizované) */
+/* Keyframes pro rotaci loga (synchronizované) */
 @keyframes rotateLogo {
-  0% {
-    transform: rotateY(0deg);
-  }
-  50% {
-    transform: rotateY(10deg);
-  }
-  100% {
-    transform: rotateY(0deg);
-  }
+  0% { transform: rotateY(0deg); }
+  50% { transform: rotateY(10deg); }
+  100% { transform: rotateY(0deg); }
 }
 
 /* Podtitulek pod logem */
@@ -157,7 +137,7 @@ header {
   opacity: 0;
   animation: fadeIn 1s forwards ease-out;
   animation-delay: 0.5s;
-  transition: font-size 0.3s ease-out; /* Přidán transition pro font-size */
+  transition: font-size 0.3s ease-out;
 }
 
 /* Keyframes pro fadeIn (použito pro subtitle) */
@@ -166,7 +146,7 @@ header {
     to { opacity: 1; }
 }
 
-/* Navigační menu */
+/* Navigační menu (pouze v hlavičce) - zjednodušený efekt */
 nav {
   margin: 10px auto 0;
   display: flex;
@@ -177,20 +157,19 @@ nav {
   flex-wrap: wrap; /* Umožní zalomení odkazů na menších obrazovkách */
 }
 
+/* Pouze odkazy UVNITŘ <nav> elementu */
 nav a {
   text-decoration: none;
   color: var(--color-secondary);
   padding: 6px 0;
-  border-bottom: 2px solid transparent;
-  transition: color 0.3s ease-out, border 0.3s ease-out, transform 0.2s ease-out, font-size 0.3s ease-out, box-shadow 0.3s ease-out; /* Přidán box-shadow */
+  border-bottom: 2px solid transparent; /* Základní transparentní border */
+  transition: color 0.3s ease-out, transform 0.3s ease-out, font-size 0.3s ease-out;
   position: relative;
-  overflow: hidden;
+  overflow: hidden; /* Důležité pro vysouvání ::after */
   white-space: nowrap; /* Zabrání zalomení textu v odkazu */
-  /* Přidání mikrointerakcí pro navigační odkazy */
-  transform: translateZ(0); /* Zajištění vrstvy pro animaci */
-  box-shadow: 0 0 0 rgba(42, 140, 255, 0); /* Počáteční neviditelný stín */
 }
 
+/* Pseudo-element pro animované podtržení (vysouvací efekt) - pouze pro navigační odkazy */
 nav a::after {
   content: '';
   position: absolute;
@@ -199,55 +178,54 @@ nav a::after {
   width: 100%;
   height: 2px;
   background-color: var(--color-accent);
-  transform: translateX(-100%);
+  transform: translateX(-100%); /* Skryté na začátku */
   transition: transform 0.3s ease-out;
 }
 
-nav a:hover, nav a:focus, nav a.active { /* Přidán .active stav */
-  color: var(--color-accent);
-  transform: translateY(-2px);
-  box-shadow: 0 0 15px rgba(42, 140, 255, 0.4); /* Jemný glow efekt při najetí */
-  border-bottom-color: var(--color-accent); /* Zajištění, že se podtržení změní */
+/* Stav pro najetí myší a aktivní odkaz (změna barvy a vysunutí podtržení) - pouze pro navigační odkazy */
+nav a:hover, nav a:focus, nav a.active {
+  color: var(--color-accent); /* Změna barvy textu na akcentní */
 }
 
-nav a:hover::after, nav a:focus::after, nav a.active::after { /* Přidán .active stav */
-  transform: translateX(0%);
+/* Animace podtržení při hoveru a pro aktivní odkaz - pouze pro navigační odkazy */
+nav a:hover::after, nav a:focus::after, nav a.active::after {
+  transform: translateX(0%); /* Vysunutí podtržení */
 }
+
 
 /* Základní styly pro sekce */
 .section {
-  scroll-margin-top: calc(var(--header-height-desktop) + 15px); /* Vylepšeno pro desktop */
-  max-width: 800px; /* Původní max-width */
+  /*
+   * Vylepšení: scroll-margin-top by měl ideálně reflektovat aktuální výšku hlavičky.
+   * V JavaScriptu je řešeno dynamicky v IntersectionObserveru, ale zde
+   * je dobré mít výchozí hodnotu pro plynulé skrolování, pokud JS selže nebo je zakázán.
+   * Pro přesnější chování s Intersection Observerem je klíčový JS.
+   */
+  scroll-margin-top: calc(var(--header-height-desktop) + 15px);
+  max-width: 800px;
   margin: 36px auto 0;
   padding: 40px 30px 35px;
   opacity: 0;
   transform: translateY(40px);
   transition: opacity var(--transition-speed) var(--transition-cubic), transform var(--transition-speed) var(--transition-cubic);
-  /* Transform pro paralax efekt obsahu */
-  transform: translateZ(0); /* Obsah se posouvá normálně vzhledem k z-indexu */
 }
 
-/* Nová třída pro LIQUID GLASS EFEKT */
+/* Styl pro sekce s efektem tekutého skla */
 .glass-section {
-  /* Klíčové pro LIQUID GLASS EFEKT */
-  background-color: rgba(33, 40, 54, 0.25); /* ZVÝŠENÁ PRŮHLEDNOST */
-  border: 1px solid rgba(255, 255, 255, 0.08); /* Jemný světlý okraj */
-  border-radius: 22px; /* Zdědí zaoblení z .section, ale můžeme ho přepsat */
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3); /* Výraznější stín pro hloubku */
-  
-  /* Backdrop-filter pro rozmazání pozadí za prvkem */
-  backdrop-filter: blur(3px) saturate(150%); /* Zvýšené rozmazání a sytost */
+  background-color: rgba(33, 40, 54, 0.25); /* Průhledné pozadí */
+  border: 1px solid rgba(255, 255, 255, 0.08); /* Jemný okraj */
+  border-radius: 22px;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3); /* Výraznější stín */
+  backdrop-filter: blur(3px) saturate(150%); /* Rozmazání pozadí za prvkem */
   -webkit-backdrop-filter: blur(3px) saturate(150%); /* Pro Safari */
-
-  position: relative; /* Důležité pro pseudo-elementy */
-  overflow: hidden; /* Zamezí přetečení obsahu nebo stínů */
-  transition: all 0.3s ease-in-out; /* Plynulý přechod pro hover efekty */
-  /* Pro zmenšení "kousků skla" - omezení šířky */
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;
   max-width: 760px; /* Mírně menší než section max-width */
-  margin: 36px auto 0 auto; /* Centrování */
+  margin: 36px auto 0 auto;
 }
 
-/* Volitelné: Jemné odlesky nebo gradienty pro "tekutý" dojem na glass sekcích */
+/* Volitelný jemný gradient pro efekt odlesku na skle */
 .glass-section::before {
   content: '';
   position: absolute;
@@ -255,40 +233,39 @@ nav a:hover::after, nav a:focus::after, nav a.active::after { /* Přidán .activ
   left: 0;
   right: 0;
   bottom: 0;
-  /* Jemný gradient, který simuluje odlesk světla */
   background: linear-gradient(
     135deg,
-    rgba(255, 255, 255, 0.05) 0%, /* Velmi jemný odlesk */
+    rgba(255, 255, 255, 0.05) 0%,
     rgba(255, 255, 255, 0) 50%,
     rgba(255, 255, 255, 0.02) 100%
   );
-  border-radius: inherit; /* Zdědí zaoblení z rodiče */
-  pointer-events: none; /* Umožní interakci s obsahem pod ním */
+  border-radius: inherit;
+  pointer-events: none;
   opacity: 0.8;
 }
 
-/* Volitelné: Vnitřní okraj pro hloubku, simuluje tloušťku skla */
+/* Volitelný vnitřní okraj pro hloubku, simuluje tloušťku skla */
 .glass-section::after {
   content: '';
   position: absolute;
-  top: 10px; /* Odsazení od okraje */
+  top: 10px;
   left: 10px;
   right: 10px;
   bottom: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.15); /* Vnitřní "odraz" */
-  border-radius: 20px; /* Mírně menší zaoblení než hlavní prvek */
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
   pointer-events: none;
-  box-shadow: inset 0 0 8px rgba(255, 255, 255, 0.05); /* Jemný vnitřní stín */
+  box-shadow: inset 0 0 8px rgba(255, 255, 255, 0.05);
 }
 
 
-/* Stav pro animaci při objevení sekce */
+/* Stav pro animaci při objevení sekce (scroll reveal) */
 .section.is-visible {
   opacity: 1;
-  transform: translateY(0) translateZ(0); /* Zajištění translateZ i zde */
+  transform: translateY(0);
 }
 
-/* Animace pro elementy uvnitř sekcí (jsou defaultně skryté) */
+/* Základní styly pro animované elementy uvnitř sekcí (jsou defaultně skryté) */
 .animated-element, .animated-text, .animated-list li {
   opacity: 0;
   transform: translateY(20px);
@@ -299,7 +276,7 @@ nav a:hover::after, nav a:focus::after, nav a.active::after { /* Přidán .activ
 .section.is-visible .animated-text {
   opacity: 1;
   transform: translateY(0);
-  transition-delay: 0.2s; /* Zpoždění pro p */
+  transition-delay: 0.2s; /* Zpoždění pro odstavce a h3 */
 }
 .section.is-visible .animated-element {
   opacity: 1;
@@ -307,26 +284,26 @@ nav a:hover::after, nav a:focus::after, nav a.active::after { /* Přidán .activ
   transition-delay: 0.4s; /* Zpoždění pro karty a formulář */
 }
 
-/* Animace pro položky seznamu s kaskádovým efektem */
+/* Animace pro položky seznamu s kaskádovým efektem (delay je řízen JS) */
 .section.is-visible .animated-list li {
   opacity: 1;
   transform: translateY(0);
 }
-/* Přidání delaye pomocí JavaScriptu pro kaskádový efekt na li */
 
 /* Nadpisy sekcí */
 .section-title {
   font-family: var(--font-main);
   font-size: 2.2rem;
   font-weight: 700;
-  color: var(--color-accent); /* Barva nadpisu zůstává akcentní */
+  color: var(--color-accent);
   margin: 0 0 10px 0;
   letter-spacing: .01em;
   text-align: center;
   position: relative;
-  text-shadow: 0 2px 5px rgba(0,0,0,0.3); /* Jemný stín pro lepší čitelnost na skle */
+  text-shadow: 0 2px 5px rgba(0,0,0,0.3);
 }
 
+/* Podtržení pod nadpisem sekce */
 .section-title::after {
   content: '';
   display: block;
@@ -337,6 +314,7 @@ nav a:hover::after, nav a:focus::after, nav a.active::after { /* Přidán .activ
   border-radius: 2px;
 }
 
+/* Podnadpis sekce */
 .section-subtitle {
   font-size: 1.15rem;
   color: var(--color-secondary);
@@ -345,77 +323,82 @@ nav a:hover::after, nav a:focus::after, nav a.active::after { /* Přidán .activ
   text-align: center;
 }
 
-/* Styly pro ověřovací odkazy certifikátů, aby vypadaly jako podtitulky */
+/* Styly pro ověřovací odkazy certifikátů */
 .certificate-verify-link {
-  color: var(--color-secondary); /* Používá stejnou barvu jako .section-subtitle */
-  font-weight: bold; /* Pro zvýraznění */
-  text-decoration: none; /* Odstranění podtržení */
-  transition: color 0.2s ease-out, text-shadow 0.2s ease-out; /* Plynulý přechod */
+  color: var(--color-secondary);
+  font-weight: bold;
+  text-decoration: none;
+  transition: color 0.2s ease-out, text-shadow 0.2s ease-out;
 }
 
 .certificate-verify-link:hover,
 .certificate-verify-link:focus {
-  color: var(--color-accent); /* Změna barvy na akcentní při najetí myší */
-  text-shadow: 0 0 10px rgba(42, 140, 255, 0.7); /* Jemný svit */
-  text-decoration: underline; /* Můžeš přidat podtržení při najetí myší */
+  color: var(--color-accent);
+  text-shadow: 0 0 10px rgba(42, 140, 255, 0.7);
+  text-decoration: underline;
 }
 
+/* Základní styly pro odstavce */
+p {
+  margin-bottom: 20px;
+  line-height: 1.7;
+}
 
 /* Styly pro nečíslované seznamy */
 ul {
-  padding-left: 2em; /* Zvětšíme padding, aby bylo místo pro vlastní odrážky */
+  padding-left: 2em;
   margin: 18px 0 30px 0;
   font-size: 1.05rem;
   line-height: 1.8;
   list-style: none; /* Odstranění výchozích odrážek */
-  color: var(--color-text); /* Zajištění barvy textu pro seznamy */
+  color: var(--color-text);
 }
 
+/* Styly pro položky seznamu s vlastní odrážkou */
 ul li::before {
     content: '•'; /* Vlastní odrážka */
     color: var(--color-accent);
     font-size: 1.2em;
     position: absolute;
     left: 0;
-    top: -0.25em; /* Mírné posunutí dolů pro lepší vertikální zarovnání */
+    top: -0.25em;
 }
 
 li {
   margin-bottom: 8px;
   position: relative;
-  color: var(--color-text); /* Zajištění barvy textu pro položky seznamu */
-  padding-left: 1.2em; /* Přidáme padding pro text, aby se nepřekrýval s vlastní odrážkou */
+  color: var(--color-text);
+  padding-left: 1.2em;
 }
 
-/* Styly pro "kartu" v sekci O mně */
+/* Styly pro "kartu" (např. v sekci O mně) */
 .card {
-  background: rgba(34, 44, 60, 0.25); /* ZVÝŠENÁ PRŮHLEDNOST */
+  background: rgba(34, 44, 60, 0.25);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border-radius: 16px;
   padding: 20px;
   margin: 25px 0;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Upravený stín */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
   font-size: 1rem;
   line-height: 1.6;
   border: 1px solid rgba(42, 140, 255, 0.1);
-  transform: translateY(0) translateZ(0); /* Pro jemné mikrointerakce */
   transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
 }
 
 .card:hover {
-  transform: translateY(-5px) translateZ(0); /* Zvětšení při najetí myší */
+  transform: translateY(-5px); /* Zvětšení při najetí myší */
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3), 0 0 25px rgba(42, 140, 255, 0.4); /* Sytější stín a glow */
 }
 
 .card ul {
-    padding-left: 1.2em; /* Mírně menší padding pro vnořené seznamy */
+    padding-left: 1.2em; /* Zajišťuje zarovnání položek v kartě */
     margin: 10px 0 0 0;
-    list-style: none; /* Odstranění výchozích odrážek pro vnořené ul v kartě */
+    list-style: none;
 }
 
 .card ul li::before {
-  left: 0; /* Zarovnáme odrážky uvnitř karty */
+  left: 0; /* Zajišťuje správné umístění odrážky v kartě */
 }
 
 /* Styly pro hlavní tlačítko (s mikrointerakcemi) */
@@ -435,11 +418,12 @@ li {
   font-weight: 700;
   letter-spacing: .05em;
   text-decoration: none;
-  position: relative; /* Pro efekt podsvícení */
-  overflow: hidden; /* Pro zamezení přetečení animace */
-  transform: translateZ(0); /* Zajištění vrstvy pro animaci */
+  position: relative;
+  overflow: hidden;
+  z-index: 1; /* Aby byl pseudo-element pod textem */
 }
 
+/* Efekt odlesku na tlačítku */
 .btn-main::before {
     content: '';
     position: absolute;
@@ -447,23 +431,23 @@ li {
     left: 50%;
     width: 0;
     height: 0;
-    background: rgba(255, 255, 255, 0.2); /* Barva odlesku */
+    background: rgba(255, 255, 255, 0.2);
     border-radius: 50%;
     transform: translate(-50%, -50%);
     transition: width 0.4s ease-out, height 0.4s ease-out, opacity 0.4s ease-out;
     opacity: 0;
-    z-index: 0;
+    z-index: -1; /* Posuneme pod text tlačítka */
 }
 
 .btn-main:hover::before {
-    width: 250%; /* Zvětšení odlesku */
+    width: 250%;
     height: 250%;
     opacity: 1;
 }
 
 .btn-main:hover, .btn-main:focus {
-  background: #0062e8;
-  transform: translateY(-3px) scale(1.03) translateZ(0);
+  background: #0062e8; /* Tmavší modrá při najetí */
+  transform: translateY(-3px) scale(1.03); /* Mírné zvětšení a posun */
   box-shadow: 0 8px 25px rgba(42, 140, 255, 0.4);
 }
 
@@ -480,7 +464,7 @@ li {
     align-items: center;
     gap: 10px;
     font-size: 1.05rem;
-    color: var(--color-text); /* Zajištění barvy textu */
+    color: var(--color-text);
 }
 
 .contact-links a {
@@ -489,7 +473,7 @@ li {
   font-family: var(--font-mono);
   font-size: 1.05rem;
   transition: color 0.2s, text-shadow 0.2s;
-  word-break: break-word;
+  word-break: break-word; /* Pro dlouhé e-mailové adresy */
 }
 
 .contact-links a:hover {
@@ -497,22 +481,22 @@ li {
   text-shadow: 0 0 10px rgba(42, 140, 255, 0.7);
 }
 
-/* Styly QR kontejner */
+/* Styly QR kontejneru */
 .qr-code-container {
     text-align: center;
     margin-top: 40px;
     padding: 20px;
-    background: rgba(34, 44, 60, 0.25); /* ZVÝŠENÁ PRŮHLEDNOST */
+    background: rgba(34, 44, 60, 0.25);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border-radius: 18px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Upravený stín */
-    display: block; /* Změna na block, aby margin auto fungoval */
-    width: fit-content; /* Omezí šířku na obsah, aby margin auto fungoval správně */
-    max-width: calc(100% - 40px); /* Ponecháme nějaké maximální omezení vzhledem k rodiči */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    display: block;
+    width: fit-content;
+    max-width: calc(100% - 40px); /* Omezuje šířku na menších obrazovkách */
     margin-left: auto;
     margin-right: auto;
-    padding: 30px; /* Zvětšený padding pro více prostoru */
+    padding: 30px;
 }
 
 .qr-code-text {
@@ -526,15 +510,15 @@ li {
     border-radius: 16px;
     box-shadow: 0 2px 16px rgba(42, 140, 255, 0.2);
     transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
-    display: block; /* Důležité pro responzivní obrázek */
-    max-width: 100%; /* Zajistí, že se obrázek zmenší, pokud je kontejner menší */
-    height: auto; /* Zachová poměr stran */
-    margin: 0 auto; /* Centruje obrázek uvnitř kontejneru */
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto;
 }
 
 /* Patička stránky */
 footer {
-  background: rgba(33, 40, 54, 0.25); /* ZVÝŠENÁ PRŮHLEDNOST */
+  background: rgba(33, 40, 54, 0.25);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   color: var(--color-secondary);
@@ -544,9 +528,8 @@ footer {
   font-family: var(--font-mono);
   font-size: 0.95rem;
   letter-spacing: .02em;
-  border-top: 1px solid rgba(255, 255, 255, 0.1); /* Jemnější linka */
-  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1); /* Jemný stín nahoru */
-  transform: translateZ(0); /* Zajištění vrstvy pro animaci */
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
 }
 
 /* Kontaktní formulář styly */
@@ -554,11 +537,11 @@ footer {
     max-width: 450px;
     margin: auto;
     padding: 25px;
-    background: rgba(34, 44, 60, 0.25); /* ZVÝŠENÁ PRŮHLEDNOST */
+    background: rgba(34, 44, 60, 0.25);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border-radius: 16px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Upravený stín */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
     display: flex;
     flex-direction: column;
     gap: 15px;
@@ -575,9 +558,9 @@ footer {
 .form-textarea {
   width: 100%;
   padding: 12px;
-  background: rgba(36, 44, 62, 0.4); /* ZVÝŠENÁ PRŮHLEDNOST */
+  background: rgba(36, 44, 62, 0.4);
   color: var(--color-text);
-  border: 1px solid rgba(42, 140, 255, 0.2); /* Jemnější okraj */
+  border: 1px solid rgba(42, 140, 255, 0.2);
   border-radius: 8px;
   font-family: var(--font-main);
   font-size: 1rem;
@@ -588,7 +571,7 @@ footer {
 .form-textarea:focus {
   outline: none;
   border: 1.5px solid var(--color-accent);
-  box-shadow: 0 0 0 3px rgba(42, 140, 255, 0.3); /* Jasnější focus stín */
+  box-shadow: 0 0 0 3px rgba(42, 140, 255, 0.3);
 }
 
 .form-textarea {
@@ -620,7 +603,7 @@ footer {
     opacity: 1;
 }
 
-/* Styly pro vizuálně skrytý H1 (beze změny) */
+/* Vizuálně skrytý H1 pro SEO a přístupnost */
 .visually-hidden {
   position: absolute;
   width: 1px;
@@ -634,35 +617,36 @@ footer {
 
 /* MEDIA QUERIES pro responsivní design */
 
-/* Pro tablety (např. 768px až 1024px) */
+/* Pro tablety (max-width 1024px) */
 @media (max-width: 1024px) {
   header {
-    min-height: var(--header-height-tablet); /* Výška hlavičky na tabletech */
+    min-height: var(--header-height-tablet);
   }
 
   .logo {
-    font-size: 2.5rem; /* Mírně zmenšené logo */
+    font-size: 2.5rem;
   }
 
   .subtitle {
-    font-size: 1.1rem; /* Mírně zmenšený podtitulek */
+    font-size: 1.1rem;
     margin-bottom: 8px;
   }
 
   nav {
-    gap: 24px; /* Menší mezery mezi navigačními odkazy */
+    gap: 24px;
     font-size: 1.05rem;
   }
 
   .section {
-    max-width: 720px; /* Zmenšení maximální šířky sekcí */
+    max-width: 720px;
     padding: 35px 25px 30px;
     margin: 30px auto 0;
+    /* Použij var pro scroll-margin-top pro konzistenci */
     scroll-margin-top: calc(var(--header-height-tablet) + 15px);
   }
 
   .glass-section {
-    max-width: 680px; /* Zmenšení maximální šířky "skleněných" sekcí */
+    max-width: 680px;
     border-radius: 20px;
     box-shadow: 0 7px 30px 0 rgba(0, 0, 0, 0.25);
     backdrop-filter: blur(4px) saturate(150%);
@@ -680,30 +664,16 @@ footer {
 
 /* Pro mobilní telefony (max-width 767px) */
 @media (max-width: 767px) {
-  /* DŮLEŽITÉ: Na mobilech nastavíme pozadí přímo na body a dáme mu fixed */
-  /* Některé prohlížeče to budou ignorovat, jiné ne. Ale je to nejlepší pokus. */
-  body {
-    background: url('https://raw.githubusercontent.com/Aikitdigital123/OSVC/main/images/127.jpg') no-repeat center center fixed;
-    background-size: cover;
-    perspective: none; /* Vypnutí 3D perspektivy */
-    transform-style: flat; /* Zrušení 3D transformace */
-  }
-
-  /* Na mobilních zařízeních skryjeme #fixed-background div, protože background je na body */
-  #fixed-background {
-      display: none;
-  }
-
   header {
-    min-height: var(--header-height-mobile); /* Výrazně zmenšená výška hlavičky */
-    padding: 8px 10px; /* Menší padding */
-    justify-content: space-around; /* Lepší rozložení prvků */
+    min-height: var(--header-height-mobile);
+    padding: 8px 10px;
+    justify-content: space-around;
   }
 
   .logo {
-    font-size: 2.2rem; /* Další zmenšení loga */
+    font-size: 2.2rem;
     /* Změna animace pro mobily - zjemnění */
-    animation: logoGlowAndScaleMobile 2s infinite ease-in-out alternate; /* Nová, zjemněná animace */
+    animation: logoGlowAndScaleMobile 2s infinite ease-in-out alternate;
   }
 
   /* Nová zjemněná animace loga pro mobily */
@@ -726,17 +696,17 @@ footer {
   }
 
   .subtitle {
-    font-size: 0.95rem; /* Zmenšení podtitulku */
+    font-size: 0.95rem;
     margin-bottom: 8px;
   }
 
   nav {
-    flex-direction: row; /* Ponechat v řádku, ale s menším gapem */
-    gap: 15px; /* Ještě menší mezery */
-    font-size: 0.9rem; /* Zmenšení písma navigace */
+    flex-direction: row;
+    gap: 15px;
+    font-size: 0.9rem;
     justify-content: center;
-    padding: 0 5px; /* Mírný padding, aby se odkazy nedotýkaly okrajů */
-    flex-wrap: wrap; /* Umožnit zalomení do více řádků, pokud je potřeba */
+    padding: 0 5px;
+    flex-wrap: wrap;
   }
 
   nav a {
@@ -744,21 +714,22 @@ footer {
   }
 
   .section {
-    max-width: 95vw; /* Sekce se roztáhnou téměř na celou šířku */
-    padding: 25px 15px 20px; /* Menší padding */
-    margin: 20px auto 0; /* Menší margin */
-    scroll-margin-top: calc(var(--header-height-mobile) + 10px); /* Upraveno pro mobilní výšku hlavičky */
+    max-width: 95vw;
+    padding: 25px 15px 20px;
+    margin: 20px auto 0;
+    /* Použij var pro scroll-margin-top pro konzistenci */
+    scroll-margin-top: calc(var(--header-height-mobile) + 10px);
   }
   
   .glass-section {
-    max-width: calc(100% - 30px); /* Na mobilech zabírají skoro celou šířku, ale s paddingem */
-    border-radius: 16px; /* Ještě menší zaoblení na mobilech */
+    max-width: calc(100% - 30px);
+    border-radius: 16px;
     box-shadow: 0 6px 25px 0 rgba(0, 0, 0, 0.2);
     backdrop-filter: blur(5px) saturate(150%);
     -webkit-backdrop-filter: blur(5px) saturate(150%);
   }
 
-  .glass-section::after { /* Vnitřní okraj */
+  .glass-section::after {
     top: 5px;
     left: 5px;
     right: 5px;
@@ -767,27 +738,27 @@ footer {
   }
 
   .section-title {
-    font-size: 1.8rem; /* Další zmenšení nadpisů */
+    font-size: 1.8rem;
     margin-bottom: 8px;
   }
 
   .section-title::after {
-    width: 40px; /* Zmenšení podtržení */
+    width: 40px;
     height: 3px;
   }
 
   .section-subtitle {
-    font-size: 0.9rem; /* Zmenšení podnadpisů */
+    font-size: 0.9rem;
     margin-bottom: 20px;
   }
 
   p {
-    font-size: 0.95rem; /* Zmenšení textu odstavců */
+    font-size: 0.95rem;
     margin-bottom: 15px;
   }
 
   ul {
-    padding-left: 1.8em; /* Mírně menší padding pro seznamy */
+    padding-left: 1.8em;
     font-size: 0.95rem;
   }
 
@@ -796,23 +767,23 @@ footer {
   }
 
   .card {
-    padding: 15px; /* Menší padding pro karty */
+    padding: 15px;
     margin: 20px 0;
     border-radius: 12px;
   }
 
   .btn-main {
-    font-size: 1rem; /* Mírné zmenšení tlačítka */
+    font-size: 1rem;
     padding: 10px 25px;
     margin-top: 15px;
   }
 
   .contact-links span, .contact-links a {
-    font-size: 0.95rem; /* Zmenšení kontaktních odkazů */
+    font-size: 0.95rem;
   }
 
   .qr-code-container {
-    padding: 20px; /* Menší padding */
+    padding: 20px;
     border-radius: 14px;
     margin-top: 30px;
   }
@@ -823,18 +794,18 @@ footer {
   }
 
   .qr-code-img {
-    width: 120px; /* Zmenšení QR kódu */
+    width: 120px;
     height: 120px;
   }
 
   .contact-form {
-    padding: 20px; /* Menší padding pro formulář */
+    padding: 20px;
     border-radius: 12px;
-    gap: 10px; /* Menší mezery ve formuláři */
+    gap: 10px;
   }
 
   .form-input, .form-textarea {
-    padding: 10px; /* Menší padding pro inputy */
+    padding: 10px;
     font-size: 0.95rem;
     border-radius: 6px;
   }
@@ -844,13 +815,13 @@ footer {
   }
 
   footer {
-    padding: 20px 10px 15px; /* Menší padding patičky */
+    padding: 20px 10px 15px;
     font-size: 0.85rem;
     margin-top: 40px;
   }
 }
 
-/* Velmi malé telefony (např. do 360px) */
+/* Velmi malé telefony (do 360px) */
 @media (max-width: 360px) {
   nav {
     gap: 10px;
@@ -877,3 +848,4 @@ footer {
     font-size: 0.9rem;
   }
 }
+
