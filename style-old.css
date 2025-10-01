@@ -1,0 +1,699 @@
+/* Definice CSS proměnných pro snadnou změnu barev a fontů */
+/* DŮLEŽITÉ: Univerzální box-sizing pro konzistentní model boxu */
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --color-bg: #171d25; /* Hlavní barva pozadí */
+  --color-bg-section: #212836; /* Barva pozadí sekcí - jemně tmavší než hlavní pozadí */
+  --color-accent: #2a8cff; /* Akcentní barva (modrá) - použita pro hlavní zvýraznění */
+  --color-text: #e6eaf3; /* Barva hlavního textu */
+  --color-secondary: #8db4e2; /* Sekundární barva textu/akcentu - pro jemnější texty a navigační prvky */
+  --color-card: #222c3c; /* Barva pozadí karty - mírně odlišná pro vizuální oddělení */
+  --color-success: #4CAF50; /* Zelená pro zprávy o úspěchu */
+  --color-error: #F44336; /* Červená pro chybové zprávy */
+
+  --font-main: 'Inter', Arial, sans-serif; /* Hlavní font */
+  --font-mono: 'Roboto Mono', monospace; /* Monospace font */
+
+  --shadow: 0 4px 32px 0 rgba(30,40,100,0.10); /* Stín pro sekce/karty */
+  --hover-shadow: 0 8px 48px 0 rgba(30,40,100,0.15); /* Stín při najetí myší */
+  --transition-speed: 0.4s; /* Rychlost hlavních přechodů */
+  --transition-cubic: cubic-bezier(.6,.01,.05,1); /* Kubická Bezierova funkce pro přechody */
+
+  --header-height-desktop: 220px; /* Výška hlavičky na desktopu */
+  --header-height-mobile: 200px; /* Nastaveno na 200px podle snímku obrazovky */
+}
+
+/* Základní styly pro body (desktop a jako výchozí pro všechny) */
+body {
+  margin: 0;
+  padding: 0;
+  /* Pozadí pro desktop s fixním attachmentem */
+  background: url('https://raw.githubusercontent.com/Aikitdigital123/OSVC/main/images/127.jpg') no-repeat center center fixed;
+  background-size: cover; /* Zajistí, že obrázek pokryje celou obrazovku */
+  color: var(--color-text);
+  font-family: var(--font-main);
+  min-height: 100vh; /* Minimální výška pro celou stránku */
+  overflow-x: hidden; /* Zabrání horizontálnímu scrollu */
+  -webkit-font-smoothing: antialiased; /* Vyhlazení fontů pro Webkit prohlížeče */
+  -moz-osx-font-smoothing: grayscale; /* Vyhlazení fontů pro Firefox */
+}
+
+/* Hlavička stránky */
+header {
+  background: rgba(33, 40, 54, 0.25); /* ZVÝŠENÁ PRŮHLEDNOST */
+  backdrop-filter: blur(8px) saturate(150%);
+  -webkit-backdrop-filter: blur(8px) saturate(150%);
+  padding: 10px 16px 10px;
+  text-align: center;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2); /* Jemnější stín */
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  transition: background 0.3s ease-out, box-shadow 0.3s ease-out;
+  letter-spacing: .03em;
+  min-height: var(--header-height-desktop); /* Výška na desktopu */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Jemná světlá linka */
+}
+
+/* Styly pro logo v hlavičce */
+.logo {
+  font-family: var(--font-mono);
+  font-size: 2.8rem;
+  font-weight: 900;
+  letter-spacing: .09em;
+  color: var(--color-accent);
+  transition: color var(--transition-speed);
+  user-select: none;
+  display: inline-block;
+  margin-bottom: 2px;
+  /* KOMBINOVANÁ ANIMACE - SYNCHRONIZOVANÉ */
+  animation: logoGlowAndScale 2.5s infinite ease-in-out alternate,
+             rotateLogo 2.5s infinite ease-in-out alternate;
+  transform-style: preserve-3d; /* Pro 3D rotaci */
+  perspective: 1000px; /* Pro 3D rotaci */
+}
+
+.logo-accent { /* Speciální styl pro | v logu */
+  color: var(--color-text);
+}
+
+/* Keyframes animace pro pulzující záři loga, jemné škálování A TEĎ I DROP-SHADOW */
+@keyframes logoGlowAndScale {
+  0% {
+    text-shadow: 0 0 15px rgba(42, 140, 255, 0.7),
+                 0 0 30px rgba(42, 140, 255, 0.5),
+                 0 0 45px rgba(42, 140, 255, 0.3);
+    transform: scale(1);
+    filter: drop-shadow(4px 4px 10px rgba(42, 140, 255, 0.6)); /* Startovní záře */
+  }
+  50% {
+    text-shadow: 0 0 20px rgba(42, 140, 255, 0.9),
+                 0 0 40px rgba(42, 140, 255, 0.7),
+                 0 0 60px rgba(42, 140, 255, 0.5);
+    transform: scale(1.02);
+    filter: drop-shadow(8px 8px 20px rgba(42, 140, 255, 0.9)); /* Vrchol záře */
+  }
+  100% {
+    text-shadow: 0 0 15px rgba(42, 140, 255, 0.7),
+                 0 0 30px rgba(42, 140, 255, 0.5),
+                 0 0 45px rgba(42, 140, 255, 0.3);
+    transform: scale(1);
+    filter: drop-shadow(4px 4px 10px rgba(42, 140, 255, 0.6)); /* Návrat na startovní záři */
+  }
+}
+
+/* KEYFRAMES PRO ROTACI LOGA (synchronizované) */
+@keyframes rotateLogo {
+  0% {
+    transform: rotateY(0deg);
+  }
+  50% {
+    transform: rotateY(10deg);
+  }
+  100% {
+    transform: rotateY(0deg);
+  }
+}
+
+/* Podtitulek pod logem */
+.subtitle {
+  font-size: 1.25rem;
+  color: var(--color-secondary);
+  margin-bottom: 12px;
+  font-family: var(--font-mono);
+  font-weight: 400;
+  letter-spacing: .03em;
+  opacity: 0;
+  animation: fadeIn 1s forwards ease-out;
+  animation-delay: 0.5s;
+}
+
+/* Keyframes pro fadeIn (použito pro subtitle) */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Navigační menu */
+nav {
+  margin: 10px auto 0;
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  font-family: var(--font-mono);
+  font-size: 1.15rem;
+}
+
+nav a {
+  text-decoration: none;
+  color: var(--color-secondary);
+  padding: 6px 0;
+  border-bottom: 2px solid transparent;
+  transition: color 0.3s ease-out, border 0.3s ease-out, transform 0.2s ease-out;
+  position: relative;
+  overflow: hidden;
+}
+
+nav a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--color-accent);
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-out;
+}
+
+nav a:hover, nav a:focus {
+  color: var(--color-accent);
+  transform: translateY(-2px);
+}
+
+nav a:hover::after, nav a:focus::after {
+  transform: translateX(0%);
+}
+
+/* Základní styly pro sekce */
+.section {
+  scroll-margin-top: calc(var(--header-height-desktop) + 15px); /* Vylepšeno pro desktop */
+  max-width: 800px;
+  margin: 36px auto 0;
+  padding: 40px 30px 35px;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity var(--transition-speed) var(--transition-cubic), transform var(--transition-speed) var(--transition-cubic);
+}
+
+/* Nová třída pro LIQUID GLASS EFEKT */
+.glass-section {
+  /* Klíčové pro LIQUID GLASS EFEKT */
+  background-color: rgba(33, 40, 54, 0.25); /* ZVÝŠENÁ PRŮHLEDNOST */
+  border: 1px solid rgba(255, 255, 255, 0.08); /* Jemný světlý okraj */
+  border-radius: 22px; /* Zdědí zaoblení z .section, ale můžeme ho přepsat */
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3); /* Výraznější stín pro hloubku */
+  
+  /* Backdrop-filter pro rozmazání pozadí za prvkem */
+  backdrop-filter: blur(3px) saturate(150%); /* Zvýšené rozmazání a sytost */
+  -webkit-backdrop-filter: blur(3px) saturate(150%); /* Pro Safari */
+
+  position: relative; /* Důležité pro pseudo-elementy */
+  overflow: hidden; /* Zamezí přetečení obsahu nebo stínů */
+  transition: all 0.3s ease-in-out; /* Plynulý přechod pro hover efekty */
+}
+
+/* Volitelné: Jemné odlesky nebo gradienty pro "tekutý" dojem na glass sekcích */
+.glass-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  /* Jemný gradient, který simuluje odlesk světla */
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.05) 0%, /* Velmi jemný odlesk */
+    rgba(255, 255, 255, 0) 50%,
+    rgba(255, 255, 255, 0.02) 100%
+  );
+  border-radius: inherit; /* Zdědí zaoblení z rodiče */
+  pointer-events: none; /* Umožní interakci s obsahem pod ním */
+  opacity: 0.8;
+}
+
+/* Volitelné: Vnitřní okraj pro hloubku, simuluje tloušťku skla */
+.glass-section::after {
+  content: '';
+  position: absolute;
+  top: 10px; /* Odsazení od okraje */
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.15); /* Vnitřní "odraz" */
+  border-radius: 20px; /* Mírně menší zaoblení než hlavní prvek */
+  pointer-events: none;
+  box-shadow: inset 0 0 8px rgba(255, 255, 255, 0.05); /* Jemný vnitřní stín */
+}
+
+
+/* Stav pro animaci při objevení sekce (ponečáno beze změny) */
+.section.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Nadpisy sekcí */
+.section-title {
+  font-family: var(--font-main);
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--color-accent); /* Barva nadpisu zůstává akcentní */
+  margin: 0 0 10px 0;
+  letter-spacing: .01em;
+  text-align: center;
+  position: relative;
+  text-shadow: 0 2px 5px rgba(0,0,0,0.3); /* Jemný stín pro lepší čitelnost na skle */
+}
+
+.section-title::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 4px;
+  background: var(--color-accent);
+  margin: 8px auto 0;
+  border-radius: 2px;
+}
+
+.section-subtitle {
+  font-size: 1.15rem;
+  color: var(--color-secondary);
+  font-family: var(--font-mono);
+  margin: 0 0 30px 0;
+  text-align: center;
+}
+
+/* Styly pro ověřovací odkazy certifikátů, aby vypadaly jako podtitulky */
+.certificate-verify-link {
+  color: var(--color-secondary); /* Používá stejnou barvu jako .section-subtitle */
+  font-weight: bold; /* Pro zvýraznění */
+  text-decoration: none; /* Odstranění podtržení */
+  transition: color 0.2s ease-out, text-shadow 0.2s ease-out; /* Plynulý přechod */
+}
+
+.certificate-verify-link:hover,
+.certificate-verify-link:focus {
+  color: var(--color-accent); /* Změna barvy na akcentní při najetí myší */
+  text-shadow: 0 0 10px rgba(42, 140, 255, 0.7); /* Jemný svit */
+  text-decoration: underline; /* Můžeš přidat podtržení při najetí myší */
+}
+
+
+/* Styly pro nečíslované seznamy */
+ul {
+  padding-left: 2em; /* Zvětšíme padding, aby bylo místo pro vlastní odrážky */
+  margin: 18px 0 30px 0;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  list-style: none; /* Odstranění výchozích odrážek */
+  color: var(--color-text); /* Zajištění barvy textu pro seznamy */
+}
+
+ul li::before {
+    content: '•'; /* Vlastní odrážka */
+    color: var(--color-accent);
+    font-size: 1.2em;
+    position: absolute;
+    left: 0;
+    top: -0.25em; /* Mírné posunutí dolů pro lepší vertikální zarovnání */
+}
+
+li {
+  margin-bottom: 8px;
+  position: relative;
+  color: var(--color-text); /* Zajištění barvy textu pro položky seznamu */
+  padding-left: 1.2em; /* Přidáme padding pro text, aby se nepřekrýval s vlastní odrážkou */
+}
+
+/* Styly pro odstavce */
+p {
+  font-size: 1.08rem;
+  margin-bottom: 18px;
+  color: var(--color-text);
+  line-height: 1.7;
+}
+
+/* Styly pro "kartu" v sekci O mně */
+.card {
+  background: rgba(34, 44, 60, 0.25); /* ZVÝŠENÁ PRŮHLEDNOST */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 20px;
+  margin: 25px 0;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Upravený stín */
+  font-size: 1rem;
+  line-height: 1.6;
+  border: 1px solid rgba(42, 140, 255, 0.1);
+  transform: translateY(0);
+  transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3); /* Upravený stín při najetí */
+}
+
+.card ul {
+    padding-left: 1.2em; /* Mírně menší padding pro vnořené seznamy */
+    margin: 10px 0 0 0;
+    list-style: none; /* Odstranění výchozích odrážek pro vnořené ul v kartě */
+}
+
+.card ul li::before {
+  left: 0; /* Zarovnáme odrážky uvnitř karty */
+}
+
+/* Styly pro hlavní tlačítko (beze změny) */
+.btn-main {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 1.1rem;
+  color: #fff;
+  background: var(--color-accent);
+  border: none;
+  border-radius: 10px;
+  padding: 13px 36px;
+  margin-top: 20px;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(42, 140, 255, 0.2);
+  transition: background 0.3s ease-out, transform 0.2s ease-out, box-shadow 0.3s ease-out;
+  font-weight: 700;
+  letter-spacing: .05em;
+  text-decoration: none;
+}
+
+.btn-main:hover, .btn-main:focus {
+  background: #0062e8;
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 8px 25px rgba(42, 140, 255, 0.4);
+}
+
+/* Styly pro kontaktní odkazy */
+.contact-links {
+  margin-top: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.contact-links span {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.05rem;
+    color: var(--color-text); /* Zajištění barvy textu */
+}
+
+.contact-links a {
+  color: var(--color-accent);
+  text-decoration: none;
+  font-family: var(--font-mono);
+  font-size: 1.05rem;
+  transition: color 0.2s, text-shadow 0.2s;
+  word-break: break-word;
+}
+
+.contact-links a:hover {
+  color: var(--color-text);
+  text-shadow: 0 0 10px rgba(42, 140, 255, 0.7);
+}
+
+/* Styly QR kontejner */
+.qr-code-container {
+    text-align: center;
+    margin-top: 40px;
+    padding: 20px;
+    background: rgba(34, 44, 60, 0.25); /* ZVÝŠENÁ PRŮHLEDNOST */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 18px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Upravený stín */
+    display: block; /* Změna na block, aby margin auto fungoval */
+    width: fit-content; /* Omezí šířku na obsah, aby margin auto fungoval správně */
+    max-width: calc(100% - 40px); /* Ponecháme nějaké maximální omezení vzhledem k rodiči */
+    margin-left: auto;
+    margin-right: auto;
+    padding: 30px; /* Zvětšený padding pro více prostoru */
+}
+
+.qr-code-text {
+    color: var(--color-secondary);
+    font-family: var(--font-mono);
+    margin-bottom: 15px;
+    font-size: 1rem;
+}
+
+.qr-code-img {
+    border-radius: 16px;
+    box-shadow: 0 2px 16px rgba(42, 140, 255, 0.2);
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+    display: block; /* Důležité pro responzivní obrázek */
+    max-width: 100%; /* Zajistí, že se obrázek zmenší, pokud je kontejner menší */
+    height: auto; /* Zachová poměr stran */
+    margin: 0 auto; /* Centruje obrázek uvnitř kontejneru */
+}
+
+/* Patička stránky */
+footer {
+  background: rgba(33, 40, 54, 0.25); /* ZVÝŠENÁ PRŮHLEDNOST */
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: var(--color-secondary);
+  text-align: center;
+  padding: 25px 15px 18px;
+  margin-top: 50px;
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  letter-spacing: .02em;
+  border-top: 1px solid rgba(255, 255, 255, 0.1); /* Jemnější linka */
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1); /* Jemný stín nahoru */
+}
+
+/* Kontaktní formulář styly */
+.contact-form {
+    max-width: 450px;
+    margin: auto;
+    padding: 25px;
+    background: rgba(34, 44, 60, 0.25); /* ZVÝŠENÁ PRŮHLEDNOST */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Upravený stín */
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.contact-form label {
+    color: var(--color-secondary);
+    font-size: 0.95rem;
+    margin-bottom: 4px;
+    display: block;
+}
+
+.form-input,
+.form-textarea {
+  width: 100%;
+  padding: 12px;
+  background: rgba(36, 44, 62, 0.4); /* ZVÝŠENÁ PRŮHLEDNOST */
+  color: var(--color-text);
+  border: 1px solid rgba(42, 140, 255, 0.2); /* Jemnější okraj */
+  border-radius: 8px;
+  font-family: var(--font-main);
+  font-size: 1rem;
+  transition: border 0.2s ease-out, box-shadow 0.2s ease-out;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+  outline: none;
+  border: 1.5px solid var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(42, 140, 255, 0.3); /* Jasnější focus stín */
+}
+
+.form-textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.form-submit-btn {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.form-status {
+    margin-top: 15px;
+    font-size: 0.95rem;
+    text-align: center;
+    min-height: 20px;
+    opacity: 0;
+    transition: opacity 0.3s ease-out;
+}
+
+.form-status.success {
+    color: var(--color-success);
+    opacity: 1;
+}
+
+.form-status.error {
+    color: var(--color-error);
+    opacity: 1;
+}
+
+/* Styly pro vizuálně skrytý H1 (beze změny) */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+/* MEDIA QUERIES pro responsivní design */
+@media (max-width: 768px) {
+  header {
+    min-height: var(--header-height-mobile); /* Používáme mobilní výšku */
+  }
+  .section {
+    max-width: 95vw;
+    padding: 30px 20px 25px;
+    margin: 25px auto 0;
+    scroll-margin-top: calc(var(--header-height-mobile) + 15px);
+  }
+  /* ZMĚNA: Přidáno pro responzivitu glass-section */
+  .glass-section {
+    border-radius: 18px; /* Mírně menší zaoblení na tabletu */
+    box-shadow: 0 6px 28px 0 rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(12px) saturate(150%);
+    -webkit-backdrop-filter: blur(12px) saturate(150%);
+  }
+  .section-title {
+    font-size: 2em; /* Upraveno z 1.8rem na 2em pro větší kontrast */
+  }
+  .section-subtitle {
+    font-size: 1.1em;
+    margin-bottom: 25px;
+  }
+  p {
+    font-size: 1em;
+  }
+  .card {
+    padding: 18px;
+    margin: 20px 0;
+  }
+  .btn-main {
+    font-size: 1rem;
+    padding: 12px 30px;
+    margin-top: 18px;
+  }
+  .contact-form {
+    padding: 20px;
+  }
+  .qr-code-container {
+    padding: 15px;
+    max-width: 180px; /* Ponecháváme, protože QR kód by neměl být příliš velký */
+  }
+} 
+
+/* --- MOBILNÍ STYLY (max-width: 480px) --- */
+@media (max-width: 480px) {
+  header {
+    min-height: var(--header-height-mobile);
+  }
+  .section {
+    padding: 20px 20px 18px;
+    margin: 20px auto 0;
+    scroll-margin-top: calc(var(--header-height-mobile) + 15px);
+  }
+  .glass-section {
+    border-radius: 12px;
+    box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(8px) saturate(150%);
+    -webkit-backdrop-filter: blur(8px) saturate(150%);
+  }
+  .logo {
+    font-size: 1.8rem;
+    /* Na mobilech vypínáme rotaci pro lepší výkon a čitelnost */
+    animation: logoGlowAndScale 2.5s infinite ease-in-out alternate; /* Pouze animace záře a škálování */
+    transform: none !important; /* Vynutíme žádnou rotaci/transformaci */
+    transform-style: none !important;
+    perspective: none !important;
+    filter: none !important; /* Vypneme drop-shadow, protože se již nebude animovat v logoGlowAndScale */
+  }
+  .subtitle {
+    font-size: 0.95rem;
+    margin-bottom: 8px;
+  }
+  nav {
+    flex-wrap: wrap;
+    gap: 15px 10px;
+    font-size: 0.9rem;
+    justify-content: center;
+    padding: 0 10px;
+  }
+  nav a {
+    padding: 4px 0;
+  }
+  .section-title {
+    font-size: 1.5rem;
+  }
+  .section-subtitle {
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+  }
+  p {
+    font-size: 0.95rem;
+  }
+  ul {
+    font-size: 0.95rem;
+    padding-left: 1.8em;
+  }
+  footer {
+    padding: 18px 10px 12px;
+    margin-top: 30px;
+    font-size: 0.85rem;
+  }
+  .contact-form {
+    padding: 20px;
+    width: 100%;
+    max-width: none;
+  }
+  .qr-code-container {
+    padding: 10px;
+    max-width: 150px;
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+  }
+  .qr-code-img {
+    max-width: 120px;
+  }
+
+  /* --- Zde jsou ty nové styly pro body, které CHCEŠ na mobilu (fixní pozadí) --- */
+  body {
+    background: none; /* Vypneme původní pozadí na body, aby ho simuloval pseudo-element */
+    position: relative; /* Důležité pro z-index obsahu */
+    z-index: 1; /* Zajistí, že obsah bude nad pozadím */
+  }
+
+  body::before { /* Tento pseudo-element bude sloužit jako naše fixní pozadí */
+    content: ''; /* Povinná vlastnost pro pseudo-element */
+    position: fixed; /* KLÍČOVÉ: Udrží pozadí pevné vůči obrazovce */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Zde použijeme gradient a tvůj optimalizovaný mobilní obrázek */
+    background: linear-gradient(
+                      rgba(23, 29, 37, 0.5),
+                      rgba(23, 29, 37, 0.5)
+                    ),
+                    url('https://raw.githubusercontent.com/Aikitdigital123/OSVC/main/images/127mob.jpg') no-repeat center center;
+    background-size: cover;
+    z-index: -1; /* Umístí tento element pod veškerý obsah */
+  }
+  /* --- Konec nových stylů pro body na mobilu --- */
+}

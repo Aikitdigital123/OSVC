@@ -1,0 +1,1016 @@
+﻿/* Definice CSS promÄ›nnĂ˝ch pro snadnou zmÄ›nu barev a fontĹŻ */
+/* DĹ®LEĹ˝ITĂ‰: UniverzĂˇlnĂ­ box-sizing pro konzistentnĂ­ model boxu */
+* {
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  font-size: 100%;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  scroll-behavior: smooth;
+  height: -webkit-fill-available;
+}
+
+:root {
+  --color-bg: #171d25; /* HlavnĂ­ barva pozadĂ­ */
+  --color-bg-section: #212836; /* Barva pozadĂ­ sekcĂ­ - jemnÄ› tmavĹˇĂ­ neĹľ hlavnĂ­ pozadĂ­ */
+  --color-accent: #2a8cff; /* AkcentnĂ­ barva (modrĂˇ) - pouĹľita pro hlavnĂ­ zvĂ˝raznÄ›nĂ­ */
+  --color-text: #e6eaf3; /* Barva hlavnĂ­ho textu */
+  --color-secondary: #8db4e2; /* SekundĂˇrnĂ­ barva textu/akcentu - pro jemnÄ›jĹˇĂ­ texty a navigaÄŤnĂ­ prvky */
+  --color-card: #222c3c; /* Barva pozadĂ­ karty - mĂ­rnÄ› odliĹˇnĂˇ pro vizuĂˇlnĂ­ oddÄ›lenĂ­ */
+  --color-success: #4CAF50; /* ZelenĂˇ pro zprĂˇvy o ĂşspÄ›chu */
+  --color-error: #F44336; /* ÄŚervenĂˇ pro chybovĂ© zprĂˇvy */
+
+  --font-main: 'Inter', Arial, sans-serif; /* HlavnĂ­ font */
+  --font-mono: 'Roboto Mono', monospace; /* Monospace font */
+
+  --shadow: 0 4px 32px 0 rgba(30,40,100,0.10); /* StĂ­n pro sekce/karty */
+  --hover-shadow: 0 8px 48px 0 rgba(30,40,100,0.15); /* StĂ­n pĹ™i najetĂ­ myĹˇĂ­ */
+  --transition-speed: 0.4s; /* Rychlost hlavnĂ­ch pĹ™echodĹŻ */
+  --transition-cubic: cubic-bezier(.6,.01,.05,1); /* KubickĂˇ Bezierova funkce pro pĹ™echody */
+
+  --header-height-desktop: 220px; /* VĂ˝Ĺˇka hlaviÄŤky na desktopu */
+  --header-height-mobile: 200px; /* Nastaveno na 200px podle snĂ­mku obrazovky */
+}
+
+/* ZĂˇkladnĂ­ styly pro body (desktop a jako vĂ˝chozĂ­ pro vĹˇechny) */
+body {
+  margin: 0;
+  padding: 0;
+  /* PozadĂ­ pro desktop s fixnĂ­m attachmentem */
+  background: url('127.jpg') no-repeat center center fixed;
+  background-size: cover; /* ZajistĂ­, Ĺľe obrĂˇzek pokryje celou obrazovku */
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  overscroll-behavior-y: none;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
+  touch-action: manipulation;
+  font-family: var(--font-main);
+  min-height: 100vh; /* MinimĂˇlnĂ­ vĂ˝Ĺˇka pro celou strĂˇnku */
+  min-height: -webkit-fill-available;
+  overflow-x: hidden; /* ZabrĂˇnĂ­ horizontĂˇlnĂ­mu scrollu */
+  -webkit-font-smoothing: antialiased; /* VyhlazenĂ­ fontĹŻ pro Webkit prohlĂ­ĹľeÄŤe */
+  -moz-osx-font-smoothing: grayscale; /* VyhlazenĂ­ fontĹŻ pro Firefox */
+}
+
+@supports (-webkit-touch-callout: none) {
+  body {
+    background-attachment: scroll;
+  }
+}
+
+@supports (padding: env(safe-area-inset-top)) {
+  body {
+    padding-bottom: max(env(safe-area-inset-bottom), 0px);
+  }
+  header {
+    padding-top: calc(10px + env(safe-area-inset-top));
+  }
+  footer {
+    padding-bottom: calc(25px + env(safe-area-inset-bottom));
+  }
+}
+
+input, textarea, select, button {
+  font-size: 16px;
+}
+
+@media (max-width: 600px) {
+  nav {
+    gap: 12px;
+  }
+  nav a {
+    font-size: 0.95rem;
+    padding: 6px 0;
+  }
+  .story-block {
+    padding: 24px 18px;
+  }
+  .card ul {
+    font-size: 0.95rem;
+  }
+}
+
+@media (hover: none) and (pointer: coarse) {
+  body {
+    background-attachment: scroll;
+  }
+  .section {
+    max-width: min(92vw, 820px);
+    padding: 32px 24px 28px;
+  }
+  header {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+}
+
+
+  body {
+    background-attachment: scroll;
+  }
+  .section {
+    max-width: min(92vw, 820px);
+    padding: 32px 24px 28px;
+  }
+  header {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+}
+
+@media (min-width: 1400px) {
+  .section {
+    max-width: 960px;
+  }
+  nav {
+    font-size: 1.05rem;
+  }
+}
+
+/* HlaviÄŤka strĂˇnky */
+header {
+  background: rgba(33, 40, 54, 0.25); /* Zvysena pruhlednost */
+  backdrop-filter: blur(8px) saturate(150%);
+  -webkit-backdrop-filter: blur(8px) saturate(150%);
+  padding: 10px 16px 10px;
+  text-align: center;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2); /* JemnÄ›jĹˇĂ­ stĂ­n */
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
+  z-index: 100;
+  transition: background 0.3s ease-out, box-shadow 0.3s ease-out;
+  letter-spacing: .03em;
+  min-height: var(--header-height-desktop); /* VĂ˝Ĺˇka na desktopu */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* JemnĂˇ svÄ›tlĂˇ linka */
+}
+
+/* Styly pro logo v hlaviÄŤce */
+.logo {
+  font-family: var(--font-mono);
+  font-size: 2.8rem;
+  font-weight: 900;
+  letter-spacing: .09em;
+  color: var(--color-accent);
+  transition: color var(--transition-speed);
+  user-select: none;
+  display: inline-block;
+  margin-bottom: 2px;
+  /* KOMBINOVANÁ ANIMACE - SYNCHRONIZOVANÉ */
+  animation: logoGlowAndScale 2.5s infinite ease-in-out alternate,
+             rotateLogo 2.5s infinite ease-in-out alternate;
+  transform-style: preserve-3d; /* Pro 3D rotaci */
+  perspective: 1000px; /* Pro 3D rotaci */
+}
+
+.logo-accent { /* SpeciĂˇlnĂ­ styl pro | v logu */
+  color: var(--color-text);
+}
+
+/* Keyframes animace pro pulzujĂ­cĂ­ zĂˇĹ™i loga, jemnĂ© ĹˇkĂˇlovĂˇnĂ­ A TEÄŽ I DROP-SHADOW */
+@keyframes logoGlowAndScale {
+  0% {
+    text-shadow: 0 0 15px rgba(42, 140, 255, 0.7),
+                 0 0 30px rgba(42, 140, 255, 0.5),
+                 0 0 45px rgba(42, 140, 255, 0.3);
+    transform: scale(1);
+    filter: drop-shadow(4px 4px 10px rgba(42, 140, 255, 0.6));
+  }
+  50% {
+    text-shadow: 0 0 20px rgba(42, 140, 255, 0.9),
+                 0 0 40px rgba(42, 140, 255, 0.7),
+                 0 0 60px rgba(42, 140, 255, 0.5);
+    transform: scale(1.02);
+    filter: drop-shadow(8px 8px 20px rgba(42, 140, 255, 0.9));
+  }
+  100% {
+    text-shadow: 0 0 15px rgba(42, 140, 255, 0.7),
+                 0 0 30px rgba(42, 140, 255, 0.5),
+                 0 0 45px rgba(42, 140, 255, 0.3);
+    transform: scale(1);
+    filter: drop-shadow(4px 4px 10px rgba(42, 140, 255, 0.6));
+  }
+}
+
+@keyframes rotateLogo {
+  0% {
+    transform: rotateY(0deg);
+  }
+  50% {
+    transform: rotateY(10deg);
+  }
+  100% {
+    transform: rotateY(0deg);
+  }
+}
+
+
+/* Podtitulek pod logem */
+.subtitle {
+  font-size: 1.25rem;
+  color: var(--color-secondary);
+  margin-bottom: 12px;
+  font-family: var(--font-mono);
+  font-weight: 400;
+  letter-spacing: .03em;
+  opacity: 0;
+  animation: fadeIn 1s forwards ease-out;
+  animation-delay: 0.5s;
+}
+
+/* Keyframes pro fadeIn (pouĹľito pro subtitle) */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* NavigaÄŤnĂ­ menu */
+nav {
+  margin: 10px auto 0;
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  font-family: var(--font-mono);
+  font-size: 1.15rem;
+}
+
+nav a {
+  text-decoration: none;
+  color: var(--color-secondary);
+  padding: 6px 0;
+  border-bottom: 2px solid transparent;
+  transition: color 0.3s ease-out, border 0.3s ease-out, transform 0.2s ease-out;
+  position: relative;
+  overflow: hidden;
+}
+
+nav a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--color-accent);
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-out;
+}
+
+nav a:hover, nav a:focus {
+  color: var(--color-accent);
+  transform: translateY(-2px);
+}
+
+nav a:hover::after, nav a:focus::after {
+  transform: translateX(0%);
+}
+
+/* ZĂˇkladnĂ­ styly pro sekce */
+.section {
+  scroll-margin-top: calc(var(--header-height-desktop) + 15px); /* VylepĹˇeno pro desktop */
+  max-width: 800px;
+  margin: 36px auto 0;
+  padding: 40px 30px 35px;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity var(--transition-speed) var(--transition-cubic), transform var(--transition-speed) var(--transition-cubic);
+}
+
+/* NovĂˇ tĹ™Ă­da pro LIQUID GLASS EFEKT */
+.glass-section {
+  /* KlĂ­ÄŤovĂ© pro LIQUID GLASS EFEKT */
+  background-color: rgba(33, 40, 54, 0.25); /* Zvysena pruhlednost */
+  border: 1px solid rgba(255, 255, 255, 0.08); /* JemnĂ˝ svÄ›tlĂ˝ okraj */
+  border-radius: 22px; /* ZdÄ›dĂ­ zaoblenĂ­ z .section, ale mĹŻĹľeme ho pĹ™epsat */
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3); /* VĂ˝raznÄ›jĹˇĂ­ stĂ­n pro hloubku */
+  
+  /* Backdrop-filter pro rozmazĂˇnĂ­ pozadĂ­ za prvkem */
+  backdrop-filter: blur(3px) saturate(150%); /* ZvĂ˝ĹˇenĂ© rozmazĂˇnĂ­ a sytost */
+  -webkit-backdrop-filter: blur(3px) saturate(150%); /* Pro Safari */
+
+  position: relative; /* DĹŻleĹľitĂ© pro pseudo-elementy */
+  overflow: hidden; /* ZamezĂ­ pĹ™eteÄŤenĂ­ obsahu nebo stĂ­nĹŻ */
+  transition: all 0.3s ease-in-out; /* PlynulĂ˝ pĹ™echod pro hover efekty */
+}
+
+
+@supports not (backdrop-filter: blur(1px)) {
+  header,
+  .glass-section {
+    background-color: rgba(33, 40, 54, 0.85);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+}
+/* VolitelnĂ©: JemnĂ© odlesky nebo gradienty pro "tekutĂ˝" dojem na glass sekcĂ­ch */
+.glass-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  /* JemnĂ˝ gradient, kterĂ˝ simuluje odlesk svÄ›tla */
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.05) 0%, /* Velmi jemnĂ˝ odlesk */
+    rgba(255, 255, 255, 0) 50%,
+    rgba(255, 255, 255, 0.02) 100%
+  );
+  border-radius: inherit; /* ZdÄ›dĂ­ zaoblenĂ­ z rodiÄŤe */
+  pointer-events: none; /* UmoĹľnĂ­ interakci s obsahem pod nĂ­m */
+  opacity: 0.8;
+}
+
+/* VolitelnĂ©: VnitĹ™nĂ­ okraj pro hloubku, simuluje tlouĹˇĹĄku skla */
+.glass-section::after {
+  content: '';
+  position: absolute;
+  top: 10px; /* OdsazenĂ­ od okraje */
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.15); /* VnitĹ™nĂ­ "odraz" */
+  border-radius: 20px; /* MĂ­rnÄ› menĹˇĂ­ zaoblenĂ­ neĹľ hlavnĂ­ prvek */
+  pointer-events: none;
+  box-shadow: inset 0 0 8px rgba(255, 255, 255, 0.05); /* JemnĂ˝ vnitĹ™nĂ­ stĂ­n */
+}
+
+
+/* Stav pro animaci pĹ™i objevenĂ­ sekce (poneÄŤĂˇno beze zmÄ›ny) */
+.section.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Nadpisy sekcĂ­ */
+.section-title {
+  font-family: var(--font-main);
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--color-accent); /* Barva nadpisu zĹŻstĂˇvĂˇ akcentnĂ­ */
+  margin: 0 0 10px 0;
+  letter-spacing: .01em;
+  text-align: center;
+  position: relative;
+  text-shadow: 0 2px 5px rgba(0,0,0,0.3); /* JemnĂ˝ stĂ­n pro lepĹˇĂ­ ÄŤitelnost na skle */
+}
+
+.section-title::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 4px;
+  background: var(--color-accent);
+  margin: 8px auto 0;
+  border-radius: 2px;
+}
+
+.section-subtitle {
+  font-size: 1.15rem;
+  color: var(--color-secondary);
+  font-family: var(--font-mono);
+  margin: 0 0 30px 0;
+  text-align: center;
+}
+
+/* Styly pro ovÄ›Ĺ™ovacĂ­ odkazy certifikĂˇtĹŻ, aby vypadaly jako podtitulky */
+.certificate-verify-link {
+  color: var(--color-secondary); /* PouĹľĂ­vĂˇ stejnou barvu jako .section-subtitle */
+  font-weight: bold; /* Pro zvĂ˝raznÄ›nĂ­ */
+  text-decoration: none; /* OdstranÄ›nĂ­ podtrĹľenĂ­ */
+  transition: color 0.2s ease-out, text-shadow 0.2s ease-out; /* PlynulĂ˝ pĹ™echod */
+}
+
+.certificate-verify-link:hover,
+.certificate-verify-link:focus {
+  color: var(--color-accent); /* ZmÄ›na barvy na akcentnĂ­ pĹ™i najetĂ­ myĹˇĂ­ */
+  text-shadow: 0 0 10px rgba(42, 140, 255, 0.7); /* JemnĂ˝ svit */
+  text-decoration: underline; /* MĹŻĹľeĹˇ pĹ™idat podtrĹľenĂ­ pĹ™i najetĂ­ myĹˇĂ­ */
+}
+
+
+/* Story blocks v sekci O mně */
+.story-block {
+  margin: 22px 0;
+  padding: 20px 24px;
+  border-radius: 14px;
+  border-left: 4px solid var(--color-accent);
+  background: rgba(34, 44, 60, 0.35);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+}
+
+.story-block h4 {
+  margin: 0 0 12px;
+  font-size: 1.2rem;
+  color: var(--color-secondary);
+  letter-spacing: .01em;
+}
+
+.story-block p {
+  margin-bottom: 12px;
+}
+
+/* Styly pro neÄŤĂ­slovanĂ© seznamy */
+ul {
+  padding-left: 2em; /* ZvÄ›tĹˇĂ­me padding, aby bylo mĂ­sto pro vlastnĂ­ odrĂˇĹľky */
+  margin: 18px 0 30px 0;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  list-style: none; /* OdstranÄ›nĂ­ vĂ˝chozĂ­ch odrĂˇĹľek */
+  color: var(--color-text); /* ZajiĹˇtÄ›nĂ­ barvy textu pro seznamy */
+}
+
+ul li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.6em;
+  width: 0.45em;
+  height: 0.45em;
+  border-radius: 50%;
+  background: var(--color-accent);
+  box-shadow: 0 0 6px rgba(42, 140, 255, 0.6);
+  transform: translateY(-50%);
+}
+
+
+li {
+  margin-bottom: 8px;
+  position: relative;
+  color: var(--color-text); /* ZajiĹˇtÄ›nĂ­ barvy textu pro poloĹľky seznamu */
+  padding-left: 1.2em; /* PĹ™idĂˇme padding pro text, aby se nepĹ™ekrĂ˝val s vlastnĂ­ odrĂˇĹľkou */
+}
+
+/* Zásady ochrany osobních údajů */
+.policy-text {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.policy-text h3 {
+  font-size: 1.35rem;
+  margin-bottom: 12px;
+}
+
+.policy-text h4 {
+  font-size: 1.1rem;
+  margin: 18px 0 10px;
+  color: var(--color-secondary);
+  letter-spacing: normal;
+  text-transform: none;
+}
+
+.policy-list {
+  margin: 24px 0 0;
+  padding-left: 1.8em;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.policy-list > li {
+  position: static;
+  padding-left: 0;
+  margin-bottom: 0;
+}
+
+.policy-list > li::marker {
+  font-weight: 700;
+  color: var(--color-accent);
+}
+
+.policy-sublist {
+  margin: 10px 0 18px;
+  padding-left: 1.8em;
+}
+
+.policy-sublist li {
+  margin-bottom: 6px;
+}
+
+.policy-placeholder {
+  font-style: italic;
+  color: var(--color-secondary);
+}
+
+.policy-effective {
+  margin-top: 12px;
+}
+
+.legal-highlights {
+  margin: 18px 0 24px;
+  padding-left: 1.6em;
+}
+
+.legal-highlights li {
+  margin-bottom: 6px;
+}
+
+.legal-note {
+  margin-top: 16px;
+  color: var(--color-secondary);
+  font-size: 0.95rem;
+}
+
+.legal-button {
+  margin-top: 20px;
+}
+
+.legal-page header {
+  min-height: 160px;
+  position: static;
+  top: auto;
+}
+
+.legal-header {
+  padding: 20px 16px 18px;
+  gap: 10px;
+}
+
+.legal-nav {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  flex-wrap: wrap;
+  font-size: 0.95rem;
+}
+
+.legal-nav a {
+  color: var(--color-secondary);
+  text-decoration: none;
+  transition: color 0.2s ease-in-out;
+}
+
+.legal-nav a:hover, .legal-nav a:focus {
+  color: var(--color-text);
+}
+
+.legal-section {
+  margin-top: 40px;
+}
+
+.legal-page .section {
+  opacity: 1;
+  transform: none;
+}
+
+.legal-page .section::before {
+  opacity: 1;
+  transform: none;
+}
+
+.legal-footer {
+  text-align: center;
+  padding: 30px 16px 40px;
+  color: var(--color-secondary);
+}
+
+.legal-footer .legal-button {
+  display: inline-block;
+  margin-top: 18px;
+}
+
+/* Styly pro odstavce */
+p {
+  font-size: 1.08rem;
+  margin-bottom: 18px;
+  color: var(--color-text);
+  line-height: 1.7;
+}
+
+/* Styly pro "kartu" v sekci O mnÄ› */
+.card {
+  background: rgba(34, 44, 60, 0.25); /* Zvysena pruhlednost */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 20px;
+  margin: 25px 0;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* UpravenĂ˝ stĂ­n */
+  font-size: 1rem;
+  line-height: 1.6;
+  border: 1px solid rgba(42, 140, 255, 0.1);
+  transform: translateY(0);
+  transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3); /* UpravenĂ˝ stĂ­n pĹ™i najetĂ­ */
+}
+
+.card ul {
+    padding-left: 1.2em; /* MĂ­rnÄ› menĹˇĂ­ padding pro vnoĹ™enĂ© seznamy */
+    margin: 10px 0 0 0;
+    list-style: none; /* OdstranÄ›nĂ­ vĂ˝chozĂ­ch odrĂˇĹľek pro vnoĹ™enĂ© ul v kartÄ› */
+}
+
+.card ul li::before {
+  left: 0; /* ZarovnĂˇme odrĂˇĹľky uvnitĹ™ karty */
+}
+
+/* Styly pro hlavnĂ­ tlaÄŤĂ­tko (beze zmÄ›ny) */
+.btn-main {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 1.1rem;
+  color: #fff;
+  background: var(--color-accent);
+  border: none;
+  border-radius: 10px;
+  padding: 13px 36px;
+  margin-top: 20px;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(42, 140, 255, 0.2);
+  transition: background 0.3s ease-out, transform 0.2s ease-out, box-shadow 0.3s ease-out;
+  font-weight: 700;
+  letter-spacing: .05em;
+  text-decoration: none;
+}
+
+.btn-main:hover, .btn-main:focus {
+  background: #0062e8;
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 8px 25px rgba(42, 140, 255, 0.4);
+}
+
+/* Styly pro kontaktnĂ­ odkazy */
+.contact-links {
+  margin-top: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.contact-links span {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.05rem;
+    color: var(--color-text); /* ZajiĹˇtÄ›nĂ­ barvy textu */
+}
+
+.contact-links a {
+  color: var(--color-accent);
+  text-decoration: none;
+  font-family: var(--font-mono);
+  font-size: 1.05rem;
+  transition: color 0.2s, text-shadow 0.2s;
+  word-break: break-word;
+}
+
+.contact-links a:hover {
+  color: var(--color-text);
+  text-shadow: 0 0 10px rgba(42, 140, 255, 0.7);
+}
+
+/* Styly QR kontejner */
+.qr-code-container {
+    text-align: center;
+    margin-top: 40px;
+    padding: 20px;
+    background: rgba(34, 44, 60, 0.25); /* Zvysena pruhlednost */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 18px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* UpravenĂ˝ stĂ­n */
+    display: block; /* ZmÄ›na na block, aby margin auto fungoval */
+    width: fit-content; /* OmezĂ­ ĹˇĂ­Ĺ™ku na obsah, aby margin auto fungoval sprĂˇvnÄ› */
+    max-width: calc(100% - 40px); /* PonechĂˇme nÄ›jakĂ© maximĂˇlnĂ­ omezenĂ­ vzhledem k rodiÄŤi */
+    margin-left: auto;
+    margin-right: auto;
+    padding: 30px; /* ZvÄ›tĹˇenĂ˝ padding pro vĂ­ce prostoru */
+}
+
+.qr-code-text {
+    color: var(--color-secondary);
+    font-family: var(--font-mono);
+    margin-bottom: 15px;
+    font-size: 1rem;
+}
+
+.qr-code-img {
+    border-radius: 16px;
+    box-shadow: 0 2px 16px rgba(42, 140, 255, 0.2);
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+    display: block; /* DĹŻleĹľitĂ© pro responzivnĂ­ obrĂˇzek */
+    max-width: 100%; /* ZajistĂ­, Ĺľe se obrĂˇzek zmenĹˇĂ­, pokud je kontejner menĹˇĂ­ */
+    height: auto; /* ZachovĂˇ pomÄ›r stran */
+    margin: 0 auto; /* Centruje obrĂˇzek uvnitĹ™ kontejneru */
+}
+
+/* PatiÄŤka strĂˇnky */
+footer {
+  background: rgba(33, 40, 54, 0.25); /* Zvysena pruhlednost */
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: var(--color-secondary);
+  text-align: center;
+  padding: 25px 15px 18px;
+  margin-top: 50px;
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  letter-spacing: .02em;
+  border-top: 1px solid rgba(255, 255, 255, 0.1); /* JemnÄ›jĹˇĂ­ linka */
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1); /* JemnĂ˝ stĂ­n nahoru */
+}
+
+
+.footer-copy {
+  display: block;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+  font-size: 0.9rem;
+}
+
+.footer-links a {
+  color: var(--color-secondary);
+  text-decoration: none;
+  transition: color 0.2s ease-in-out;
+}
+
+.footer-links a:hover,
+.footer-links a:focus {
+  color: var(--color-text);
+}
+
+/* KontaktnĂ­ formulĂˇĹ™ styly */
+.contact-form {
+    max-width: 450px;
+    margin: auto;
+    padding: 25px;
+    background: rgba(34, 44, 60, 0.25); /* Zvysena pruhlednost */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* UpravenĂ˝ stĂ­n */
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.contact-form label {
+    color: var(--color-secondary);
+    font-size: 0.95rem;
+    margin-bottom: 4px;
+    display: block;
+}
+
+.form-input,
+.form-textarea {
+  width: 100%;
+  padding: 12px;
+  background: rgba(36, 44, 62, 0.4); /* Zvysena pruhlednost */
+  color: var(--color-text);
+  border: 1px solid rgba(42, 140, 255, 0.2); /* JemnÄ›jĹˇĂ­ okraj */
+  border-radius: 8px;
+  font-family: var(--font-main);
+  font-size: 1rem;
+  transition: border 0.2s ease-out, box-shadow 0.2s ease-out;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+  outline: none;
+  border: 1.5px solid var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(42, 140, 255, 0.3); /* JasnÄ›jĹˇĂ­ focus stĂ­n */
+}
+
+.form-textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.form-submit-btn {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.no-js-message {
+  margin-top: 15px;
+  font-size: 0.95rem;
+  color: var(--color-secondary);
+}
+
+.no-js-message a {
+  color: var(--color-accent);
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.form-status {
+    margin-top: 15px;
+    font-size: 0.95rem;
+    text-align: center;
+    min-height: 20px;
+    opacity: 0;
+    transition: opacity 0.3s ease-out;
+}
+
+.form-status.success {
+    color: var(--color-success);
+    opacity: 1;
+}
+
+.form-status.error {
+    color: var(--color-error);
+    opacity: 1;
+}
+
+/* Styly pro vizuĂˇlnÄ› skrytĂ˝ H1 (beze zmÄ›ny) */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+/* MEDIA QUERIES pro responsivnĂ­ design */
+@media (max-width: 768px) {
+  header {
+    min-height: var(--header-height-mobile); /* PouĹľĂ­vĂˇme mobilnĂ­ vĂ˝Ĺˇku */
+  }
+  .section {
+    max-width: 95vw;
+    padding: 30px 20px 25px;
+    margin: 25px auto 0;
+    scroll-margin-top: calc(var(--header-height-mobile) + 15px);
+  }
+  /* ZMÄšNA: PĹ™idĂˇno pro responzivitu glass-section */
+  .glass-section {
+    border-radius: 18px; /* MĂ­rnÄ› menĹˇĂ­ zaoblenĂ­ na tabletu */
+    box-shadow: 0 6px 28px 0 rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(12px) saturate(150%);
+    -webkit-backdrop-filter: blur(12px) saturate(150%);
+  }
+  .section-title {
+    font-size: 2em; /* Upraveno z 1.8rem na 2em pro vÄ›tĹˇĂ­ kontrast */
+  }
+  .section-subtitle {
+    font-size: 1.1em;
+    margin-bottom: 25px;
+  }
+  p {
+    font-size: 1em;
+  }
+  .card {
+    padding: 18px;
+    margin: 20px 0;
+  }
+  .story-block {
+    padding: 18px;
+    margin: 20px 0;
+  }
+  .btn-main {
+    font-size: 1rem;
+    padding: 12px 30px;
+    margin-top: 18px;
+  }
+  .contact-form {
+    padding: 20px;
+  }
+  .qr-code-container {
+    padding: 15px;
+    max-width: 180px; /* PonechĂˇvĂˇme, protoĹľe QR kĂłd by nemÄ›l bĂ˝t pĹ™Ă­liĹˇ velkĂ˝ */
+  }
+} 
+
+/* --- MOBILNĂŤ STYLY (max-width: 480px) --- */
+@media (max-width: 480px) {
+  header {
+    min-height: var(--header-height-mobile);
+  }
+  .section {
+    padding: 20px 20px 18px;
+    margin: 20px auto 0;
+    scroll-margin-top: calc(var(--header-height-mobile) + 15px);
+  }
+  .glass-section {
+    border-radius: 12px;
+    box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(8px) saturate(150%);
+    -webkit-backdrop-filter: blur(8px) saturate(150%);
+  }
+  .logo {
+    font-size: 1.8rem;
+    /* Na mobilech vypĂ­nĂˇme rotaci pro lepĹˇĂ­ vĂ˝kon a ÄŤitelnost */
+    animation: logoGlowAndScale 2.5s infinite ease-in-out alternate; /* Pouze animace zĂˇĹ™e a ĹˇkĂˇlovĂˇnĂ­ */
+    transform: none !important; /* VynutĂ­me ĹľĂˇdnou rotaci/transformaci */
+    transform-style: none !important;
+    perspective: none !important;
+    filter: none !important; /* Vypneme drop-shadow, protoĹľe se jiĹľ nebude animovat v logoGlowAndScale */
+  }
+  .subtitle {
+    font-size: 0.95rem;
+    margin-bottom: 8px;
+  }
+  nav {
+    flex-wrap: wrap;
+    gap: 15px 10px;
+    font-size: 0.9rem;
+    justify-content: center;
+    padding: 0 10px;
+  }
+  nav a {
+    padding: 4px 0;
+  }
+  .section-title {
+    font-size: 1.5rem;
+  }
+  .section-subtitle {
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+  }
+  p {
+    font-size: 0.95rem;
+  }
+  ul {
+    font-size: 0.95rem;
+    padding-left: 1.8em;
+  }
+  .story-block {
+    padding: 16px;
+    margin: 18px 0;
+  }
+  footer {
+    padding: 18px 10px 12px;
+    margin-top: 30px;
+    font-size: 0.85rem;
+  }
+  .contact-form {
+    padding: 20px;
+    width: 100%;
+    max-width: none;
+  }
+  .qr-code-container {
+    padding: 10px;
+    max-width: 150px;
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+  }
+  .qr-code-img {
+    max-width: 120px;
+  }
+
+  /* --- Zde jsou ty novĂ© styly pro body, kterĂ© CHCEĹ  na mobilu (fixnĂ­ pozadĂ­) --- */
+  body {
+    background: none; /* Vypneme pĹŻvodnĂ­ pozadĂ­ na body, aby ho simuloval pseudo-element */
+    position: relative; /* DĹŻleĹľitĂ© pro z-index obsahu */
+    z-index: 1; /* ZajistĂ­, Ĺľe obsah bude nad pozadĂ­m */
+  }
+
+  body::before { /* Tento pseudo-element bude slouĹľit jako naĹˇe fixnĂ­ pozadĂ­ */
+    content: ''; /* PovinnĂˇ vlastnost pro pseudo-element */
+    position: fixed; /* KLĂŤÄŚOVĂ‰: UdrĹľĂ­ pozadĂ­ pevnĂ© vĹŻÄŤi obrazovce */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Zde pouĹľijeme gradient a tvĹŻj optimalizovanĂ˝ mobilnĂ­ obrĂˇzek */
+    background: linear-gradient(
+                      rgba(23, 29, 37, 0.5),
+                      rgba(23, 29, 37, 0.5)
+                    ),
+                    url('127mob.jpg') no-repeat center center;
+    background-size: cover;
+    z-index: -1; /* UmĂ­stĂ­ tento element pod veĹˇkerĂ˝ obsah */
+  }
+  /* --- Konec novĂ˝ch stylĹŻ pro body na mobilu --- */
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  html {
+    scroll-behavior: auto !important;
+  }
+}

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+      <loc>https://www.hyndriuk.cz/</loc>
+      <lastmod>2025-10-01</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>1.0</priority>
+    </url>
+    <url>
+      <loc>https://www.hyndriuk.cz/privacy.html</loc>
+      <lastmod>2025-10-01</lastmod>
+      <changefreq>yearly</changefreq>
+      <priority>0.6</priority>
+    </url>
+    <url>
+      <loc>https://www.hyndriuk.cz/terms.html</loc>
+      <lastmod>2025-10-01</lastmod>
+      <changefreq>yearly</changefreq>
+      <priority>0.6</priority>
+    </url>
+    <url>
+      <loc>https://www.hyndriuk.cz/404.html</loc>
+      <lastmod>2025-10-01</lastmod>
+      <changefreq>yearly</changefreq>
+      <priority>0.2</priority>
+    </url>
+</urlset>
