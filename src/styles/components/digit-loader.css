@@ -96,44 +96,54 @@
 @media (max-width: 1024px) and (pointer: coarse) {
     .right-digit-loader {
         right: max(8px, env(safe-area-inset-right));
-        width: clamp(42px, 10vw, 70px);
-        gap: clamp(8px, 1.8vw, 14px);
+        width: clamp(46px, 10vw, 72px);
+        gap: clamp(4px, 1.1vw, 8px);
         padding-bottom: clamp(28px, 6vh, 56px);
-        opacity: 0.72;
+        opacity: 0.66;
     }
 
     .digit-column {
-        --digit-gap: clamp(24px, 5vh, 40px);
+        --digit-gap: clamp(22px, 4.2vh, 34px);
     }
 
     .digit-stack span {
-        font-size: clamp(0.92rem, 2.8vw, 1.2rem);
-    }
-
-    .digit-column--one {
-        display: none;
+        font-size: clamp(0.82rem, 2.2vw, 1rem);
     }
 }
 
 @media (max-width: 640px) and (pointer: coarse) {
     .right-digit-loader {
-        width: clamp(26px, 8vw, 42px);
-        gap: 0;
-    }
-
-    .digit-column--two {
-        display: none;
-    }
-
-    .digit-column--three {
-        flex: 1 1 auto;
+        width: clamp(42px, 12vw, 56px);
+        gap: 2px;
+        opacity: 0.58;
     }
 
     .digit-stack {
-        letter-spacing: 0.08em;
+        letter-spacing: 0.05em;
     }
 
     .digit-stack span {
-        font-size: clamp(0.9rem, 4vw, 1.08rem);
+        font-size: clamp(0.72rem, 3.2vw, 0.92rem);
+    }
+
+    .digit-column {
+        --digit-gap: clamp(20px, 4vh, 28px);
+    }
+
+    .digit-column::after {
+        width: 0.8px;
+        filter: blur(0.4px);
+    }
+}
+
+@media (max-width: 390px) and (pointer: coarse) {
+    .right-digit-loader {
+        width: clamp(38px, 11vw, 48px);
+        gap: 1px;
+        opacity: 0.52;
+    }
+
+    .digit-stack span {
+        font-size: clamp(0.66rem, 3vw, 0.82rem);
     }
 }
