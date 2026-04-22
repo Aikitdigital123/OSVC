@@ -1,6 +1,7 @@
 import { getRoot, qsa, setDataAttribute } from '../core/dom.js';
 import { getScrollTargetPosition } from '../core/header-offset.js';
 import { prefersReducedMotion } from '../core/media.js';
+import { closeMobileNav } from '../core/mobile-nav.js';
 
 const ANCHOR_SELECTOR = 'nav a[href^="#"]';
 
@@ -30,6 +31,7 @@ export const initAnchorNav = () => {
                 return;
             }
 
+            closeMobileNav();
             const scrollToPosition = getScrollTargetPosition(targetElement, header);
 
             if (reducedMotion) {

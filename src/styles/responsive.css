@@ -1,7 +1,7 @@
 /* Responsive overrides extracted from the legacy layer. */
 
 @media (max-width: 600px) {
-    nav a {
+    .site-nav a {
         font-size: 0.95rem; /* Zůstává rem */
         padding: 8px 4px;
     }
@@ -28,16 +28,22 @@
     .section {
         max-width: 960px;
     }
-    nav {
+    .site-nav {
         font-size: 1.05rem;
     }
 }
 
 @media (max-width: 768px) {
     header {
+        position: sticky;
         min-height: auto;
         padding: max(12px, env(safe-area-inset-top)) max(18px, env(safe-area-inset-right)) 16px max(18px, env(safe-area-inset-left));
         gap: 10px;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        align-items: center;
+        justify-items: start;
+        text-align: left;
     }
     .section {
         max-width: 95vw;
@@ -81,6 +87,84 @@
         padding: 15px;
         max-width: 180px;
     }
+
+    .logo-container,
+    .legal-header > .logo {
+        grid-column: 1;
+        grid-row: 1;
+        margin: 0;
+    }
+
+    .subtitle {
+        grid-column: 1 / -1;
+        grid-row: 2;
+        margin-bottom: 0;
+        text-align: left;
+    }
+
+    .nav-toggle {
+        display: inline-flex;
+        grid-column: 2;
+        grid-row: 1;
+        justify-self: end;
+    }
+
+    .site-nav {
+        grid-column: 1 / -1;
+        grid-row: 3;
+        width: 100%;
+        max-width: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(-10px);
+        transition: max-height 0.28s ease-out, opacity 0.22s ease-out, transform 0.22s ease-out, margin-top 0.22s ease-out, padding 0.22s ease-out;
+        background: rgba(15, 22, 32, 0.78);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 16px;
+        box-shadow: 0 16px 30px rgba(0, 0, 0, 0.22);
+        backdrop-filter: blur(14px) saturate(140%);
+        -webkit-backdrop-filter: blur(14px) saturate(140%);
+    }
+
+    html[data-mobile-nav-open="true"] .site-nav {
+        max-height: min(70vh, 420px);
+        margin-top: 8px;
+        padding: 8px 0;
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0);
+        overflow-y: auto;
+        overscroll-behavior: contain;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .site-nav a {
+        display: block;
+        width: 100%;
+        padding: 14px 16px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .site-nav a:last-child {
+        border-bottom: 0;
+    }
+
+    .site-nav a::after {
+        display: none;
+    }
+
+    html.menu-open,
+    body.menu-open {
+        overflow: hidden;
+        overscroll-behavior: none;
+    }
 }
 
 /* --- MOBILNÍ STYLY (max-width: 480px) --- */
@@ -113,16 +197,6 @@
     .subtitle {
         font-size: 0.95rem;
         margin-bottom: 8px;
-    }
-    nav {
-        flex-wrap: wrap;
-        gap: 12px 10px;
-        font-size: 0.9rem;
-        justify-content: center;
-        padding: 0 10px;
-    }
-    nav a {
-        padding: 8px 6px;
     }
     .section-title {
         font-size: 1.5rem;
@@ -163,7 +237,15 @@
         max-width: 120px;
     }
 
-    /* --- Styly pro fixní pozadí na mobilu (ponecháno beze změny - je to efektivní) --- */
+    .nav-toggle {
+        min-height: 42px;
+        min-width: 42px;
+        padding: 8px 14px;
+        font-size: 0.88rem;
+    }
+}
+
+@media (max-width: 1024px) and (pointer: coarse) {
     body {
         background: none;
         position: relative;
@@ -173,53 +255,29 @@
     body::before {
         content: '';
         position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
+        inset: 0;
+        width: 100vw;
+        height: 100lvh;
         background: linear-gradient(
-                            rgba(23, 29, 37, 0.5),
-                            rgba(23, 29, 37, 0.5)
+                            rgba(23, 29, 37, 0.58),
+                            rgba(23, 29, 37, 0.52)
+                        ),
+                        url('/images/backgrounds/127.jpg') no-repeat center center;
+        background-size: cover;
+        background-attachment: scroll;
+        z-index: -1;
+        transform: translateZ(0);
+    }
+}
+
+@media (max-width: 640px) and (pointer: coarse) {
+    body::before {
+        background: linear-gradient(
+                            rgba(23, 29, 37, 0.54),
+                            rgba(23, 29, 37, 0.48)
                         ),
                         url('/images/backgrounds/127mob.jpg') no-repeat center center;
         background-size: cover;
-        z-index: -1;
-    }
-    /* --- Konec stylů pro body na mobilu --- */
-}
-
-/* Kompaktni rozvrzeni hlavicky pro mobilni landscape */
-@media (max-height: 520px) and (orientation: landscape) {
-    header {
-        flex-direction: row;
-        flex-wrap: wrap;
-        align-items: center;
-        justify-content: space-between;
-        text-align: left;
-        min-height: auto;
-        padding: 10px 20px;
-        gap: 8px;
-    }
-    .logo {
-        font-size: 1.6rem;
-        margin-bottom: 0;
-    }
-    .subtitle {
-        font-size: 0.9rem;
-        margin: 0;
-        flex: 1 1 auto;
-        text-align: left;
-    }
-    nav {
-        order: 3;
-        width: 100%;
-        justify-content: center;
-        gap: 12px 18px;
-        font-size: 0.95rem;
-        flex-wrap: wrap;
-        padding: 0 10px;
-    }
-    nav a {
-        padding: 4px 0;
+        background-attachment: scroll;
     }
 }

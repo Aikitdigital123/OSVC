@@ -104,6 +104,23 @@
     color: var(--color-text);
 }
 
+@media (max-width: 768px) {
+    .legal-page header {
+        position: sticky;
+        top: 0;
+        min-height: auto;
+    }
+
+    .legal-nav {
+        font-size: 0.95rem;
+        justify-content: stretch;
+    }
+
+    .legal-nav a {
+        color: var(--color-text);
+    }
+}
+
 .legal-section {
     margin-top: 40px;
 }

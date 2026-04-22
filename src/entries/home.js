@@ -3,6 +3,7 @@ import { getRoot, setDataAttribute, whenDomReady } from '../scripts/core/dom.js'
 import { applyFeatureFlags } from '../scripts/core/features.js';
 import { applyPageFlags } from '../scripts/core/page-flags.js';
 import { applyMediaFlags } from '../scripts/core/media.js';
+import { initMobileNav } from '../scripts/core/mobile-nav.js';
 import { initStickyHeader } from '../scripts/core/sticky-header.js';
 import { initAnchorNav } from '../scripts/home/anchor-nav.js';
 import { initSectionReveal } from '../scripts/home/section-reveal.js';
@@ -34,6 +35,7 @@ const initCoreBootstrap = () => {
 
 const initHomeEntry = () => {
     initCoreBootstrap();
+    initMobileNav();
     initStickyHeader();
     initAnchorNav();
     initSectionReveal();
