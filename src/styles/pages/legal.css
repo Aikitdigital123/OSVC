@@ -1,0 +1,130 @@
+/* Page-specific legal styles extracted from the legacy layer. */
+
+.policy-text {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.policy-text h3 {
+    font-size: 1.35rem;
+    margin-bottom: 12px;
+}
+
+.policy-text h4 {
+    font-size: 1.1rem;
+    margin: 18px 0 10px;
+    color: var(--color-secondary);
+    letter-spacing: normal;
+    text-transform: none;
+}
+
+.policy-list {
+    margin: 24px 0 0;
+    padding-left: 1.8rem; /* Změněno na REM */
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+}
+
+.policy-list > li {
+    position: static;
+    padding-left: 0;
+    margin-bottom: 0;
+}
+
+.policy-list > li::marker {
+    font-weight: 700;
+    color: var(--color-accent);
+}
+
+.policy-sublist {
+    margin: 10px 0 18px;
+    padding-left: 1.8rem; /* Změněno na REM */
+}
+
+.policy-sublist li {
+    margin-bottom: 6px;
+}
+
+.policy-placeholder {
+    font-style: italic;
+    color: var(--color-secondary);
+}
+
+.policy-effective {
+    margin-top: 12px;
+}
+
+.legal-highlights {
+    margin: 18px 0 24px;
+    padding-left: 1.6rem; /* Změněno na REM */
+}
+
+.legal-highlights li {
+    margin-bottom: 6px;
+}
+
+.legal-note {
+    margin-top: 16px;
+    color: var(--color-secondary);
+    font-size: 0.95rem;
+}
+
+.legal-button {
+    margin-top: 20px;
+}
+
+.legal-page header {
+    min-height: 160px;
+    position: static;
+    top: auto;
+}
+
+.legal-header {
+    padding: 20px 16px 18px;
+    gap: 10px;
+}
+
+.legal-nav {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    flex-wrap: wrap;
+    font-size: 0.95rem;
+}
+
+.legal-nav a {
+    color: var(--color-secondary);
+    text-decoration: none;
+    transition: color 0.2s ease-in-out;
+}
+
+.legal-nav a:hover, .legal-nav a:focus {
+    color: var(--color-text);
+}
+
+.legal-section {
+    margin-top: 40px;
+}
+
+.legal-page .section {
+    opacity: 1;
+    transform: none;
+}
+
+.legal-page .section::before {
+    opacity: 1;
+    transform: none;
+}
+
+.legal-footer {
+    text-align: center;
+    padding: 30px 16px 40px;
+    color: var(--color-secondary);
+}
+
+.legal-footer .legal-button {
+    display: inline-block;
+    margin-top: 18px;
+}

@@ -1,0 +1,90 @@
+/* DŮLEŽITÉ: Univerzální box-sizing pro konzistentní model boxu */
+*, *::before, *::after {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html {
+    font-size: 100%;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    scroll-behavior: smooth;
+    height: 100%; /* Zajišťuje, že html element zabírá celou výšku */
+}
+
+/* Základní styly pro body (desktop a jako výchozí pro všechny) */
+body {
+    margin: 0;
+    padding: 0;
+    /* Pozadí pro desktop s fixním attachmentem */
+    background: url('/images/backgrounds/127.jpg') no-repeat center center fixed;
+    background-size: cover; /* Zajistí, že obrázek pokryje celou obrazovku */
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    overscroll-behavior-y: contain; /* Změněno z 'none' na 'contain' pro lepší UX */
+    overscroll-behavior-x: contain;
+    -webkit-overflow-scrolling: touch;
+    touch-action: manipulation;
+    font-family: var(--font-main);
+    min-height: 100vh; /* Minimální výška pro celou stránku */
+    min-height: 100dvh; /* Přidáno pro mobile viewport kompatibilitu */
+    overflow-x: hidden; /* Zabrání horizontálnímu scrollu */
+    -webkit-font-smoothing: antialiased; /* Vyhlazení fontů pro Webkit prohlížeče */
+    -moz-osx-font-smoothing: grayscale; /* Vyhlazení fontů pro Firefox */
+}
+
+input, textarea, select, button {
+    font-size: 16px; /* Zajišťuje, že mobilní prohlížeče nebudou automaticky zoomovat */
+    font-family: var(--font-main); /* Zajišťuje konzistentní font u formulářových prvků */
+}
+
+/* Styly pro nečíslované seznamy */
+ul {
+    padding-left: 2rem; /* Změněno na REM pro konzistentní škálování */
+    margin: 18px 0 30px 0;
+    font-size: 1.05rem;
+    line-height: 1.8;
+    list-style: none; /* Odstranění výchozích odrážek */
+    color: var(--color-text); /* Zajištění barvy textu pro seznamy */
+}
+
+li {
+    margin-bottom: 8px;
+    position: relative;
+    color: var(--color-text); /* Zajištění barvy textu pro položky seznamu */
+    padding-left: 1.2rem; /* Změněno na REM pro konzistentní škálování a místo pro odrážku */
+}
+
+ul li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    /* Používáme kombinaci top a transform pro přesné vertikální centrování */
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0.45em;
+    height: 0.45em;
+    border-radius: 50%;
+    background: var(--color-accent);
+    box-shadow: 0 0 6px rgba(42, 140, 255, 0.6);
+}
+
+/* Styly pro odstavce */
+p {
+    font-size: 1.08rem;
+    margin-bottom: 18px;
+    color: var(--color-text);
+    line-height: 1.7;
+}
+
+/* Styly pro vizuálně skrytý H1 (beze změny) */
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}

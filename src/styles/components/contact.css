@@ -1,0 +1,64 @@
+/* Homepage contact and QR styles extracted from the legacy layer. */
+
+.contact-links {
+    margin-top: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.contact-links span {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.05rem;
+    color: var(--color-text); /* Zajištění barvy textu */
+}
+
+.contact-links a {
+    color: var(--color-accent);
+    text-decoration: none;
+    font-family: var(--font-mono);
+    font-size: 1.05rem;
+    transition: color 0.2s, text-shadow 0.2s;
+    word-break: break-word;
+}
+
+.contact-links a:hover {
+    color: var(--color-text);
+    text-shadow: 0 0 10px rgba(42, 140, 255, 0.7);
+}
+
+.qr-code-container {
+    text-align: center;
+    margin-top: 40px;
+    padding: 20px;
+    background: rgba(34, 44, 60, 0.25); /* Zvysena pruhlednost */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 18px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Upravený stín */
+    display: block; /* Změna na block, aby margin auto fungoval */
+    width: fit-content; /* Omezí šířku na obsah, aby margin auto fungoval správně */
+    max-width: calc(100% - 40px); /* Ponecháme nějaké maximální omezení vzhledem k rodiči */
+    margin-left: auto;
+    margin-right: auto;
+    padding: 30px; /* Zvětšený padding pro více prostoru */
+}
+
+.qr-code-text {
+    color: var(--color-secondary);
+    font-family: var(--font-mono);
+    margin-bottom: 15px;
+    font-size: 1rem;
+}
+
+.qr-code-img {
+    border-radius: 16px;
+    box-shadow: 0 2px 16px rgba(42, 140, 255, 0.2);
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+    display: block; /* Důležité pro responzivní obrázek */
+    max-width: 100%; /* Zajistí, že se obrázek zmenší, pokud je kontejner menší */
+    height: auto; /* Zachová poměr stran */
+    margin: 0 auto; /* Centruje obrázek uvnitř kontejneru */
+}

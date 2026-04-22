@@ -1,0 +1,15 @@
+/* Homepage certificate link styles extracted from the legacy layer. */
+
+.certificate-verify-link {
+    color: var(--color-secondary); /* Používá stejnou barvu jako .section-subtitle */
+    font-weight: bold; /* Pro zvýraznění */
+    text-decoration: none; /* Odstranění podtržení */
+    transition: color 0.2s ease-out, text-shadow 0.2s ease-out; /* Plynulý přechod */
+}
+
+.certificate-verify-link:hover,
+.certificate-verify-link:focus {
+    color: var(--color-accent); /* Změna barvy na akcentní při najetí myší */
+    text-shadow: 0 0 10px rgba(42, 140, 255, 0.7); /* Jemný svit */
+    text-decoration: underline; /* Můžeš přidat podtržení při najetí myší */
+}

@@ -1,0 +1,54 @@
+.glass-section {
+    background-color: rgba(33, 40, 54, 0.25); /* Zvysena pruhlednost */
+    border: 1px solid rgba(255, 255, 255, 0.08); /* Jemný světlý okraj */
+    border-radius: 22px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3); /* Výraznější stín pro hloubku */
+    backdrop-filter: blur(3px) saturate(150%);
+    -webkit-backdrop-filter: blur(3px) saturate(150%);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease-in-out;
+}
+
+@supports not (backdrop-filter: blur(1px)) {
+    header,
+    .glass-section,
+    .card,
+    .contact-form,
+    .qr-code-container {
+        background-color: rgba(33, 40, 54, 0.85);
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+    }
+}
+
+.glass-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.05) 0%,
+        rgba(255, 255, 255, 0) 50%,
+        rgba(255, 255, 255, 0.02) 100%
+    );
+    border-radius: inherit;
+    pointer-events: none;
+    opacity: 0.8;
+}
+
+.glass-section::after {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+    pointer-events: none;
+    box-shadow: inset 0 0 8px rgba(255, 255, 255, 0.05);
+}

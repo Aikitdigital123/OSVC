@@ -1,0 +1,38 @@
+footer {
+    background: rgba(33, 40, 54, 0.25); /* Zvysena pruhlednost */
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    color: var(--color-secondary);
+    text-align: center;
+    padding: 25px max(15px, env(safe-area-inset-right)) max(18px, env(safe-area-inset-bottom)) max(15px, env(safe-area-inset-left));
+    margin-top: 50px;
+    font-family: var(--font-mono);
+    font-size: 0.95rem;
+    letter-spacing: .02em;
+    border-top: 1px solid rgba(255, 255, 255, 0.1); /* Jemnější linka */
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1); /* Jemný stín nahoru */
+}
+
+.footer-copy {
+    display: block;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+    font-size: 0.9rem;
+}
+
+.footer-links a {
+    color: var(--color-secondary);
+    text-decoration: none;
+    transition: color 0.2s ease-in-out;
+}
+
+.footer-links a:hover,
+.footer-links a:focus {
+    color: var(--color-text);
+}

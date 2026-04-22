@@ -1,0 +1,97 @@
+/* Accordion styles for About section */
+.accordion-summary {
+    font-size: 1.05rem;
+    color: var(--color-text);
+    margin-bottom: 16px;
+    line-height: 1.6;
+}
+
+.accordion-toggle {
+    background: transparent;
+    border: 1px solid rgba(42, 140, 255, 0.4);
+    color: var(--color-accent);
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.accordion-toggle:hover, .accordion-toggle:focus {
+    background: rgba(42, 140, 255, 0.1);
+    border-color: var(--color-accent);
+}
+
+.accordion-toggle svg {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
+    transition: transform 0.3s ease;
+}
+
+.accordion-toggle[aria-expanded="true"] svg {
+    transform: rotate(180deg);
+}
+
+.accordion-content {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.3s ease-out;
+}
+
+.accordion-content.is-open {
+    grid-template-rows: 1fr;
+}
+
+.accordion-inner {
+    overflow: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease-out;
+}
+
+.accordion-content.is-open .accordion-inner {
+    opacity: 1;
+    padding-top: 16px;
+    margin-top: 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Technology Stack Block */
+.tech-stack {
+    margin: 32px 0 20px;
+}
+
+.tech-stack h4 {
+    color: var(--color-secondary);
+    font-size: 1.2rem;
+    margin-bottom: 16px;
+    letter-spacing: .01em;
+}
+
+.tech-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.tech-badges li {
+    background: rgba(34, 44, 60, 0.4);
+    color: var(--color-text);
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    margin-bottom: 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.tech-badges li::before {
+    display: none;
+}

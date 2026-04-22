@@ -1,0 +1,21 @@
+:root {
+    --color-bg: #171d25; /* Hlavní barva pozadí */
+    --color-bg-section: #212836; /* Barva pozadí sekcí - jemně tmavší než hlavní pozadí */
+    --color-accent: #2a8cff; /* Akcentní barva (modrá) - použita pro hlavní zvýraznění */
+    --color-text: #e6eaf3; /* Barva hlavního textu */
+    --color-secondary: #8db4e2; /* Sekundární barva textu/akcentu - pro jemnější texty a navigační prvky */
+    --color-card: #222c3c; /* Barva pozadí karty - mírně odlišná pro vizuální oddělení */
+    --color-success: #4CAF50; /* Zelená pro zprávy o úspěchu */
+    --color-error: #F44336; /* Červená pro chybové zprávy */
+
+    --font-main: 'Inter', Arial, sans-serif; /* Hlavní font */
+    --font-mono: 'Roboto Mono', monospace; /* Monospace font */
+
+    --shadow: 0 4px 32px 0 rgba(30,40,100,0.10); /* Stín pro sekce/karty */
+    --hover-shadow: 0 8px 48px 0 rgba(30,40,100,0.15); /* Stín při najetí myší */
+    --transition-speed: 0.4s; /* Rychlost hlavních přechodů */
+    --transition-cubic: cubic-bezier(.6,.01,.05,1); /* Kubická Bezierova funkce pro přechody */
+
+    --header-height-desktop: 180px; /* Výška hlavičky na desktopu */
+    --header-height-mobile: 130px; /* Kompaktni vyska hlavicky na mobilech */
+}

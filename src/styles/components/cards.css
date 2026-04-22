@@ -1,0 +1,57 @@
+/* Homepage card-like components extracted from the legacy layer. */
+
+.story-block {
+    margin: 22px 0;
+    padding: 20px 24px;
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    background: rgba(34, 44, 60, 0.35);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.story-block:hover {
+    background: rgba(34, 44, 60, 0.45);
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.25);
+}
+
+.story-block h4 {
+    margin: 0 0 12px;
+    font-size: 1.2rem;
+    color: var(--color-secondary);
+    letter-spacing: .01em;
+}
+
+.story-block p {
+    margin-bottom: 12px;
+}
+
+.card {
+    background: rgba(34, 44, 60, 0.25); /* Zvysena pruhlednost */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 16px;
+    padding: 20px;
+    margin: 25px 0;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Upravený stín */
+    font-size: 1rem;
+    line-height: 1.6;
+    border: 1px solid rgba(42, 140, 255, 0.1);
+    transform: translateY(0);
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3); /* Upravený stín při najetí */
+}
+
+.card ul {
+    padding-left: 1.2rem; /* Změněno na REM */
+    margin: 10px 0 0 0;
+    list-style: none; /* Odstranění výchozích odrážek pro vnořené ul v kartě */
+}
+
+.card ul li::before {
+    left: 0; /* Zarovnáme odrážky uvnitř karty */
+}

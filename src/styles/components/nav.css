@@ -1,0 +1,39 @@
+nav {
+    margin: 10px auto 0;
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    font-family: var(--font-mono);
+    font-size: 1.15rem;
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--color-secondary);
+    padding: 8px 4px; /* Zvětšený touch target */
+    border-bottom: 2px solid transparent;
+    transition: color 0.3s ease-out, border 0.3s ease-out, transform 0.2s ease-out;
+    position: relative;
+    overflow: hidden;
+}
+
+nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--color-accent);
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-out;
+}
+
+nav a:hover, nav a:focus {
+    color: var(--color-accent);
+    transform: translateY(-2px);
+}
+
+nav a:hover::after, nav a:focus::after {
+    transform: translateX(0%);
+}

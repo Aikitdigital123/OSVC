@@ -1,0 +1,94 @@
+/* Matrix-style digit loader near the right edge */
+.right-digit-loader {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 10mm;
+    width: clamp(60px, 7vw, 110px);
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    gap: clamp(18px, 2.4vw, 34px);
+    padding-bottom: clamp(36px, 7vh, 80px);
+    pointer-events: none;
+    z-index: 999;
+    mix-blend-mode: screen;
+}
+
+.digit-column {
+    position: relative;
+    flex: 1 1 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    --digit-gap: clamp(26px, 4.5vh, 52px);
+    --digit-duration: 6.4s;
+    --start-delay: 0s;
+}
+
+.digit-stack {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--digit-gap);
+    font-family: var(--font-mono);
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    color: var(--color-accent);
+    text-shadow: 0 0 18px rgba(42, 140, 255, 0.7), 0 0 42px rgba(42, 140, 255, 0.45);
+}
+
+.digit-stack span {
+    font-size: clamp(1rem, 1.45vw, 1.6rem);
+    opacity: 0.85;
+}
+
+.digit-stack--base {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    filter: drop-shadow(0 0 10px rgba(42, 140, 255, 0.4));
+}
+
+.digit-stack--fall {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate3d(-50%, -320%, 0);
+    animation: matrixFall var(--digit-duration) cubic-bezier(0.22, 0.65, 0.37, 1) infinite;
+    animation-delay: var(--start-delay);
+    will-change: transform, opacity;
+}
+
+.digit-stack--fall span:first-child {
+    color: #b7d7ff;
+    text-shadow: 0 0 26px rgba(183, 215, 255, 0.9), 0 0 48px rgba(42, 140, 255, 0.85);
+}
+
+.digit-column::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 1px;
+    background: linear-gradient(180deg, rgba(42, 140, 255, 0) 0%, rgba(42, 140, 255, 0.35) 40%, rgba(42, 140, 255, 0) 100%);
+    transform: translateX(-50%);
+    filter: blur(0.6px);
+}
+
+.digit-column--one {
+    --digit-duration: 6.1s;
+    --start-delay: -0.3s;
+}
+
+.digit-column--two {
+    --digit-duration: 7s;
+    --start-delay: -1.8s;
+}
+
+.digit-column--three {
+    --digit-duration: 7.9s;
+    --start-delay: -3.4s;
+}
