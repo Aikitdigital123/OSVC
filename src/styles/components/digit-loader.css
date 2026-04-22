@@ -3,7 +3,7 @@
     position: fixed;
     top: 0;
     bottom: 0;
-    right: 10mm;
+    right: max(10mm, env(safe-area-inset-right));
     width: clamp(60px, 7vw, 110px);
     display: flex;
     justify-content: space-between;
@@ -91,4 +91,46 @@
 .digit-column--three {
     --digit-duration: 7.9s;
     --start-delay: -3.4s;
+}
+
+@media (max-width: 1024px) and (pointer: coarse) {
+    .right-digit-loader {
+        right: max(8px, env(safe-area-inset-right));
+        width: clamp(42px, 10vw, 70px);
+        gap: clamp(8px, 1.8vw, 14px);
+        padding-bottom: clamp(28px, 6vh, 56px);
+        opacity: 0.72;
+    }
+
+    .digit-column {
+        --digit-gap: clamp(24px, 5vh, 40px);
+    }
+
+    .digit-stack span {
+        font-size: clamp(0.92rem, 2.8vw, 1.2rem);
+    }
+}
+
+@media (max-width: 640px) and (pointer: coarse) {
+    .right-digit-loader {
+        width: clamp(26px, 8vw, 42px);
+        gap: 0;
+    }
+
+    .digit-column--one,
+    .digit-column--two {
+        display: none;
+    }
+
+    .digit-column--three {
+        flex: 1 1 auto;
+    }
+
+    .digit-stack {
+        letter-spacing: 0.08em;
+    }
+
+    .digit-stack span {
+        font-size: clamp(0.9rem, 4vw, 1.08rem);
+    }
 }

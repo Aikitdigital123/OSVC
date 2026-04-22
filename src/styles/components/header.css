@@ -2,14 +2,14 @@ header {
     background: rgba(33, 40, 54, 0.25); /* Zvysena pruhlednost */
     backdrop-filter: blur(8px) saturate(150%);
     -webkit-backdrop-filter: blur(8px) saturate(150%);
-    padding: max(10px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right)) 10px max(16px, env(safe-area-inset-left));
+    padding: max(8px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right)) 10px max(16px, env(safe-area-inset-left));
     text-align: center;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2); /* Jemnější stín */
     position: sticky;
     position: -webkit-sticky;
     top: 0;
     z-index: 100;
-    transition: background 0.3s ease-out, box-shadow 0.3s ease-out;
+    transition: background 0.3s ease-out, box-shadow 0.3s ease-out, min-height 0.3s ease-out, padding 0.3s ease-out, gap 0.3s ease-out;
     letter-spacing: .03em;
     min-height: var(--header-height-desktop); /* Výška na desktopu */
     display: flex;
@@ -18,6 +18,15 @@ header {
     justify-content: center;
     gap: 12px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Jemná světlá linka */
+}
+
+html[data-header-compact="true"] header {
+    min-height: var(--header-height-desktop-compact);
+    padding-top: max(6px, env(safe-area-inset-top));
+    padding-bottom: 8px;
+    gap: 8px;
+    background: rgba(20, 27, 39, 0.7);
+    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.28);
 }
 
 .logo-container {
@@ -38,6 +47,7 @@ header {
                rotateLogo 2.5s infinite ease-in-out alternate;
     transform-style: preserve-3d;
     perspective: 1000px;
+    transition: color var(--transition-speed), font-size 0.3s ease-out, transform 0.3s ease-out;
 }
 
 .logo-accent {
@@ -54,4 +64,14 @@ header {
     opacity: 0;
     animation: fadeIn 1s forwards ease-out;
     animation-delay: 0.5s;
+    transition: font-size 0.3s ease-out, margin-bottom 0.3s ease-out;
+}
+
+html[data-header-compact="true"] .logo {
+    font-size: 2.2rem;
+}
+
+html[data-header-compact="true"] .subtitle {
+    font-size: 1rem;
+    margin-bottom: 4px;
 }

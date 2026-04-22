@@ -16,6 +16,7 @@
     --transition-speed: 0.4s; /* Rychlost hlavních přechodů */
     --transition-cubic: cubic-bezier(.6,.01,.05,1); /* Kubická Bezierova funkce pro přechody */
 
-    --header-height-desktop: 180px; /* Výška hlavičky na desktopu */
+    --header-height-desktop: 152px; /* Výška hlavičky na desktopu */
+    --header-height-desktop-compact: 108px; /* Kompaktní sticky režim po scrollu */
     --header-height-mobile: 130px; /* Kompaktni vyska hlavicky na mobilech */
 }

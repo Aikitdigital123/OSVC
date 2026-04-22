@@ -223,10 +223,3 @@
         padding: 4px 0;
     }
 }
-
-/* Skrytí loaderu na tabletech a dotykových zařízeních pro lepší čitelnost a výkon */
-@media (max-width: 1024px) and (pointer: coarse) {
-    .right-digit-loader {
-        display: none;
-    }
-}
