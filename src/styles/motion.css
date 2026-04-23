@@ -3,23 +3,26 @@
 /* Keyframes animace pro pulzující záři loga, jemné škálování A TEĎ I DROP-SHADOW */
 @keyframes logoGlowAndScale {
     0% {
-        text-shadow: 0 0 15px rgba(42, 140, 255, 0.7),
-                     0 0 30px rgba(42, 140, 255, 0.5),
-                     0 0 45px rgba(42, 140, 255, 0.3);
+        text-shadow:
+            0 0 15px rgba(42, 140, 255, 0.7),
+            0 0 30px rgba(42, 140, 255, 0.5),
+            0 0 45px rgba(42, 140, 255, 0.3);
         transform: scale(1);
         filter: drop-shadow(4px 4px 10px rgba(42, 140, 255, 0.6));
     }
     50% {
-        text-shadow: 0 0 20px rgba(42, 140, 255, 0.9),
-                     0 0 40px rgba(42, 140, 255, 0.7),
-                     0 0 60px rgba(42, 140, 255, 0.5);
+        text-shadow:
+            0 0 20px rgba(42, 140, 255, 0.9),
+            0 0 40px rgba(42, 140, 255, 0.7),
+            0 0 60px rgba(42, 140, 255, 0.5);
         transform: scale(1.02);
         filter: drop-shadow(8px 8px 20px rgba(42, 140, 255, 0.9));
     }
     100% {
-        text-shadow: 0 0 15px rgba(42, 140, 255, 0.7),
-                     0 0 30px rgba(42, 140, 255, 0.5),
-                     0 0 45px rgba(42, 140, 255, 0.3);
+        text-shadow:
+            0 0 15px rgba(42, 140, 255, 0.7),
+            0 0 30px rgba(42, 140, 255, 0.5),
+            0 0 45px rgba(42, 140, 255, 0.3);
         transform: scale(1);
         filter: drop-shadow(4px 4px 10px rgba(42, 140, 255, 0.6));
     }
@@ -39,13 +42,19 @@
 
 /* Keyframes pro fadeIn (použito pro subtitle) */
 @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 /* Optimalizace pro uživatele s redukovaným pohybem */
 @media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after {
+    *,
+    *::before,
+    *::after {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;

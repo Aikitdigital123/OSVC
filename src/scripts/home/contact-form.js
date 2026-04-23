@@ -42,21 +42,23 @@ export const initContactForms = () => {
                     method: form.method || 'POST',
                     body: formData,
                     headers: {
-                        Accept: 'application/json'
-                    }
+                        Accept: 'application/json',
+                    },
                 });
 
                 const data = await response.json();
 
                 if (data.success) {
                     if (statusElement) {
-                        statusElement.textContent = 'Zpráva byla úspěšně odeslána. Ozvu se vám co nejdříve.';
+                        statusElement.textContent =
+                            'Zpráva byla úspěšně odeslána. Ozvu se vám co nejdříve.';
                         statusElement.classList.add('success');
                     }
 
                     form.reset();
                 } else {
-                    const errorMessage = data.message || 'Chyba při odeslání formuláře. Zkuste to prosím později.';
+                    const errorMessage =
+                        data.message || 'Chyba při odeslání formuláře. Zkuste to prosím později.';
 
                     if (statusElement) {
                         statusElement.textContent = errorMessage;
@@ -67,7 +69,8 @@ export const initContactForms = () => {
                 }
             } catch (error) {
                 if (statusElement) {
-                    statusElement.textContent = 'Došlo k chybě připojení k serveru. Zkuste to prosím později.';
+                    statusElement.textContent =
+                        'Došlo k chybě připojení k serveru. Zkuste to prosím později.';
                     statusElement.classList.add('error');
                 }
 

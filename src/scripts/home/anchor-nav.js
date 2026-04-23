@@ -1,9 +1,9 @@
 import { getRoot, qsa, setDataAttribute } from '../core/dom.js';
+import { closeHeaderNav } from '../core/header-controller.js';
 import { getScrollTargetPosition } from '../core/header-offset.js';
 import { prefersReducedMotion } from '../core/media.js';
-import { closeMobileNav } from '../core/mobile-nav.js';
 
-const ANCHOR_SELECTOR = 'nav a[href^="#"]';
+const ANCHOR_SELECTOR = '.site-nav a[href^="#"]';
 
 export const initAnchorNav = () => {
     const root = getRoot();
@@ -31,7 +31,7 @@ export const initAnchorNav = () => {
                 return;
             }
 
-            closeMobileNav();
+            closeHeaderNav();
             const scrollToPosition = getScrollTargetPosition(targetElement, header);
 
             if (reducedMotion) {
@@ -39,7 +39,7 @@ export const initAnchorNav = () => {
             } else {
                 window.scrollTo({
                     top: scrollToPosition,
-                    behavior: 'smooth'
+                    behavior: 'smooth',
                 });
             }
         });

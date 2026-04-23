@@ -4,7 +4,9 @@
     color: var(--color-secondary); /* Používá stejnou barvu jako .section-subtitle */
     font-weight: bold; /* Pro zvýraznění */
     text-decoration: none; /* Odstranění podtržení */
-    transition: color 0.2s ease-out, text-shadow 0.2s ease-out; /* Plynulý přechod */
+    transition:
+        color 0.2s ease-out,
+        text-shadow 0.2s ease-out; /* Plynulý přechod */
 }
 
 .certificate-verify-link:hover,

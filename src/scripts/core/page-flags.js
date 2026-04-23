@@ -27,7 +27,7 @@ export const getPageFlags = (body = getBody()) => {
         pageId,
         pageKind,
         isHome: pageId === 'home',
-        isLegal: pageKind === 'legal'
+        isLegal: pageKind === 'legal',
     };
 };
 

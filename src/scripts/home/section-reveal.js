@@ -13,18 +13,21 @@ export const initSectionReveal = () => {
     const supportsIntersectionObserver = typeof window.IntersectionObserver !== 'undefined';
 
     if (supportsIntersectionObserver) {
-        const sectionVisibilityObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('is-visible');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.1
-        });
+        const sectionVisibilityObserver = new IntersectionObserver(
+            (entries, observer) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            },
+            {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1,
+            },
+        );
 
         sections.forEach((section) => {
             sectionVisibilityObserver.observe(section);

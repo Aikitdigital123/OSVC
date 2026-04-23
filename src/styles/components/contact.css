@@ -20,7 +20,9 @@
     text-decoration: none;
     font-family: var(--font-mono);
     font-size: 1.05rem;
-    transition: color 0.2s, text-shadow 0.2s;
+    transition:
+        color 0.2s,
+        text-shadow 0.2s;
     word-break: break-word;
 }
 
@@ -56,7 +58,9 @@
 .qr-code-img {
     border-radius: 16px;
     box-shadow: 0 2px 16px rgba(42, 140, 255, 0.2);
-    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+    transition:
+        transform 0.3s ease-out,
+        box-shadow 0.3s ease-out;
     display: block; /* Důležité pro responzivní obrázek */
     max-width: 100%; /* Zajistí, že se obrázek zmenší, pokud je kontejner menší */
     height: auto; /* Zachová poměr stran */

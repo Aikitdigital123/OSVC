@@ -11,11 +11,9 @@ const getMediaQueryList = (query) => {
 export const prefersReducedMotion = () =>
     getMediaQueryList('(prefers-reduced-motion: reduce)')?.matches ?? false;
 
-export const hasCoarsePointer = () =>
-    getMediaQueryList('(pointer: coarse)')?.matches ?? false;
+export const hasCoarsePointer = () => getMediaQueryList('(pointer: coarse)')?.matches ?? false;
 
-export const hasHover = () =>
-    getMediaQueryList('(hover: hover)')?.matches ?? false;
+export const hasHover = () => getMediaQueryList('(hover: hover)')?.matches ?? false;
 
 export const hasTouchInput = () => {
     if (typeof navigator !== 'undefined' && navigator.maxTouchPoints > 0) {
@@ -29,7 +27,7 @@ export const getMediaFlags = () => ({
     prefersReducedMotion: prefersReducedMotion(),
     coarsePointer: hasCoarsePointer(),
     hover: hasHover(),
-    touchInput: hasTouchInput()
+    touchInput: hasTouchInput(),
 });
 
 export const applyMediaFlags = (target = document.documentElement) => {

@@ -21,7 +21,8 @@
     gap: 8px;
 }
 
-.accordion-toggle:hover, .accordion-toggle:focus {
+.accordion-toggle:hover,
+.accordion-toggle:focus {
     background: rgba(42, 140, 255, 0.1);
     border-color: var(--color-accent);
 }
@@ -33,7 +34,7 @@
     transition: transform 0.3s ease;
 }
 
-.accordion-toggle[aria-expanded="true"] svg {
+.accordion-toggle[aria-expanded='true'] svg {
     transform: rotate(180deg);
 }
 
@@ -69,7 +70,7 @@
     color: var(--color-secondary);
     font-size: 1.2rem;
     margin-bottom: 16px;
-    letter-spacing: .01em;
+    letter-spacing: 0.01em;
 }
 
 .tech-badges {

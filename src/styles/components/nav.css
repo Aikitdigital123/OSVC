@@ -7,7 +7,10 @@
     gap: 14px 32px;
     font-family: var(--font-mono);
     font-size: 1.15rem;
-    transition: gap 0.3s ease-out, font-size 0.3s ease-out, margin 0.3s ease-out;
+    transition:
+        gap 0.3s ease-out,
+        font-size 0.3s ease-out,
+        margin 0.3s ease-out;
 }
 
 .site-nav a {
@@ -15,7 +18,10 @@
     color: var(--color-secondary);
     padding: 8px 4px; /* Zvětšený touch target */
     border-bottom: 2px solid transparent;
-    transition: color 0.3s ease-out, border 0.3s ease-out, transform 0.2s ease-out;
+    transition:
+        color 0.3s ease-out,
+        border 0.3s ease-out,
+        transform 0.2s ease-out;
     position: relative;
     overflow: hidden;
 }
@@ -32,16 +38,18 @@
     transition: transform 0.3s ease-out;
 }
 
-.site-nav a:hover, .site-nav a:focus {
+.site-nav a:hover,
+.site-nav a:focus {
     color: var(--color-accent);
     transform: translateY(-2px);
 }
 
-.site-nav a:hover::after, .site-nav a:focus::after {
+.site-nav a:hover::after,
+.site-nav a:focus::after {
     transform: translateX(0%);
 }
 
-html[data-header-compact="true"] .site-nav {
+html[data-header-compact='true'] .site-nav {
     margin-top: 0;
     gap: 10px 24px;
     font-size: 1rem;

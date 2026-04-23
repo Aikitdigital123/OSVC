@@ -1,5 +1,7 @@
 /* DŮLEŽITÉ: Univerzální box-sizing pro konzistentní model boxu */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
     box-sizing: border-box;
     -webkit-tap-highlight-color: transparent;
 }
@@ -33,7 +35,10 @@ body {
     -moz-osx-font-smoothing: grayscale; /* Vyhlazení fontů pro Firefox */
 }
 
-input, textarea, select, button {
+input,
+textarea,
+select,
+button {
     font-size: 16px; /* Zajišťuje, že mobilní prohlížeče nebudou automaticky zoomovat */
     font-family: var(--font-main); /* Zajišťuje konzistentní font u formulářových prvků */
 }

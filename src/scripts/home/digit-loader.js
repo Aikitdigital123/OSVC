@@ -20,10 +20,12 @@ export const initDigitLoader = () => {
             return;
         }
 
-        const fallingDigits = Array.from(fallStack.querySelectorAll('span'))
-            .filter((span) => span instanceof HTMLElement);
-        const baseDigits = Array.from(baseStack.querySelectorAll('span'))
-            .filter((span) => span instanceof HTMLElement);
+        const fallingDigits = Array.from(fallStack.querySelectorAll('span')).filter(
+            (span) => span instanceof HTMLElement,
+        );
+        const baseDigits = Array.from(baseStack.querySelectorAll('span')).filter(
+            (span) => span instanceof HTMLElement,
+        );
 
         const randomizeFalling = () => {
             fallingDigits.forEach((span) => {

@@ -1,0 +1,8 @@
+dist/
+node_modules/
+.vite/
+playwright-report/
+test-results/
+privacy.html
+terms.html
+package-lock.json

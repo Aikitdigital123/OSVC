@@ -1,0 +1,32 @@
+@media (max-width: 1024px) and (pointer: coarse) {
+    body {
+        background: none;
+        position: relative;
+        z-index: 1;
+    }
+
+    body::before {
+        content: '';
+        position: fixed;
+        inset: 0;
+        width: 100vw;
+        height: 100lvh;
+        background:
+            linear-gradient(rgba(23, 29, 37, 0.58), rgba(23, 29, 37, 0.52)),
+            url('/images/backgrounds/127.jpg') no-repeat center center;
+        background-size: cover;
+        background-attachment: scroll;
+        z-index: -1;
+        transform: translateZ(0);
+    }
+}
+
+@media (max-width: 640px) and (pointer: coarse) {
+    body::before {
+        background:
+            linear-gradient(rgba(23, 29, 37, 0.54), rgba(23, 29, 37, 0.48)),
+            url('/images/backgrounds/127mob.jpg') no-repeat center center;
+        background-size: cover;
+        background-attachment: scroll;
+    }
+}

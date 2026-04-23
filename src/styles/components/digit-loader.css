@@ -35,7 +35,9 @@
     font-weight: 600;
     letter-spacing: 0.16em;
     color: var(--color-accent);
-    text-shadow: 0 0 18px rgba(42, 140, 255, 0.7), 0 0 42px rgba(42, 140, 255, 0.45);
+    text-shadow:
+        0 0 18px rgba(42, 140, 255, 0.7),
+        0 0 42px rgba(42, 140, 255, 0.45);
 }
 
 .digit-stack span {
@@ -63,7 +65,9 @@
 
 .digit-stack--fall span:first-child {
     color: #b7d7ff;
-    text-shadow: 0 0 26px rgba(183, 215, 255, 0.9), 0 0 48px rgba(42, 140, 255, 0.85);
+    text-shadow:
+        0 0 26px rgba(183, 215, 255, 0.9),
+        0 0 48px rgba(42, 140, 255, 0.85);
 }
 
 .digit-column::after {
@@ -73,7 +77,12 @@
     bottom: 0;
     left: 50%;
     width: 1px;
-    background: linear-gradient(180deg, rgba(42, 140, 255, 0) 0%, rgba(42, 140, 255, 0.35) 40%, rgba(42, 140, 255, 0) 100%);
+    background: linear-gradient(
+        180deg,
+        rgba(42, 140, 255, 0) 0%,
+        rgba(42, 140, 255, 0.35) 40%,
+        rgba(42, 140, 255, 0) 100%
+    );
     transform: translateX(-50%);
     filter: blur(0.6px);
 }

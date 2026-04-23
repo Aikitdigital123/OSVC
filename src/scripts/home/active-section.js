@@ -1,7 +1,7 @@
 import { getRoot, qsa, setDataAttribute } from '../core/dom.js';
 import { getHeaderOffset } from '../core/header-offset.js';
 
-const NAV_LINK_SELECTOR = 'nav a[href^="#"]';
+const NAV_LINK_SELECTOR = '.site-nav a[href^="#"]';
 const SECTION_SELECTOR = '.section';
 
 const activateLink = (navLinks, sectionId) => {
@@ -26,21 +26,26 @@ export const initActiveSection = () => {
     const supportsIntersectionObserver = typeof window.IntersectionObserver !== 'undefined';
 
     if (supportsIntersectionObserver) {
-        const navSectionActiveObserver = new IntersectionObserver((entries) => {
-            let activeId = null;
+        const navSectionActiveObserver = new IntersectionObserver(
+            (entries) => {
+                let activeId = null;
 
-            entries.filter((entry) => entry.isIntersecting).forEach((entry) => {
-                activeId = entry.target.id;
-            });
+                entries
+                    .filter((entry) => entry.isIntersecting)
+                    .forEach((entry) => {
+                        activeId = entry.target.id;
+                    });
 
-            if (activeId) {
-                activateLink(navLinks, activeId);
-            }
-        }, {
-            root: null,
-            rootMargin: '-30% 0px -30% 0px',
-            threshold: 0.01
-        });
+                if (activeId) {
+                    activateLink(navLinks, activeId);
+                }
+            },
+            {
+                root: null,
+                rootMargin: '-30% 0px -30% 0px',
+                threshold: 0.01,
+            },
+        );
 
         sections.forEach((section) => {
             navSectionActiveObserver.observe(section);
@@ -92,7 +97,7 @@ export const initActiveSection = () => {
                 activateLink(navLinks, sections[0].id);
             }
         },
-        { once: true }
+        { once: true },
     );
 
     setDataAttribute(root, 'activeSectionBound', true);

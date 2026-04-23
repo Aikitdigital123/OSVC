@@ -100,7 +100,8 @@
     transition: color 0.2s ease-in-out;
 }
 
-.legal-nav a:hover, .legal-nav a:focus {
+.legal-nav a:hover,
+.legal-nav a:focus {
     color: var(--color-text);
 }
 

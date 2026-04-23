@@ -14,7 +14,7 @@ export const getFeatureFlags = () => ({
     matchMedia: typeof window.matchMedia === 'function',
     backdropFilter:
         supportsCssRule('backdrop-filter: blur(1px)') ||
-        supportsCssRule('-webkit-backdrop-filter: blur(1px)')
+        supportsCssRule('-webkit-backdrop-filter: blur(1px)'),
 });
 
 export const applyFeatureFlags = (target = document.documentElement) => {

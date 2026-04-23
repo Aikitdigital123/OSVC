@@ -5,7 +5,9 @@
     padding: 40px max(30px, env(safe-area-inset-right)) 35px max(30px, env(safe-area-inset-left));
     opacity: 0;
     transform: translateY(40px);
-    transition: opacity var(--transition-speed) var(--transition-cubic), transform var(--transition-speed) var(--transition-cubic);
+    transition:
+        opacity var(--transition-speed) var(--transition-cubic),
+        transform var(--transition-speed) var(--transition-cubic);
 }
 
 .section.is-visible {
@@ -19,10 +21,10 @@
     font-weight: 700;
     color: var(--color-accent);
     margin: 0 0 10px 0;
-    letter-spacing: .01em;
+    letter-spacing: 0.01em;
     text-align: center;
     position: relative;
-    text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 }
 
 .section-title::after {

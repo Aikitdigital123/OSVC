@@ -1,10 +1,9 @@
 import '../styles/entries/legal.css';
 import { getRoot, setDataAttribute, whenDomReady } from '../scripts/core/dom.js';
 import { applyFeatureFlags } from '../scripts/core/features.js';
-import { initMobileNav } from '../scripts/core/mobile-nav.js';
+import { initHeaderController } from '../scripts/core/header-controller.js';
 import { applyPageFlags } from '../scripts/core/page-flags.js';
 import { applyMediaFlags } from '../scripts/core/media.js';
-import { initStickyHeader } from '../scripts/core/sticky-header.js';
 
 const initCoreBootstrap = () => {
     const root = getRoot();
@@ -16,8 +15,7 @@ const initCoreBootstrap = () => {
     applyPageFlags(root);
     applyFeatureFlags(root);
     applyMediaFlags(root);
-    initMobileNav();
-    initStickyHeader();
+    initHeaderController();
     setDataAttribute(root, 'jsRuntime', 'vite-core');
 };
 
