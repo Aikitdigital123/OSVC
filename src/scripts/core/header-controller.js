@@ -2,7 +2,7 @@ import { getRoot, qs, qsa, setDataAttribute } from './dom.js';
 import { getHeaderElement, getHeaderOffset } from './header-offset.js';
 
 const COMPACT_SCROLL_THRESHOLD = 24;
-const MOBILE_BREAKPOINT = 768;
+const MOBILE_BREAKPOINT = 900;
 const HEADER_NAV_SELECTOR = 'header > .site-nav';
 const HEADER_TOGGLE_SELECTOR = 'header > .nav-toggle';
 const MOBILE_NAV_OPEN_VALUE = 'true';
@@ -55,6 +55,7 @@ export const initHeaderController = () => {
     }
 
     toggle.setAttribute('aria-controls', nav.id);
+    toggle.setAttribute('aria-haspopup', 'true');
     toggle.setAttribute('aria-expanded', 'false');
 
     let ticking = false;

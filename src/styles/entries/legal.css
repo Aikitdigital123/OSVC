@@ -9,5 +9,6 @@
 @import '../components/footer.css';
 @import '../components/mobile-nav.css';
 @import '../pages/legal.css';
+@import '../pages/touch-background.css';
 @import '../responsive/layout.css';
 @import '../motion.css';

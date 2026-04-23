@@ -44,6 +44,11 @@
     transform: translateY(-2px);
 }
 
+.site-nav a:focus-visible {
+    outline: 2px solid rgba(183, 215, 255, 0.75);
+    outline-offset: 4px;
+}
+
 .site-nav a:hover::after,
 .site-nav a:focus::after {
     transform: translateX(0%);
