@@ -44,6 +44,8 @@
         align-items: center;
         justify-items: start;
         text-align: left;
+        overflow: visible;
+        isolation: isolate;
     }
     .section {
         max-width: 95vw;
@@ -110,9 +112,10 @@
     }
 
     .site-nav {
-        grid-column: 1 / -1;
-        grid-row: 3;
-        width: 100%;
+        position: absolute;
+        top: calc(100% + 8px);
+        left: max(18px, env(safe-area-inset-left));
+        right: max(18px, env(safe-area-inset-right));
         max-width: none;
         margin: 0;
         padding: 0;
@@ -131,11 +134,11 @@
         box-shadow: 0 16px 30px rgba(0, 0, 0, 0.22);
         backdrop-filter: blur(14px) saturate(140%);
         -webkit-backdrop-filter: blur(14px) saturate(140%);
+        z-index: 120;
     }
 
     html[data-mobile-nav-open="true"] .site-nav {
         max-height: min(70vh, 420px);
-        margin-top: 8px;
         padding: 8px 0;
         opacity: 1;
         pointer-events: auto;
@@ -160,11 +163,6 @@
         display: none;
     }
 
-    html.menu-open,
-    body.menu-open {
-        overflow: hidden;
-        overscroll-behavior: none;
-    }
 }
 
 /* --- MOBILNÍ STYLY (max-width: 480px) --- */

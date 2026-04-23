@@ -28,8 +28,6 @@ export const setMobileNavOpen = (open) => {
     toggle.setAttribute('aria-expanded', String(isOpen));
     nav.setAttribute('aria-hidden', String(!isOpen));
     nav.classList.toggle('is-open', isOpen);
-    root.classList.toggle('menu-open', isOpen);
-    document.body.classList.toggle('menu-open', isOpen);
     return isOpen;
 };
 
@@ -98,6 +96,14 @@ export const initMobileNav = () => {
         closeMobileNav();
         toggle.focus();
     });
+
+    window.addEventListener('scroll', () => {
+        if (!isMobileViewport() || !isMobileNavOpen()) {
+            return;
+        }
+
+        closeMobileNav();
+    }, { passive: true });
 
     window.addEventListener('resize', syncViewportState, { passive: true });
     window.addEventListener('orientationchange', syncViewportState);
