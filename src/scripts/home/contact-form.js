@@ -57,14 +57,14 @@ export const initContactForms = () => {
 
                     form.reset();
                 } else {
-                    const errorMessage = data.message || t('formError');
+                    const errorMessage = t('formError');
 
                     if (statusElement) {
                         statusElement.textContent = errorMessage;
                         statusElement.classList.add('error');
                     }
 
-                    console.error('Web3Forms error:', errorMessage);
+                    console.error('Web3Forms error:', data.message);
                 }
             } catch (error) {
                 if (statusElement) {

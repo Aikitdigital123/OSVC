@@ -17,7 +17,7 @@ const languages = [
         switchLabel: 'CS',
         homeHref: 'index.html',
         homeLabel: 'Zpět na hlavní stránku',
-        footerTagline: 'IT Operations, vývoj a AI automatizace',
+        footerTagline: 'IT Operations, vývoj softwaru a AI automatizace',
         legalLinksLabel: 'Právní odkazy',
         privacyLabel: 'Zásady ochrany osobních údajů',
         termsLabel: 'Obchodní podmínky',
