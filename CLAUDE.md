@@ -7,7 +7,7 @@ OSVC-main / hyndriuk.cz.
 
 - Statický osobní web `hyndriuk.cz - IT & Digital Solutions`.
 - Stack: Vite, vanilla HTML, CSS a JavaScript, bez frontend frameworku.
-- Jazyk veřejného obsahu: čeština (hlavní) a angličtina (`en/`).
+- Jazyk veřejného obsahu: čeština (hlavní), angličtina (`en/`), němčina (`de/`) a ukrajinština (`uk/`).
 - Hlavní stránka: `index.html`.
 - Právní stránky: `privacy.html` a `terms.html`, generované z
   `src/templates/legal/` přes `tools/sync-pages.mjs`.
@@ -15,7 +15,7 @@ OSVC-main / hyndriuk.cz.
 ## Jazykové verze
 
 - Čeština je v kořeni (`index.html`, `privacy.html`, `terms.html`), další jazyky v
-  podsložkách: angličtina `en/` (`en/index.html`, `en/privacy.html`, `en/terms.html`).
+  podsložkách: angličtina `en/`, němčina `de/` a ukrajinština `uk/` (v přepínači „UA“; každá s `index.html`, `privacy.html`, `terms.html`).
 - Změnu obsahu hlavní stránky proveď ve všech jazykových verzích `index.html`.
 - Právní stránky všech jazyků generuje `tools/sync-pages.mjs` (seznam `languages` a `legalPages`);
   obsah je v `src/templates/legal/*-content.html` (čeština) a `*-content.<jazyk>.html`.

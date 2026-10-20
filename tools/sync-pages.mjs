@@ -35,6 +35,30 @@ const languages = [
         termsLabel: 'Terms and Conditions',
         switchAriaLabel: 'Language',
     },
+    {
+        code: 'de',
+        directory: 'de',
+        switchLabel: 'DE',
+        homeHref: 'index.html',
+        homeLabel: 'Zurück zur Startseite',
+        footerTagline: 'IT Operations, Softwareentwicklung und KI-Automatisierung',
+        legalLinksLabel: 'Rechtliche Hinweise',
+        privacyLabel: 'Datenschutzerklärung',
+        termsLabel: 'Allgemeine Geschäftsbedingungen',
+        switchAriaLabel: 'Sprache',
+    },
+    {
+        code: 'uk',
+        directory: 'uk',
+        switchLabel: 'UA',
+        homeHref: 'index.html',
+        homeLabel: 'Повернутися на головну',
+        footerTagline: 'IT Operations, розробка програмного забезпечення та AI-автоматизація',
+        legalLinksLabel: 'Правова інформація',
+        privacyLabel: 'Політика конфіденційності',
+        termsLabel: 'Умови надання послуг',
+        switchAriaLabel: 'Мова',
+    },
 ];
 
 const legalPages = {
@@ -98,6 +122,68 @@ const legalPages = {
                 { href: 'index.html#contact-form-section', label: 'Request a quote' },
             ],
             contentFile: 'terms-content.en.html',
+        },
+    ],
+    de: [
+        {
+            outputFile: 'privacy.html',
+            bodyClass: 'privacy-page',
+            title: 'Datenschutzerklärung | Mykhailo Hyndriuk',
+            description:
+                'Datenschutzerklärung von Mykhailo Hyndriuk – wie personenbezogene Daten erhoben, verarbeitet und geschützt werden und welche Rechte Sie nach der DSGVO haben.',
+            subtitle: 'Datenschutzerklärung',
+            heading: 'Datenschutzerklärung',
+            navLinks: [
+                { href: 'index.html#about', label: 'Zurück zur Startseite' },
+                { href: 'index.html#contact-form-section', label: 'Unverbindliche Anfrage' },
+            ],
+            contentFile: 'privacy-content.de.html',
+        },
+        {
+            outputFile: 'terms.html',
+            bodyClass: 'terms-page',
+            title: 'Allgemeine Geschäftsbedingungen | Mykhailo Hyndriuk',
+            description:
+                'Allgemeine Geschäftsbedingungen von Mykhailo Hyndriuk für IT-Dienstleistungen, Digitalisierung, Robotik, Softwareentwicklung und KI-Automatisierung – Vertragsschluss, Preise, Zahlung und Haftung.',
+            subtitle: 'Allgemeine Geschäftsbedingungen',
+            heading: 'Allgemeine Geschäftsbedingungen',
+            navLinks: [
+                { href: 'index.html#about', label: 'Zurück zur Startseite' },
+                { href: 'index.html#services', label: 'Leistungen' },
+                { href: 'index.html#contact-form-section', label: 'Unverbindliche Anfrage' },
+            ],
+            contentFile: 'terms-content.de.html',
+        },
+    ],
+    uk: [
+        {
+            outputFile: 'privacy.html',
+            bodyClass: 'privacy-page',
+            title: 'Політика конфіденційності | Mykhailo Hyndriuk',
+            description:
+                'Політика конфіденційності Mykhailo Hyndriuk – як збираються, обробляються та захищаються персональні дані і які права ви маєте згідно з GDPR.',
+            subtitle: 'Політика конфіденційності',
+            heading: 'Політика конфіденційності',
+            navLinks: [
+                { href: 'index.html#about', label: 'Повернутися на головну' },
+                { href: 'index.html#contact-form-section', label: 'Залишити запит' },
+            ],
+            contentFile: 'privacy-content.uk.html',
+        },
+        {
+            outputFile: 'terms.html',
+            bodyClass: 'terms-page',
+            title: 'Умови надання послуг | Mykhailo Hyndriuk',
+            description:
+                'Умови надання послуг Mykhailo Hyndriuk у сфері IT, цифровізації, робототехніки, розробки програмного забезпечення та AI-автоматизації – укладення договорів, ціни, оплата та відповідальність.',
+            subtitle: 'Умови надання послуг',
+            heading: 'Умови надання послуг',
+            navLinks: [
+                { href: 'index.html#about', label: 'Повернутися на головну' },
+                { href: 'index.html#services', label: 'Послуги' },
+                { href: 'index.html#contact-form-section', label: 'Залишити запит' },
+            ],
+            contentFile: 'terms-content.uk.html',
         },
     ],
 };

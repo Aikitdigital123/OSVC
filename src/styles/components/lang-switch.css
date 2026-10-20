@@ -46,3 +46,18 @@
         align-self: center;
     }
 }
+
+@media (max-width: 360px) {
+    header .logo {
+        font-size: 1.5rem;
+    }
+
+    .lang-switch {
+        gap: 0;
+        font-size: 0.72rem;
+    }
+
+    .lang-switch a {
+        padding: 4px 6px;
+    }
+}

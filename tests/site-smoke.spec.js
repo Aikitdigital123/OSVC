@@ -112,3 +112,26 @@ test('english version is linked both ways and uses english interface texts', asy
     await expect(page).toHaveURL(/\/privacy\.html$/);
     await expect(page.locator('html')).toHaveAttribute('lang', 'cs');
 });
+
+test('german version uses german interface texts and legal pages', async ({ page }) => {
+    await page.goto('/de/');
+    await expect(page.locator('html')).toHaveAttribute('lang', 'de');
+    await expect(page.locator('.lang-switch a')).toHaveCount(4);
+    await expect(page.locator('[aria-controls="about-detail-1"]')).toHaveText('Mehr erfahren');
+
+    await page.goto('/de/terms.html');
+    await expect(page.locator('html')).toHaveAttribute('lang', 'de');
+    await expect(page.locator('.legal-header .site-nav a')).toHaveCount(3);
+});
+
+test('ukrainian version uses ukrainian interface texts and legal pages', async ({ page }) => {
+    await page.goto('/uk/');
+    await expect(page.locator('html')).toHaveAttribute('lang', 'uk');
+    await expect(page.locator('.lang-switch a')).toHaveCount(4);
+    await expect(page.locator('.lang-switch a[aria-current="true"]')).toHaveText('UA');
+    await expect(page.locator('[aria-controls="about-detail-1"]')).toHaveText('Детальніше');
+
+    await page.goto('/uk/privacy.html');
+    await expect(page.locator('html')).toHaveAttribute('lang', 'uk');
+    await expect(page.locator('.legal-header .site-nav a')).toHaveCount(2);
+});
