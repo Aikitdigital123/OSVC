@@ -115,7 +115,8 @@
         min-height: 48px;
         padding: 14px 16px;
         border-radius: 12px;
-        border-bottom: 0;
+        border-color: transparent;
+        background: transparent;
         font-size: 1rem;
         line-height: 1.4;
         transform: none;
@@ -140,6 +141,23 @@
     .site-nav a:active {
         background: rgba(42, 140, 255, 0.14);
     }
+
+    .site-nav a.active {
+        background: rgba(42, 140, 255, 0.16);
+        border-color: rgba(42, 140, 255, 0.5);
+    }
+
+    .site-nav a.nav-cta,
+    .site-nav a.nav-cta:hover,
+    .site-nav a.nav-cta:focus,
+    .site-nav a.nav-cta:focus-visible {
+        background: var(--color-accent);
+        border-color: var(--color-accent);
+    }
+
+    html[data-header-compact='true'] .site-nav a {
+        padding: 14px 16px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -160,8 +178,8 @@
     }
 
     .subtitle {
-        font-size: 0.95rem;
-        margin-bottom: 8px;
+        font-size: 0.78rem;
+        margin-bottom: 0;
     }
 
     .nav-toggle {

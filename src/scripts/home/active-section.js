@@ -10,7 +10,15 @@ const activateLink = (navLinks, sectionId) => {
     }
 
     navLinks.forEach((link) => {
-        link.classList.toggle('active', link.getAttribute('href') === `#${sectionId}`);
+        const isActive = link.getAttribute('href') === `#${sectionId}`;
+
+        link.classList.toggle('active', isActive);
+
+        if (isActive) {
+            link.setAttribute('aria-current', 'location');
+        } else {
+            link.removeAttribute('aria-current');
+        }
     });
 };
 
