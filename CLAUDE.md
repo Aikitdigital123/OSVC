@@ -7,10 +7,23 @@ OSVC-main / hyndriuk.cz.
 
 - Statický osobní web `hyndriuk.cz - IT & Digital Solutions`.
 - Stack: Vite, vanilla HTML, CSS a JavaScript, bez frontend frameworku.
-- Jazyk veřejného obsahu: čeština.
+- Jazyk veřejného obsahu: čeština (hlavní) a angličtina (`en/`).
 - Hlavní stránka: `index.html`.
 - Právní stránky: `privacy.html` a `terms.html`, generované z
   `src/templates/legal/` přes `tools/sync-pages.mjs`.
+
+## Jazykové verze
+
+- Čeština je v kořeni (`index.html`, `privacy.html`, `terms.html`), další jazyky v
+  podsložkách: angličtina `en/` (`en/index.html`, `en/privacy.html`, `en/terms.html`).
+- Změnu obsahu hlavní stránky proveď ve všech jazykových verzích `index.html`.
+- Právní stránky všech jazyků generuje `tools/sync-pages.mjs` (seznam `languages` a `legalPages`);
+  obsah je v `src/templates/legal/*-content.html` (čeština) a `*-content.<jazyk>.html`.
+  Závazná je česká verze, překlady to uvádějí na začátku.
+- Texty v JavaScriptu (formulář, rozbalovací bloky) jsou v `src/scripts/core/i18n.js`.
+- Přepínač jazyků `.lang-switch` je v hlavičce každé stránky; při přidání jazyka doplň odkaz do
+  všech stránek, `hreflang` odkazy v `<head>`, `public/sitemap.xml` a vstupy ve `vite.config.js`.
+- Na stránkách v podsložkách používej absolutní cesty k souborům (`/images/...`).
 
 ## Důležité soubory
 

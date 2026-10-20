@@ -12,6 +12,7 @@
 @import '../components/certificates.css';
 @import '../components/contact.css';
 @import '../components/digit-loader.css';
+@import '../components/lang-switch.css';
 @import '../components/mobile-nav.css';
 @import '../pages/home.css';
 @import '../pages/touch-background.css';

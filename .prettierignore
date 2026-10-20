@@ -5,4 +5,6 @@ playwright-report/
 test-results/
 privacy.html
 terms.html
+en/privacy.html
+en/terms.html
 package-lock.json

@@ -1,4 +1,5 @@
 import { getRoot, qsa, setDataAttribute } from '../core/dom.js';
+import { t } from '../core/i18n.js';
 
 const CONTACT_FORM_SELECTOR = 'form.contact-form';
 
@@ -28,7 +29,7 @@ export const initContactForms = () => {
             const formData = new FormData(form);
 
             if (statusElement) {
-                statusElement.textContent = 'Odesílám...';
+                statusElement.textContent = t('formSending');
                 statusElement.classList.remove('success', 'error');
                 statusElement.style.opacity = '1';
             }
@@ -50,15 +51,13 @@ export const initContactForms = () => {
 
                 if (data.success) {
                     if (statusElement) {
-                        statusElement.textContent =
-                            'Zpráva byla úspěšně odeslána. Ozvu se vám co nejdříve.';
+                        statusElement.textContent = t('formSuccess');
                         statusElement.classList.add('success');
                     }
 
                     form.reset();
                 } else {
-                    const errorMessage =
-                        data.message || 'Chyba při odeslání formuláře. Zkuste to prosím později.';
+                    const errorMessage = data.message || t('formError');
 
                     if (statusElement) {
                         statusElement.textContent = errorMessage;
@@ -69,8 +68,7 @@ export const initContactForms = () => {
                 }
             } catch (error) {
                 if (statusElement) {
-                    statusElement.textContent =
-                        'Došlo k chybě připojení k serveru. Zkuste to prosím později.';
+                    statusElement.textContent = t('formNetworkError');
                     statusElement.classList.add('error');
                 }
 

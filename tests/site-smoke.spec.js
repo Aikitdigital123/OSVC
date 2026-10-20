@@ -92,3 +92,23 @@ test('generated legal pages keep the shared navigation shell', async ({ page }) 
     await page.goto('/terms.html');
     await expect(page.locator('.legal-header .site-nav a')).toHaveCount(3);
 });
+
+test('english version is linked both ways and uses english interface texts', async ({ page }) => {
+    await page.goto('/');
+    await page.locator('.lang-switch a[hreflang="en"]').click();
+    await expect(page).toHaveURL(/\/en\/$/);
+    await expect(page.locator('html')).toHaveAttribute('lang', 'en');
+    await expect(page.locator('.lang-switch a[aria-current="true"]')).toHaveText('EN');
+
+    const toggle = page.locator('[aria-controls="about-detail-1"]');
+    await expect(toggle).toHaveText('More information');
+    await toggle.click();
+    await expect(toggle).toHaveText('Hide details');
+
+    await page.goto('/en/privacy.html');
+    await expect(page.locator('html')).toHaveAttribute('lang', 'en');
+    await expect(page.locator('.legal-header .site-nav a')).toHaveCount(2);
+    await page.locator('.lang-switch a[hreflang="cs"]').click();
+    await expect(page).toHaveURL(/\/privacy\.html$/);
+    await expect(page.locator('html')).toHaveAttribute('lang', 'cs');
+});

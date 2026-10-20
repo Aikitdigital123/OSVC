@@ -1,3 +1,5 @@
+import { t } from '../core/i18n.js';
+
 export const initAboutAccordion = () => {
     const toggles = document.querySelectorAll('.accordion-toggle');
 
@@ -13,7 +15,7 @@ export const initAboutAccordion = () => {
 
             if (isExpanded) {
                 toggle.setAttribute('aria-expanded', 'false');
-                if (textSpan) textSpan.textContent = 'Více informací';
+                if (textSpan) textSpan.textContent = t('moreInfo');
                 content.classList.remove('is-open');
 
                 const handleTransitionEnd = (e) => {
@@ -30,7 +32,7 @@ export const initAboutAccordion = () => {
                 // Vynucení reflow pro správné spuštění CSS animace
                 void content.offsetHeight;
                 toggle.setAttribute('aria-expanded', 'true');
-                if (textSpan) textSpan.textContent = 'Skrýt detail';
+                if (textSpan) textSpan.textContent = t('lessInfo');
                 content.classList.add('is-open');
             }
         });

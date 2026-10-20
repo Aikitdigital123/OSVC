@@ -30,7 +30,7 @@
             max(20px, env(safe-area-inset-left));
         gap: 10px;
         display: grid;
-        grid-template-columns: minmax(0, 1fr) auto;
+        grid-template-columns: minmax(0, 1fr) auto auto;
         align-items: center;
         justify-items: start;
         text-align: left;
@@ -54,7 +54,7 @@
 
     .nav-toggle {
         display: inline-flex;
-        grid-column: 2;
+        grid-column: 3;
         grid-row: 1;
         justify-self: end;
         position: relative;
