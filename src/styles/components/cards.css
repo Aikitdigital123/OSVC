@@ -85,3 +85,7 @@
 .card-grid .card p {
     font-size: 1rem;
 }
+
+.card-grid > .card:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+}

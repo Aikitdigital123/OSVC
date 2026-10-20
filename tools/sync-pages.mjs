@@ -28,7 +28,7 @@ const legalPages = [
         bodyClass: 'terms-page',
         title: 'Obchodní podmínky | Mykhailo Hyndriuk',
         description:
-            'Obchodní podmínky pro poskytování IT služeb, digitalizace a robotiky Mykhaila Hyndriuka – sjednávání smluv, ceny, platby i odpovědnost.',
+            'Obchodní podmínky pro poskytování IT služeb, digitalizace, robotiky, vývoje softwaru a AI automatizace Mykhaila Hyndriuka – sjednávání smluv, ceny, platby i odpovědnost.',
         subtitle: 'Obchodní podmínky',
         heading: 'Obchodní podmínky',
         navLinks: [
