@@ -4,6 +4,7 @@ import { applyFeatureFlags } from '../scripts/core/features.js';
 import { initHeaderController } from '../scripts/core/header-controller.js';
 import { applyPageFlags } from '../scripts/core/page-flags.js';
 import { applyMediaFlags } from '../scripts/core/media.js';
+import { applyCurrentYear } from '../scripts/core/current-year.js';
 import { initAnchorNav } from '../scripts/home/anchor-nav.js';
 import { initSectionReveal } from '../scripts/home/section-reveal.js';
 import { initActiveSection } from '../scripts/home/active-section.js';
@@ -41,6 +42,7 @@ const initHomeEntry = () => {
     initContactForms();
     initDigitLoader();
     initAboutAccordion();
+    applyCurrentYear();
 };
 
 whenDomReady(initHomeEntry);

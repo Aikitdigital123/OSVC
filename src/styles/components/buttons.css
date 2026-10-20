@@ -25,3 +25,35 @@
     transform: translateY(-3px) scale(1.03);
     box-shadow: 0 8px 25px rgba(42, 140, 255, 0.4);
 }
+
+.btn-secondary {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 1.1rem;
+    color: var(--color-accent);
+    background: transparent;
+    border: 1px solid rgba(42, 140, 255, 0.5);
+    border-radius: 10px;
+    padding: 12px 30px;
+    margin-top: 20px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    transition:
+        background 0.3s ease-out,
+        border-color 0.3s ease-out,
+        transform 0.2s ease-out;
+}
+
+.btn-secondary:hover,
+.btn-secondary:focus {
+    background: rgba(42, 140, 255, 0.1);
+    border-color: var(--color-accent);
+    transform: translateY(-3px);
+}
+
+.btn-main:focus-visible,
+.btn-secondary:focus-visible {
+    outline: 2px solid rgba(183, 215, 255, 0.9);
+    outline-offset: 3px;
+}
