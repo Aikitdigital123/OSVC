@@ -3,4 +3,4 @@ Allow: /
 Disallow: /admin/
 Disallow: /tmp/
 
-Sitemap: https://www.hyndriuk.cz/sitemap.xml
+Sitemap: https://hyndriuk.cz/sitemap.xml

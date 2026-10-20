@@ -8,13 +8,7 @@
         <meta name="format-detection" content="telephone=no, email=no" />
         <title>{{title}}</title>
         <meta name="description" content="{{description}}" />
-        {{alternate_links}}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Roboto+Mono:wght@400;700&display=swap"
-            rel="stylesheet"
-        />
+        {{canonical_link}} {{alternate_links}}
     </head>
     <body class="legal-page {{body_class}}">
         <header class="legal-header">
@@ -22,12 +16,12 @@
             <div class="subtitle">{{subtitle}}</div>
             <button
                 class="nav-toggle"
-                aria-label="Menu"
+                aria-label="{{menu_label}}"
                 aria-expanded="false"
                 aria-controls="site-navigation"
                 type="button"
             >
-                Menu
+                {{menu_label}}
             </button>
             <nav id="site-navigation" class="site-nav legal-nav">{{nav_links}}</nav>
             {{lang_switch}}
@@ -48,6 +42,6 @@
             </nav>
             <a class="btn-main legal-button" href="{{home_href}}">{{home_label}}</a>
         </footer>
+        <script type="module" src="/src/entries/legal.js"></script>
     </body>
-    <script type="module" src="/src/entries/legal.js"></script>
 </html>

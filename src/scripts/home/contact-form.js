@@ -38,34 +38,16 @@ export const initContactForms = () => {
                 submitButton.disabled = true;
             }
 
+            let response;
+
             try {
-                const response = await fetch(form.action || 'https://api.web3forms.com/submit', {
+                response = await fetch(form.action || 'https://api.web3forms.com/submit', {
                     method: form.method || 'POST',
                     body: formData,
                     headers: {
                         Accept: 'application/json',
                     },
                 });
-
-                const data = await response.json();
-
-                if (data.success) {
-                    if (statusElement) {
-                        statusElement.textContent = t('formSuccess');
-                        statusElement.classList.add('success');
-                    }
-
-                    form.reset();
-                } else {
-                    const errorMessage = t('formError');
-
-                    if (statusElement) {
-                        statusElement.textContent = errorMessage;
-                        statusElement.classList.add('error');
-                    }
-
-                    console.error('Web3Forms error:', data.message);
-                }
             } catch (error) {
                 if (statusElement) {
                     statusElement.textContent = t('formNetworkError');
@@ -73,6 +55,28 @@ export const initContactForms = () => {
                 }
 
                 console.error('Form submission network error:', error);
+            }
+
+            try {
+                if (response) {
+                    const data = await response.json().catch(() => null);
+
+                    if (response.ok && data?.success) {
+                        if (statusElement) {
+                            statusElement.textContent = t('formSuccess');
+                            statusElement.classList.add('success');
+                        }
+
+                        form.reset();
+                    } else {
+                        if (statusElement) {
+                            statusElement.textContent = t('formError');
+                            statusElement.classList.add('error');
+                        }
+
+                        console.error('Web3Forms error:', response.status, data?.message);
+                    }
+                }
             } finally {
                 if (submitButton) {
                     submitButton.disabled = false;

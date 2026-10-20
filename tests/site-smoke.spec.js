@@ -135,3 +135,48 @@ test('ukrainian version uses ukrainian interface texts and legal pages', async (
     await expect(page.locator('html')).toHaveAttribute('lang', 'uk');
     await expect(page.locator('.legal-header .site-nav a')).toHaveCount(2);
 });
+
+const LANGUAGES = [
+    { code: 'cs', prefix: '/', menu: 'Menu' },
+    { code: 'en', prefix: '/en/', menu: 'Menu' },
+    { code: 'de', prefix: '/de/', menu: 'Menü' },
+    { code: 'uk', prefix: '/uk/', menu: 'Меню' },
+];
+const DOCUMENTS = ['', 'privacy.html', 'terms.html'];
+
+for (const language of LANGUAGES) {
+    for (const documentName of DOCUMENTS) {
+        const path = `${language.prefix}${documentName}`;
+
+        test(`${path} has language metadata, canonical and a matching language switch`, async ({
+            page,
+        }) => {
+            await page.goto(path);
+
+            await expect(page.locator('html')).toHaveAttribute('lang', language.code);
+            await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
+                'href',
+                `https://hyndriuk.cz${path}`,
+            );
+            await expect(page.locator('link[rel="alternate"][hreflang]')).toHaveCount(5);
+            await expect(page.locator('header .nav-toggle')).toHaveAttribute(
+                'aria-label',
+                language.menu,
+            );
+
+            const switchLinks = page.locator('.lang-switch a');
+            await expect(switchLinks).toHaveCount(LANGUAGES.length);
+
+            for (const target of LANGUAGES) {
+                await expect(
+                    page.locator(`.lang-switch a[hreflang="${target.code}"]`),
+                ).toHaveAttribute('href', `${target.prefix}${documentName}`);
+            }
+
+            await expect(page.locator('.lang-switch a[aria-current="true"]')).toHaveAttribute(
+                'hreflang',
+                language.code,
+            );
+        });
+    }
+}

@@ -13,6 +13,7 @@ const SITE_URL = 'https://hyndriuk.cz';
 const languages = [
     {
         code: 'cs',
+        menuLabel: 'Menu',
         directory: '',
         switchLabel: 'CS',
         homeHref: 'index.html',
@@ -25,6 +26,7 @@ const languages = [
     },
     {
         code: 'en',
+        menuLabel: 'Menu',
         directory: 'en',
         switchLabel: 'EN',
         homeHref: 'index.html',
@@ -37,6 +39,7 @@ const languages = [
     },
     {
         code: 'de',
+        menuLabel: 'Menü',
         directory: 'de',
         switchLabel: 'DE',
         homeHref: 'index.html',
@@ -49,6 +52,7 @@ const languages = [
     },
     {
         code: 'uk',
+        menuLabel: 'Меню',
         directory: 'uk',
         switchLabel: 'UA',
         homeHref: 'index.html',
@@ -232,7 +236,12 @@ const renderPage = (template, language, page, content) =>
         .replaceAll('{{lang}}', language.code)
         .replaceAll('{{title}}', page.title)
         .replaceAll('{{description}}', page.description)
+        .replaceAll(
+            '{{canonical_link}}',
+            `<link rel="canonical" href="${SITE_URL}${pagePath(language, page.outputFile)}" />`,
+        )
         .replaceAll('{{alternate_links}}', renderAlternateLinks(page.outputFile))
+        .replaceAll('{{menu_label}}', language.menuLabel)
         .replaceAll('{{body_class}}', page.bodyClass)
         .replaceAll('{{subtitle}}', page.subtitle)
         .replaceAll('{{heading}}', page.heading)
