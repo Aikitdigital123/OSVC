@@ -34,18 +34,26 @@ export const initActiveSection = () => {
     const supportsIntersectionObserver = typeof window.IntersectionObserver !== 'undefined';
 
     if (supportsIntersectionObserver) {
+        const visibleSections = new Set();
         const navSectionActiveObserver = new IntersectionObserver(
             (entries) => {
-                let activeId = null;
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        visibleSections.add(entry.target);
+                    } else {
+                        visibleSections.delete(entry.target);
+                    }
+                });
 
-                entries
-                    .filter((entry) => entry.isIntersecting)
-                    .forEach((entry) => {
-                        activeId = entry.target.id;
-                    });
+                const activationLine = window.innerHeight * 0.45;
+                const activeSection = [...visibleSections].sort(
+                    (first, second) =>
+                        Math.abs(first.getBoundingClientRect().top - activationLine) -
+                        Math.abs(second.getBoundingClientRect().top - activationLine),
+                )[0];
 
-                if (activeId) {
-                    activateLink(navLinks, activeId);
+                if (activeSection) {
+                    activateLink(navLinks, activeSection.id);
                 }
             },
             {

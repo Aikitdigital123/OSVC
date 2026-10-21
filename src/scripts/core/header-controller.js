@@ -34,6 +34,7 @@ export const setHeaderNavOpen = (open) => {
     setDataAttribute(root, 'mobileNavOpen', isOpen);
     toggle.setAttribute('aria-expanded', String(isOpen));
     nav.setAttribute('aria-hidden', String(!isOpen));
+    nav.inert = !isOpen;
     nav.classList.toggle('is-open', isOpen);
     return isOpen;
 };
@@ -69,7 +70,9 @@ export const initHeaderController = () => {
             closeHeaderNav();
         }
 
-        nav.setAttribute('aria-hidden', String(mobile ? !isHeaderNavOpen() : false));
+        const navHidden = mobile && !isHeaderNavOpen();
+        nav.setAttribute('aria-hidden', String(navHidden));
+        nav.inert = navHidden;
         getHeaderOffset(header);
     };
 

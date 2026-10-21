@@ -3,8 +3,10 @@
     <head>
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
         <meta name="robots" content="noindex, nofollow" />
+        <meta name="theme-color" content="#171d25" />
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
         <title>404 - Stránka nenalezena</title>
         <style>
             body {
@@ -14,8 +16,12 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                height: 100vh;
+                min-height: 100vh;
+                min-height: 100dvh;
                 margin: 0;
+                padding: max(20px, env(safe-area-inset-top)) max(20px, env(safe-area-inset-right))
+                    max(20px, env(safe-area-inset-bottom)) max(20px, env(safe-area-inset-left));
+                box-sizing: border-box;
             }
             .container {
                 text-align: center;
@@ -28,6 +34,10 @@
             }
             a:hover {
                 text-decoration: underline;
+            }
+            a:focus-visible {
+                outline: 2px solid #8dc2ff;
+                outline-offset: 4px;
             }
         </style>
     </head>

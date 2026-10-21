@@ -73,7 +73,7 @@ test('ukrainian page renders cyrillic with the self-hosted fonts', async ({ page
         interBold: document.fonts.check('700 16px Inter', 'Ґанок, їжак, єнот'),
         monoCyrillic: document.fonts.check('400 16px "Roboto Mono"', 'Ґанок, їжак, єнот'),
         loadedCyrillicFaces: [...document.fonts].filter(
-            (face) => face.status === 'loaded' && face.unicodeRange.includes('U+400-45F'),
+            (face) => face.status === 'loaded' && /U\+0?400-0?45F/i.test(face.unicodeRange),
         ).length,
     }));
 
@@ -84,11 +84,18 @@ test('ukrainian page renders cyrillic with the self-hosted fonts', async ({ page
     expect(rendering.loadedCyrillicFaces).toBeGreaterThan(0);
 });
 
-test('czech and german pages load the latin extended subset', async ({ page }) => {
+test('czech and german pages load the latin extended subset', async ({ page }, testInfo) => {
+    test.skip(
+        testInfo.project.name === 'webkit',
+        'WebKit reports false for document.fonts.check with unicode-range subsets.',
+    );
+
     for (const path of ['/', '/de/']) {
-        const urls = collectRequests(page);
         await loadFully(page, path);
-        expect(urls.some((url) => url.includes('inter-latin-ext'))).toBe(true);
+        const latinExtendedReady = await page.evaluate(() =>
+            document.fonts.check('400 16px Inter', 'Příliš žluťoučký kůň über Größe'),
+        );
+        expect(latinExtendedReady).toBe(true);
     }
 });
 
@@ -103,4 +110,13 @@ test('QR code is a local image that loads', async ({ page }) => {
             .poll(() => qr.evaluate((image) => image.complete && image.naturalWidth > 0))
             .toBe(true);
     }
+});
+
+test('optimized visual assets are present and preferred', async ({ page }) => {
+    await page.goto('/');
+
+    const background = await page.evaluate(() => getComputedStyle(document.body).backgroundImage);
+    expect(background).toContain('127.webp');
+
+    await expect(page.locator('a[href*="fanuc-tp1"]')).toHaveAttribute('href', /fanuc-tp1\.webp$/);
 });

@@ -20,11 +20,45 @@
         <link rel="alternate" hreflang="de" href="https://hyndriuk.cz/de/" />
         <link rel="alternate" hreflang="uk" href="https://hyndriuk.cz/uk/" />
         <link rel="alternate" hreflang="x-default" href="https://hyndriuk.cz/" />
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        <meta name="theme-color" content="#171d25" />
+        <meta name="referrer" content="strict-origin-when-cross-origin" />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="MH|IT" />
+        <meta property="og:locale" content="en_GB" />
+        <meta
+            property="og:title"
+            content="Mykhailo Hyndriuk – IT Operations, Software Development and AI Automation"
+        />
+        <meta
+            property="og:description"
+            content="IT operations, internal application development, local AI and business process automation."
+        />
+        <meta property="og:url" content="https://hyndriuk.cz/en/" />
+        <meta property="og:image" content="https://hyndriuk.cz/images/og-card.jpg" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <script type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@type": "Person",
+                "name": "Mykhailo Hyndriuk",
+                "url": "https://hyndriuk.cz/",
+                "email": "mailto:mykhailo@hyndriuk.cz",
+                "telephone": "+420777781600",
+                "jobTitle": "IT Operations, Software Development and AI Automation Specialist",
+                "areaServed": ["Prague", "Mladá Boleslav", "Czech Republic"]
+            }
+        </script>
     </head>
     <body>
         <header>
             <h1 class="logo-container">
-                <span class="logo">MH<span class="logo-accent">|</span>IT</span>
+                <span class="visually-hidden"
+                    >Mykhailo Hyndriuk – IT Operations, Software Development and AI Automation</span
+                >
+                <span class="logo" aria-hidden="true">MH<span class="logo-accent">|</span>IT</span>
             </h1>
             <div class="subtitle">
                 <span class="subtitle-part">IT Operations ·</span>
@@ -659,7 +693,7 @@
                             data backup and restore.
                             <br />
                             <a
-                                href="/images/certificates/fanuc-tp1.jpg"
+                                href="/images/certificates/fanuc-tp1.webp"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 class="certificate-verify-link"
@@ -828,6 +862,14 @@
                         value="c3516176-7279-49b7-9479-b921580f83f2"
                     />
                     <input type="hidden" name="subject" value="Nová poptávka z hyndriuk.cz (EN)" />
+                    <input
+                        type="checkbox"
+                        name="botcheck"
+                        class="form-honeypot"
+                        tabindex="-1"
+                        autocomplete="off"
+                        aria-hidden="true"
+                    />
 
                     <label for="name">Name:</label>
                     <input
@@ -855,10 +897,16 @@
                         name="message"
                         required
                         rows="4"
+                        maxlength="4000"
+                        aria-describedby="form-privacy"
                         class="form-textarea"
                     ></textarea>
 
                     <button type="submit" class="btn-main form-submit-btn">Send request</button>
+                    <p id="form-privacy" class="form-privacy-note">
+                        By submitting, you agree to the processing described in the
+                        <a href="privacy.html">Privacy Policy</a>.
+                    </p>
                     <div
                         id="form-status"
                         class="form-status"

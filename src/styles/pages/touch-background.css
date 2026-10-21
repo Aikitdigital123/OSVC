@@ -16,7 +16,11 @@
         inset: -2px;
         background:
             linear-gradient(rgba(23, 29, 37, 0.58), rgba(23, 29, 37, 0.52)),
-            url('/images/backgrounds/127.jpg') no-repeat center center;
+            image-set(
+                    url('/images/backgrounds/127.webp') type('image/webp'),
+                    url('/images/backgrounds/127.jpg') type('image/jpeg')
+                )
+                no-repeat center center;
         background-size: cover;
         z-index: -1;
         pointer-events: none;
@@ -27,7 +31,11 @@
     body::before {
         background:
             linear-gradient(rgba(23, 29, 37, 0.54), rgba(23, 29, 37, 0.48)),
-            url('/images/backgrounds/127mob.jpg') no-repeat center center;
+            image-set(
+                    url('/images/backgrounds/127mob.webp') type('image/webp'),
+                    url('/images/backgrounds/127mob.jpg') type('image/jpeg')
+                )
+                no-repeat center center;
         background-size: cover;
     }
 }

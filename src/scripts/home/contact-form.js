@@ -2,6 +2,7 @@ import { getRoot, qsa, setDataAttribute } from '../core/dom.js';
 import { t } from '../core/i18n.js';
 
 const CONTACT_FORM_SELECTOR = 'form.contact-form';
+const REQUEST_TIMEOUT_MS = 15_000;
 
 export const initContactForms = () => {
     const root = getRoot();
@@ -39,6 +40,8 @@ export const initContactForms = () => {
             }
 
             let response;
+            const controller = new AbortController();
+            const timeoutId = window.setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
 
             try {
                 response = await fetch(form.action || 'https://api.web3forms.com/submit', {
@@ -47,6 +50,7 @@ export const initContactForms = () => {
                     headers: {
                         Accept: 'application/json',
                     },
+                    signal: controller.signal,
                 });
             } catch (error) {
                 if (statusElement) {
@@ -55,6 +59,8 @@ export const initContactForms = () => {
                 }
 
                 console.error('Form submission network error:', error);
+            } finally {
+                window.clearTimeout(timeoutId);
             }
 
             try {

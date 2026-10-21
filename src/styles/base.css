@@ -21,7 +21,13 @@ body {
     margin: 0;
     padding: 0;
     /* Pozadí pro desktop s fixním attachmentem */
-    background: url('/images/backgrounds/127.jpg') no-repeat center center fixed;
+    background-image: image-set(
+        url('/images/backgrounds/127.webp') type('image/webp'),
+        url('/images/backgrounds/127.jpg') type('image/jpeg')
+    );
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
     background-size: cover; /* Zajistí, že obrázek pokryje celou obrazovku */
     background-color: var(--color-bg);
     color: var(--color-text);

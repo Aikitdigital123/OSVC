@@ -65,7 +65,21 @@ test.describe('mobile navigation and loader', () => {
             )
             .toBe('false');
 
+        await expect(page.locator('#site-navigation')).toHaveJSProperty('inert', true);
         await expect(header).toBeVisible();
+    });
+
+    test('closed menu cannot receive keyboard focus', async ({ page }) => {
+        await page.goto('/');
+
+        const navigation = page.locator('#site-navigation');
+        const menuButton = page.getByRole('button', { name: 'Menu' });
+
+        await expect(navigation).toHaveJSProperty('inert', true);
+        await menuButton.click();
+        await expect(navigation).toHaveJSProperty('inert', false);
+        await page.keyboard.press('Escape');
+        await expect(navigation).toHaveJSProperty('inert', true);
     });
 
     test('digit loader keeps three visible columns on iPhone portrait', async ({ page }) => {
@@ -110,7 +124,7 @@ test.describe('mobile navigation and loader', () => {
         expect(backgroundLayer.right).toBe('-2px');
         expect(backgroundLayer.bottom).toBe('-2px');
         expect(backgroundLayer.left).toBe('-2px');
-        expect(backgroundLayer.image).toContain('127mob.jpg');
+        expect(backgroundLayer.image).toContain('127mob');
     });
 });
 
@@ -120,6 +134,33 @@ test('generated legal pages keep the shared navigation shell', async ({ page }) 
 
     await page.goto('/terms.html');
     await expect(page.locator('.legal-header .site-nav a')).toHaveCount(3);
+});
+
+test('homepage exposes social metadata, structured identity and protected contact form', async ({
+    page,
+}) => {
+    await page.goto('/');
+
+    await expect(page.locator('link[rel="icon"]')).toHaveAttribute('href', '/favicon.svg');
+    await expect(page.locator('meta[property="og:image"]')).toHaveAttribute(
+        'content',
+        'https://hyndriuk.cz/images/og-card.jpg',
+    );
+    await expect(page.locator('meta[name="twitter:card"]')).toHaveAttribute(
+        'content',
+        'summary_large_image',
+    );
+
+    const structuredData = JSON.parse(
+        await page.locator('script[type="application/ld+json"]').textContent(),
+    );
+    expect(structuredData['@type']).toBe('Person');
+    expect(structuredData.name).toBe('Mykhailo Hyndriuk');
+
+    const form = page.locator('.contact-form');
+    await expect(form.locator('[name="botcheck"]')).toHaveCount(1);
+    await expect(form.locator('.form-privacy-note a')).toHaveAttribute('href', 'privacy.html');
+    await expect(form.locator('textarea')).toHaveAttribute('maxlength', '4000');
 });
 
 test('english version is linked both ways and uses english interface texts', async ({ page }) => {

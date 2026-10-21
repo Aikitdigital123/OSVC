@@ -22,11 +22,46 @@
         <link rel="alternate" hreflang="de" href="https://hyndriuk.cz/de/" />
         <link rel="alternate" hreflang="uk" href="https://hyndriuk.cz/uk/" />
         <link rel="alternate" hreflang="x-default" href="https://hyndriuk.cz/" />
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        <meta name="theme-color" content="#171d25" />
+        <meta name="referrer" content="strict-origin-when-cross-origin" />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="MH|IT" />
+        <meta property="og:locale" content="uk_UA" />
+        <meta
+            property="og:title"
+            content="Mykhailo Hyndriuk – IT Operations, розробка програмного забезпечення та AI-автоматизація"
+        />
+        <meta
+            property="og:description"
+            content="IT-операції, розробка внутрішніх застосунків, локальний AI та автоматизація бізнес-процесів."
+        />
+        <meta property="og:url" content="https://hyndriuk.cz/uk/" />
+        <meta property="og:image" content="https://hyndriuk.cz/images/og-card.jpg" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <script type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@type": "Person",
+                "name": "Mykhailo Hyndriuk",
+                "url": "https://hyndriuk.cz/",
+                "email": "mailto:mykhailo@hyndriuk.cz",
+                "telephone": "+420777781600",
+                "jobTitle": "Фахівець з IT Operations, розробки програмного забезпечення та AI-автоматизації",
+                "areaServed": ["Прага", "Млада-Болеслав", "Чехія"]
+            }
+        </script>
     </head>
     <body>
         <header>
             <h1 class="logo-container">
-                <span class="logo">MH<span class="logo-accent">|</span>IT</span>
+                <span class="visually-hidden"
+                    >Mykhailo Hyndriuk – IT Operations, розробка програмного забезпечення та
+                    AI-автоматизація</span
+                >
+                <span class="logo" aria-hidden="true">MH<span class="logo-accent">|</span>IT</span>
             </h1>
             <div class="subtitle">
                 <span class="subtitle-part">IT Operations ·</span>
@@ -668,7 +703,7 @@
                             копіювання та відновлення даних.
                             <br />
                             <a
-                                href="/images/certificates/fanuc-tp1.jpg"
+                                href="/images/certificates/fanuc-tp1.webp"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 class="certificate-verify-link"
@@ -837,6 +872,14 @@
                         value="c3516176-7279-49b7-9479-b921580f83f2"
                     />
                     <input type="hidden" name="subject" value="Nová poptávka z hyndriuk.cz (UA)" />
+                    <input
+                        type="checkbox"
+                        name="botcheck"
+                        class="form-honeypot"
+                        tabindex="-1"
+                        autocomplete="off"
+                        aria-hidden="true"
+                    />
 
                     <label for="name">Ім’я:</label>
                     <input
@@ -864,10 +907,16 @@
                         name="message"
                         required
                         rows="4"
+                        maxlength="4000"
+                        aria-describedby="form-privacy"
                         class="form-textarea"
                     ></textarea>
 
                     <button type="submit" class="btn-main form-submit-btn">Надіслати запит</button>
+                    <p id="form-privacy" class="form-privacy-note">
+                        Надсилаючи форму, ви погоджуєтеся з обробкою, описаною в
+                        <a href="privacy.html">Політиці конфіденційності</a>.
+                    </p>
                     <div
                         id="form-status"
                         class="form-status"
