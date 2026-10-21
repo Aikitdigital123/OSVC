@@ -1,23 +1,25 @@
 @media (max-width: 1024px) and (pointer: coarse) {
     body {
-        background: none;
+        background: var(--color-bg);
         position: relative;
-        z-index: 1;
+        isolation: isolate;
     }
 
     body::before {
         content: '';
         position: fixed;
-        inset: 0;
-        width: 100vw;
-        height: 100lvh;
+        /*
+         * iOS Safari občas zaokrouhlí pevný prvek na hraně viewportu o zlomek
+         * pixelu jinak než stránku. Malý přesah zabrání odkrytí světlé linky
+         * při schování adresního řádku, rotaci i gumovém overscrollu.
+         */
+        inset: -2px;
         background:
             linear-gradient(rgba(23, 29, 37, 0.58), rgba(23, 29, 37, 0.52)),
             url('/images/backgrounds/127.jpg') no-repeat center center;
         background-size: cover;
-        background-attachment: scroll;
         z-index: -1;
-        transform: translateZ(0);
+        pointer-events: none;
     }
 }
 
@@ -27,6 +29,5 @@
             linear-gradient(rgba(23, 29, 37, 0.54), rgba(23, 29, 37, 0.48)),
             url('/images/backgrounds/127mob.jpg') no-repeat center center;
         background-size: cover;
-        background-attachment: scroll;
     }
 }

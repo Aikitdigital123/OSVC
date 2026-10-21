@@ -12,6 +12,8 @@ html {
     text-size-adjust: 100%;
     scroll-behavior: smooth;
     height: 100%; /* Zajišťuje, že html element zabírá celou výšku */
+    min-height: 100%;
+    background-color: var(--color-bg); /* Pojistka proti bílému podkladu při iOS overscrollu */
 }
 
 /* Základní styly pro body (desktop a jako výchozí pro všechny) */

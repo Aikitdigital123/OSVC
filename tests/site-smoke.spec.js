@@ -83,6 +83,35 @@ test.describe('mobile navigation and loader', () => {
 
         expect(visibleColumns).toBe(3);
     });
+
+    test('mobile background safely overlaps every viewport edge', async ({ page }) => {
+        await page.goto('/');
+
+        const backgroundLayer = await page.evaluate(() => {
+            const body = getComputedStyle(document.body);
+            const background = getComputedStyle(document.body, '::before');
+
+            return {
+                pageBackground: getComputedStyle(document.documentElement).backgroundColor,
+                bodyBackground: body.backgroundColor,
+                isolation: body.isolation,
+                top: background.top,
+                right: background.right,
+                bottom: background.bottom,
+                left: background.left,
+                image: background.backgroundImage,
+            };
+        });
+
+        expect(backgroundLayer.pageBackground).not.toBe('rgba(0, 0, 0, 0)');
+        expect(backgroundLayer.bodyBackground).not.toBe('rgba(0, 0, 0, 0)');
+        expect(backgroundLayer.isolation).toBe('isolate');
+        expect(backgroundLayer.top).toBe('-2px');
+        expect(backgroundLayer.right).toBe('-2px');
+        expect(backgroundLayer.bottom).toBe('-2px');
+        expect(backgroundLayer.left).toBe('-2px');
+        expect(backgroundLayer.image).toContain('127mob.jpg');
+    });
 });
 
 test('generated legal pages keep the shared navigation shell', async ({ page }) => {
